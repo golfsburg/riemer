@@ -88,8 +88,18 @@
     .hero-mtb    { background: linear-gradient(135deg, #22c55e 0%, #10b981 100%); }
 
     /* ── Lightbox ── */
-    .lightbox { display: none; }
-    .lightbox.open { display: flex; }
+    .lightbox {
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .lightbox.open {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
   </style>
 </head>
 <body class="h-full bg-slate-50">
@@ -1201,11 +1211,11 @@
       'https://lh3.googleusercontent.com/d/1uss7tsfOFWFWFqdbg-YpqSTj7216E2n5?w=800'
     ],
     'golf2g60': [
-      'https://drive.google.com/uc?id=1c87rDmDw3_yoU2psZ2RzZ8FwXjxSUShq',
-      'https://drive.google.com/uc?id=1MNsajkDujfJQjbLI3GpbJhsH5sSEruIe',
-      'https://drive.google.com/uc?id=1Gc8HzidcGwy9WxshpV_F0z9Sg_Us1rqY',
-      'https://drive.google.com/uc?id=14QT6wq3qJaoFpAVv-3T31Tz2Ml46lRml',
-      'https://drive.google.com/uc?id=1S1hQe944iDYgM87RrY5Mh1Pr7pwdlwAE'
+      'https://drive.google.com/thumbnail?id=1c87rDmDw3_yoU2psZ2RzZ8FwXjxSUShq&sz=w1600',
+      'https://drive.google.com/thumbnail?id=1MNsajkDujfJQjbLI3GpbJhsH5sSEruIe&sz=w1600',
+      'https://drive.google.com/thumbnail?id=1Gc8HzidcGwy9WxshpV_F0z9Sg_Us1rqY&sz=w1600',
+      'https://drive.google.com/thumbnail?id=14QT6wq3qJaoFpAVv-3T31Tz2Ml46lRml&sz=w1600',
+      'https://drive.google.com/thumbnail?id=1S1hQe944iDYgM87RrY5Mh1Pr7pwdlwAE&sz=w1600'
     ]
   };
 
