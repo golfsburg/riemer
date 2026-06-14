@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="de" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peter Riemer · Homepage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    * { font-family: 'Outfit', sans-serif; }
+
+    /* ── Pages ── */
+    .page { display: none; animation: fadeIn 0.35s ease-out; }
+    .page.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Navigation ── */
+    .nav-item { transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease; }
+    .nav-item:hover { transform: translateY(-2px); }
+    .nav-item.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white !important;
+      box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+    }
+
+    /* ── Cards ── */
+    .card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .card:hover .feature-icon { transform: scale(1.1); }
+    .feature-icon { transition: transform 0.25s ease; }
+
+    /* ── Timeline rows ── */
+    .timeline-row { transition: box-shadow 0.2s ease; }
+    .timeline-row:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
+    /* ── Detail panels ── */
+    .detail-panel { display: none; animation: slideDown 0.25s ease-out; }
+    .detail-panel.open { display: block; }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Scrollable detail content ── */
+    .detail-scroll {
+      max-height: 420px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 transparent;
+    }
+    .detail-scroll::-webkit-scrollbar { width: 6px; }
+    .detail-scroll::-webkit-scrollbar-track { background: transparent; }
+    .detail-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+    /* ── Hero gradients ── */
+    .hero-home   { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .hero-autos  { background: linear-gradient(135deg, #ef4444 0%, #f97316 100%); }
+    .hero-handys { background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%); }
+    .hero-druck  { background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); }
+    .hero-mtb    { background: linear-gradient(135deg, #22c55e 0%, #10b981 100%); }
+
+    /* ── Lightbox ── */
+    .lightbox { display: none; }
+    .lightbox.open { display: flex; }
+  </style>
+</head>
+<body class="h-full bg-slate-50">
+
+<!-- ══════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════ -->
+<nav class="bg-white shadow-lg sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-center justify-between py-4">
+      <h1 class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent cursor-pointer" data-page="home">
+        Peter Riemer
+      </h1>
+      <div class="flex gap-2 flex-wrap">
+
+        <button class="nav-item active px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="home">
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          <span class="hidden sm:inline">Home</span>
+        </button>
+
+        <button class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="autos">
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l1.5-4.5a2 2 0 011.9-1.5h7.2a2 2 0 011.9 1.5L19 11M5 11h14M5 11v5a1 1 0 001 1h1m12-6v5a1 1 0 01-1 1h-1"/>
+          </svg>
+          <span class="hidden sm:inline">Autos</span>
+        </button>
+
+        <button class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="handys">
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          <span class="hidden sm:inline">Handys</span>
+        </button>
+
+        <button class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="druck">
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/>
+          </svg>
+          <span class="hidden sm:inline">3D Druck</span>
+        </button>
+
+        <button class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="mtb">
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="5.5" cy="17.5" r="3.5" stroke-width="2"/>
+            <circle cx="18.5" cy="17.5" r="3.5" stroke-width="2"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 17.5V12l-3.5 5.5M12 12l6.5 5.5M12 12l-2-5h4"/>
+          </svg>
+          <span class="hidden sm:inline">MTB</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════ -->
+<div id="page-home" class="page active">
+  <div class="hero-home text-white py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Willkommen auf meiner Homepage</h2>
+      <p class="text-xl opacity-90 mb-8">Entdecke meine Leidenschaften: Autos, Handys, 3D Druck und Mountainbiking</p>
+      <div class="flex justify-center gap-3 flex-wrap">
+        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="autos">🏎️ Automobile</button>
+        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="handys">📱 Handys</button>
+        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="druck">🖨️ 3D Druck</button>
+        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="mtb">🚵‍♂️ MTB</button>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="autos">
+        <div class="feature-icon w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">🏎️</div>
+        <h3 class="text-xl font-semibold text-slate-800 mb-2">Autos</h3>
+        <p class="text-slate-600">Meine Leidenschaft für schnelle und schöne Fahrzeuge</p>
+      </div>
+      <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="handys">
+        <div class="feature-icon w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">📱</div>
+        <h3 class="text-xl font-semibold text-slate-800 mb-2">Handys</h3>
+        <p class="text-slate-600">Meine mobile Geschichte seit 2000</p>
+      </div>
+      <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="druck">
+        <div class="feature-icon w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">🖨️</div>
+        <h3 class="text-xl font-semibold text-slate-800 mb-2">3D Druck</h3>
+        <p class="text-slate-600">Kreative Projekte aus dem 3D Drucker</p>
+      </div>
+      <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="mtb">
+        <div class="feature-icon w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">🚵</div>
+        <h3 class="text-xl font-semibold text-slate-800 mb-2">MTB</h3>
+        <p class="text-slate-600">Abenteuer auf zwei Rädern im Gelände</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     AUTOS PAGE
+══════════════════════════════════════ -->
+<div id="page-autos" class="page">
+  <div class="hero-autos text-white py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="text-6xl mb-4">🏎️</div>
+      <h2 class="text-4xl font-bold mb-4">Automobile Leidenschaft</h2>
+      <p class="text-xl opacity-90">Faszination Automobil – von Klassikern bis Supersportwagen</p>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+
+    <!-- Timeline banner image -->
+    <div class="bg-white rounded-2xl p-6 shadow-lg mb-6">
+      <img src="https://drive.google.com/thumbnail?id=1N4FCWdD_10RyW-NHxVBSVmfdcgDkI-C_&sz=w1000"
+           alt="Meine Fahrzeuggeschichte" class="w-full rounded-xl" loading="lazy"
+           onerror="this.style.background='#e5e7eb'; this.alt='Bild nicht verfügbar';">
+    </div>
+
+    <div class="bg-white rounded-2xl p-8 shadow-lg">
+      <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Fahrzeugsammlung</h3>
+      <div class="space-y-3">
+
+        <!-- ── Golf 2 GTD ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl cursor-pointer" data-toggle="golf2gtd">
+            <div class="shrink-0 flex items-center gap-3">
+              <div class="text-center w-16">
+                <div class="text-xl font-bold text-green-700">1998</div>
+                <div class="w-0.5 h-6 bg-green-300 mx-auto mt-1"></div>
+              </div>
+              <div class="text-4xl">🚙</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Golf 2 GTD – Hellgrünmetallic (1989)</h4>
+              <p class="text-slate-600 text-sm mt-1">Mein erstes Auto – Ein Klassiker!</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+          </div>
+          <div id="detail-golf2gtd" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-green-50 rounded-xl border-2 border-green-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Hellgrünmetallic</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Baujahr:</span> <span class="text-slate-600">10/1989</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">1,6 L 4-Zyl. Turbodiesel</span></div>
+                <div><span class="font-semibold text-slate-700">Leistung:</span> <span class="text-slate-600">51,5 kW / 70 PS</span></div>
+                <div><span class="font-semibold text-slate-700">Ausstattung:</span> <span class="text-slate-600">GT Innenausstattung, Schiebedach</span></div>
+              </div>
+              <img src="https://drive.google.com/thumbnail?id=1BFEnLRGsliVGn5iBIsITX7v2FICqAN3P&sz=w1000"
+                   alt="Golf 2 GTD" class="w-full rounded-lg mt-4" loading="lazy"
+                   onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Bora TDI ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl cursor-pointer" data-toggle="bora">
+            <div class="shrink-0 flex items-center gap-3">
+              <div class="text-center w-16">
+                <div class="text-xl font-bold text-blue-700">2002</div>
+                <div class="w-0.5 h-6 bg-blue-300 mx-auto mt-1"></div>
+              </div>
+              <div class="text-4xl">🚘</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Bora TDI – Königsblau (1999)</h4>
+              <p class="text-slate-600 text-sm mt-1">Zuverlässige Tourenlimousine</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+          </div>
+          <div id="detail-bora" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-blue-50 rounded-xl border-2 border-blue-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Königsblau</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Baujahr:</span> <span class="text-slate-600">10/1999</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">1,9 L 4-Zyl. TDI</span></div>
+                <div><span class="font-semibold text-slate-700">Leistung:</span> <span class="text-slate-600">66 kW / 90 PS</span></div>
+                <div><span class="font-semibold text-slate-700">Drehmoment:</span> <span class="text-slate-600">210 Nm</span></div>
+                <div><span class="font-semibold text-slate-700">Ausstattung:</span> <span class="text-slate-600">Elektronikpaket, Climatronic</span></div>
+              </div>
+              <img src="https://drive.google.com/thumbnail?id=157XgHb6gYt0i0xCwgXs9u5TzXr1YkKVE&sz=w1000"
+                   alt="Bora TDI" class="w-full rounded-lg mt-4" loading="lazy"
+                   onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Golf 4 GTI TDI Exclusive ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl cursor-pointer" data-toggle="golf4gti">
+            <div class="shrink-0 flex items-center gap-3">
+              <div class="text-center w-16">
+                <div class="text-xl font-bold text-slate-700">2002</div>
+                <div class="w-0.5 h-6 bg-slate-300 mx-auto mt-1"></div>
+              </div>
+              <div class="text-4xl">🏁</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Golf 4 GTI TDI Exclusive (2000)</h4>
+              <p class="text-slate-600 text-sm mt-1">Blackmagic Perleffekt mit sportlichem Design</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+          </div>
+          <div id="detail-golf4gti" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Blackmagic Perleffekt</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Golf IV PD, 1J (AJM)</span></div>
+                <div><span class="font-semibold text-slate-700">Baujahr:</span> <span class="text-slate-600">02/2000</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">4-Zyl. Pumpe-Düse, 1.896 ccm</span></div>
+                <div><span class="font-semibold text-slate-700">Leistung:</span> <span class="text-slate-600">85 kW / 115 PS</span></div>
+                <div><span class="font-semibold text-slate-700">Getriebe:</span> <span class="text-slate-600">6-Gang manuell</span></div>
+                <div><span class="font-semibold text-slate-700">Türen:</span> <span class="text-slate-600">3</span></div>
+                <div><span class="font-semibold text-slate-700">Felgen:</span> <span class="text-slate-600">6½J×16" Original GTI, 205/50 R16</span></div>
+                <div><span class="font-semibold text-slate-700">Lackierung:</span> <span class="text-slate-600">Blackmagic Perleffekt (JE92)</span></div>
+              </div>
+              <div class="mt-3 text-sm">
+                <span class="font-semibold text-slate-700">Ausstattung:</span>
+                <span class="text-slate-600"> GTI Exclusiv · Recaro blau/schwarz · Climatronic · el. FH · ABS/ASR · Nebelscheinwerfer · GTI-Sportfahrwerk</span>
+              </div>
+              <img src="https://drive.google.com/thumbnail?id=1oXJN4BEsfBtG-ajo9oEqMyVo7sUscZ0a&sz=w1000"
+                   alt="Golf 4 GTI TDI Exclusive" class="w-full rounded-lg mt-4" loading="lazy"
+                   onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Golf 1 L ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-lime-50 to-lime-100 rounded-xl cursor-pointer" data-toggle="golf1l">
+            <div class="shrink-0 flex items-center gap-3">
+              <div class="text-center w-16">
+                <div class="text-xl font-bold text-lime-700">2004</div>
+                <div class="w-0.5 h-6 bg-lime-300 mx-auto mt-1"></div>
+              </div>
+              <div class="text-4xl">🚙</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Golf 1 L – Baligrün (1977)</h4>
+              <p class="text-slate-600 text-sm mt-1">Originaler Klassiker in Originalfarbe</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+          </div>
+          <div id="detail-golf1l" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-lime-50 rounded-xl border-2 border-lime-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Baligrün</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Golf I (Typ 17)</span></div>
+                <div><span class="font-semibold text-slate-700">Baujahr:</span> <span class="text-slate-600">07/1977</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">4-Zyl., 1,1 L Hubraum</span></div>
+                <div><span class="font-semibold text-slate-700">Leistung:</span> <span class="text-slate-600">37 kW / 50 PS</span></div>
+                <div><span class="font-semibold text-slate-700">Getriebe:</span> <span class="text-slate-600">4-Gang manuell</span></div>
+                <div><span class="font-semibold text-slate-700">Lackierung:</span> <span class="text-slate-600">Baligrün (original)</span></div>
+              </div>
+              <img src="https://drive.google.com/thumbnail?id=1ayaNKgnAS9hZpkHkx76402wTWnUzrx21&sz=w1000"
+                   alt="Golf 1 L" class="w-full rounded-lg mt-4" loading="lazy"
+                   onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Golf 1 LS Automatic (aktuell) ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl cursor-pointer border-2 border-amber-300" data-toggle="golf1ls">
+            <div class="shrink-0 flex items-center gap-3">
+              <div class="text-center w-16">
+                <div class="text-xl font-bold text-amber-700">2006</div>
+                <div class="w-0.5 h-6 bg-amber-300 mx-auto mt-1"></div>
+              </div>
+              <div class="text-4xl">🚗</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Golf 1 LS Automatic – Rallyegelb (1975) <span class="text-xs bg-amber-300 text-amber-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
+              <p class="text-slate-600 text-sm mt-1">Mit Schiebedach und 3-Gang Automatik</p>
+            </div>
+            <div class="flex gap-2 shrink-0">
+              <button class="text-xl hover:scale-125 transition-transform lb-trigger" data-lb="golf1ls" title="Fotoalbum öffnen" onclick="event.stopPropagation()">📸</button>
+              <button class="text-lg hover:scale-125 transition-transform" title="Details anzeigen">ℹ️</button>
+            </div>
+          </div>
+          <div id="detail-golf1ls" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-amber-50 rounded-xl border-2 border-amber-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Rallyegelb</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Golf I (Typ 17)</span></div>
+                <div><span class="font-semibold text-slate-700">Baujahr:</span> <span class="text-slate-600">10/1975</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">4-Zyl., 1.600 ccm (FP)</span></div>
+                <div><span class="font-semibold text-slate-700">Leistung:</span> <span class="text-slate-600">51 kW / 70 PS</span></div>
+                <div><span class="font-semibold text-slate-700">Getriebe:</span> <span class="text-slate-600">3-Gang Automatik (EQ)</span></div>
+                <div><span class="font-semibold text-slate-700">Ausstattung:</span> <span class="text-slate-600">LS · Schiebedach</span></div>
+                <div><span class="font-semibold text-slate-700">Reifen:</span> <span class="text-slate-600">175/70-13 auf 5J×13 (4×100)</span></div>
+                <div><span class="font-semibold text-slate-700">Lackierung:</span> <span class="text-slate-600">Rallyegelb (L10A / D7)</span></div>
+              </div>
+              <img src="https://drive.google.com/thumbnail?id=16dZaAlf7IMPr04OHkYVBuHYJYWm8gBqO&sz=w1000"
+                   alt="Golf 1 LS Automatic" class="w-full rounded-lg mt-4" loading="lazy"
+                   onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+              <button class="mt-4 w-full px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-all lb-trigger" data-lb="golf1ls">
+                📸 Fotoalbum öffnen
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Golf 2 GTI G60 Edition One (aktuell) ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-violet-50 to-violet-100 rounded-xl cursor-pointer border-2 border-violet-300" data-toggle="golf2g60">
+            <div class="shrink-0 flex items-center gap-3">
+              <div class="text-center w-16">
+                <div class="text-xl font-bold text-violet-700">2006</div>
+                <div class="w-0.5 h-6 bg-violet-300 mx-auto mt-1"></div>
+              </div>
+              <div class="text-4xl">🏁</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Golf 2 GTI G60 Edition One (1991) <span class="text-xs bg-violet-300 text-violet-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
+              <p class="text-slate-600 text-sm mt-1">Dark Burgundy – G-Lader und Recaro</p>
+            </div>
+            <div class="flex gap-2 shrink-0">
+              <button class="text-xl hover:scale-125 transition-transform lb-trigger" data-lb="golf2g60" title="Fotoalbum öffnen" onclick="event.stopPropagation()">📸</button>
+              <button class="text-lg hover:scale-125 transition-transform" title="Details anzeigen">ℹ️</button>
+            </div>
+          </div>
+          <div id="detail-golf2g60" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-violet-50 rounded-xl border-2 border-violet-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Dark Burgundy Perleffekt</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Golf II (Typ 1G) · Edition One</span></div>
+                <div><span class="font-semibold text-slate-700">Baujahr:</span> <span class="text-slate-600">03/1991</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">4-Zyl. G-Lader (PG), 1.781 ccm</span></div>
+                <div><span class="font-semibold text-slate-700">Leistung:</span> <span class="text-slate-600">118 kW / 160 PS @ 5.800 U/min</span></div>
+                <div><span class="font-semibold text-slate-700">Drehmoment:</span> <span class="text-slate-600">225 Nm @ 3.800 U/min</span></div>
+                <div><span class="font-semibold text-slate-700">Getriebe:</span> <span class="text-slate-600">5-Gang manuell</span></div>
+                <div><span class="font-semibold text-slate-700">Türen:</span> <span class="text-slate-600">5</span></div>
+                <div><span class="font-semibold text-slate-700">Felgen:</span> <span class="text-slate-600">BBS 6½J×15" · 195/50 R15 V</span></div>
+                <div><span class="font-semibold text-slate-700">Lackierung:</span> <span class="text-slate-600">Dark Burgundy Perleffekt (LC3U)</span></div>
+              </div>
+              <div class="mt-3 text-sm space-y-1">
+                <div><span class="font-semibold text-slate-700">Innen:</span> <span class="text-slate-600">RECARO-Sportsitze (el. Höhe) · Stoff Avantage-Streifen mauritiusblau · Kopfstützen hinten (sehr selten!) · Velours-Böden · 4-Speichen-Sportlenkrad 370mm Leder</span></div>
+                <div><span class="font-semibold text-slate-700">Komfort:</span> <span class="text-slate-600">Klimaanlage · el. Schiebedach · el. FH v+h · Servolenkung · MFA · VW Gamma DSP</span></div>
+                <div><span class="font-semibold text-slate-700">Außen:</span> <span class="text-slate-600">Chrombedampfte Heckscheibe · partiell abgedunkelte Rückleuchten · weiße Blinker vorn · Folienschriftzug "Edition One" Motorhaube · WOB-Edition Emblem</span></div>
+              </div>
+              <button class="mt-4 w-full px-4 py-2 bg-violet-500 text-white rounded-lg hover:bg-violet-600 transition-all lb-trigger" data-lb="golf2g60">
+                📸 Fotoalbum öffnen
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Golf 3 GTI TDI ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl cursor-pointer" data-toggle="golf3gti">
+            <div class="shrink-0 flex items-center gap-3">
+              <div class="text-center w-16">
+                <div class="text-xl font-bold text-gray-700">2007</div>
+                <div class="w-0.5 h-6 bg-gray-300 mx-auto mt-1"></div>
+              </div>
+              <div class="text-4xl">🚗</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Golf 3 GTI TDI (1996)</h4>
+              <p class="text-slate-600 text-sm mt-1">Black Magic Perleffekt mit Ledersportausstattung</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+          </div>
+          <div id="detail-golf3gti" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-gray-50 rounded-xl border-2 border-gray-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Black Magic Perleffekt</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Golf III (Typ 1H)</span></div>
+                <div><span class="font-semibold text-slate-700">Baujahr:</span> <span class="text-slate-600">09/1996</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">4-Zyl./8V TDI DI (AFN), 1.896 ccm</span></div>
+                <div><span class="font-semibold text-slate-700">Leistung:</span> <span class="text-slate-600">81 kW / 110 PS @ 4.150 U/min</span></div>
+                <div><span class="font-semibold text-slate-700">Drehmoment:</span> <span class="text-slate-600">235 Nm @ 1.900 U/min</span></div>
+                <div><span class="font-semibold text-slate-700">Getriebe:</span> <span class="text-slate-600">5-Gang manuell</span></div>
+                <div><span class="font-semibold text-slate-700">Felgen:</span> <span class="text-slate-600">BBS 7J×16 RS2 · 215/40 R16 V</span></div>
+                <div><span class="font-semibold text-slate-700">Lackierung:</span> <span class="text-slate-600">Black Magic Perleffekt (LC9Z / Z4)</span></div>
+              </div>
+              <div class="mt-3 text-sm space-y-1">
+                <div><span class="font-semibold text-slate-700">Innen:</span> <span class="text-slate-600">Ledersportsitze schwarz mit Sitzheizung · Türverkleidung Leder · 4-Speichen-Sportlenkrad Leder/rot · Instrumente silber/rote Zeiger · GTI-Schriftzug Einstiegsleisten</span></div>
+                <div><span class="font-semibold text-slate-700">Komfort:</span> <span class="text-slate-600">Climatronic · el. Glasdach · el. FH v+h · Servolenkung · Fahrer-/Beifahrerairbag · Radioanlage Gamma DSP 120 / 8 LS</span></div>
+                <div><span class="font-semibold text-slate-700">Außen:</span> <span class="text-slate-600">Großer Frontspoiler · roter GTI/TDI-Streifen · abgedunkelte Blinker vorn · Kühlergrill in Wagenfarbe · Wärmeschutzverglasung</span></div>
+              </div>
+              <img src="https://drive.google.com/thumbnail?id=1EP5D6kWUXTD6q3eUlYRwC8uiubIjVT90&sz=w1000"
+                   alt="Golf 3 GTI TDI" class="w-full rounded-lg mt-4" loading="lazy"
+                   onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Suzuki Vitara Cabrio (aktuell) ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl cursor-pointer border-2 border-yellow-400" data-toggle="vitara">
+            <div class="shrink-0 flex items-center gap-3">
+              <div class="text-center w-16">
+                <div class="text-xl font-bold text-yellow-700">2022</div>
+                <div class="w-0.5 h-6 bg-yellow-400 mx-auto mt-1"></div>
+              </div>
+              <div class="text-4xl">🚙</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Suzuki Vitara 2,0 16V Cabrio (1999) <span class="text-xs bg-yellow-300 text-yellow-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
+              <p class="text-slate-600 text-sm mt-1">Sportliches Cabrio mit Allradantrieb</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+          </div>
+          <div id="detail-vitara" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-yellow-50 rounded-xl border-2 border-yellow-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Suzuki Gelb</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Generation:</span> <span class="text-slate-600">Vitara 1st Gen. (ET/TA)</span></div>
+                <div><span class="font-semibold text-slate-700">Karosserie:</span> <span class="text-slate-600">Kurzes Cabrio, 3 Türen</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">Inline 4, 1.995 ccm, 16V (MPI)</span></div>
+                <div><span class="font-semibold text-slate-700">Bohrung×Hub:</span> <span class="text-slate-600">84,0 × 90,0 mm · Verd. 9,7:1</span></div>
+                <div><span class="font-semibold text-slate-700">Leistung:</span> <span class="text-slate-600">97 kW / 132 PS @ 6.100 U/min</span></div>
+                <div><span class="font-semibold text-slate-700">Drehmoment:</span> <span class="text-slate-600">166 Nm @ 3.000 U/min</span></div>
+                <div><span class="font-semibold text-slate-700">Antrieb:</span> <span class="text-slate-600">AWD · 5-Gang manuell</span></div>
+                <div><span class="font-semibold text-slate-700">Bremsen:</span> <span class="text-slate-600">Scheiben vorn belüftet, Trommel hinten</span></div>
+                <div><span class="font-semibold text-slate-700">Fahrwerk:</span> <span class="text-slate-600">MacPherson vorn · De-Dion hinten</span></div>
+                <div><span class="font-semibold text-slate-700">Reifen:</span> <span class="text-slate-600">215/65 R16 v+h</span></div>
+              </div>
+              <img src="https://drive.google.com/thumbnail?id=1bnvS16S2AiRDFgTDJpvZQk_Mz8Nz5fNH&sz=w1000"
+                   alt="Suzuki Vitara Cabrio" class="w-full rounded-lg mt-4" loading="lazy"
+                   onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /space-y-3 -->
+
+      <!-- Stats -->
+      <div class="mt-12 pt-8 border-t-2 border-slate-200">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-red-600 mb-2">8</div>
+            <p class="text-slate-700 font-semibold">🚗 Fahrzeuge insgesamt</p>
+          </div>
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-blue-600 mb-2">1975–2025</div>
+            <p class="text-slate-700 font-semibold">Sammlung über 50 Jahre</p>
+          </div>
+          <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-purple-600 mb-2">3 aktiv</div>
+            <p class="text-slate-700 font-semibold">Fahrzeuge in Nutzung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     HANDYS PAGE
+══════════════════════════════════════ -->
+<div id="page-handys" class="page">
+  <div class="hero-handys text-white py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="text-6xl mb-4">📱</div>
+      <h2 class="text-4xl font-bold mb-4">Handys</h2>
+      <p class="text-xl opacity-90">Meine Mobile Journey seit 2000</p>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-2xl overflow-hidden shadow-lg mb-6">
+      <img src="https://drive.google.com/thumbnail?id=14cTLOHuFHMJWcZSMvGvA9W0k2T-d0Z-7&sz=w1000"
+           alt="Mobile Zeitreise" class="w-full object-cover" loading="lazy"
+           onerror="this.style.background='#e5e7eb'; this.alt='Foto nicht verfügbar';">
+    </div>
+
+    <div class="bg-white rounded-2xl p-8 shadow-lg">
+      <h3 class="text-2xl font-bold text-slate-800 mb-6">Eine mobile Zeitreise</h3>
+      <div class="space-y-3" id="handys-list">
+
+        <!-- Macro-like helper: each phone is a timeline-entry with data-toggle -->
+        <!-- Nokia 8210 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl cursor-pointer" data-toggle="nokia8210">
+            <div class="shrink-0 text-xl font-bold text-blue-700 w-12">2000</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 8210</h4><p class="text-slate-600 text-sm">Mein erstes Handy – kompakt und zuverlässig</p></div>
+            <a href="https://www.gsmarena.com/nokia_8210-19.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()" title="GSMArena">ℹ️</a>
+          </div>
+          <div id="detail-nokia8210" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-blue-50 rounded-xl border-2 border-blue-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/no8210t.gif" alt="Nokia 8210" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 8210</div><div><span class="font-semibold">Jahr:</span> 2000</div><div><span class="font-semibold">Besonderheit:</span> Legendäres kompaktes Design</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Siemens S10 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-cyan-50 to-cyan-100 rounded-xl cursor-pointer" data-toggle="siemens">
+            <div class="shrink-0 text-xl font-bold text-cyan-700 w-12">2000</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Siemens S10</h4><p class="text-slate-600 text-sm">Hochwertiges Business-Handy</p></div>
+            <a href="https://www.gsmarena.com/siemens_s10-86.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-siemens" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-cyan-50 rounded-xl border-2 border-cyan-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/sis10b.gif" alt="Siemens S10" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Siemens S10</div><div><span class="font-semibold">Jahr:</span> 2000</div><div><span class="font-semibold">Display:</span> LCD Monochrom</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia 8310 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-50 to-indigo-100 rounded-xl cursor-pointer" data-toggle="nokia8310">
+            <div class="shrink-0 text-xl font-bold text-indigo-700 w-12">2001</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 8310</h4><p class="text-slate-600 text-sm">Verbesserte Version mit mehr Features</p></div>
+            <a href="https://www.gsmarena.com/nokia_8310-241.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokia8310" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-indigo-50 rounded-xl border-2 border-indigo-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/no6230.gif" alt="Nokia 8310" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 8310</div><div><span class="font-semibold">Jahr:</span> 2001</div><div><span class="font-semibold">Besonderheit:</span> Robuste Bauweise</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia 3100 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl cursor-pointer" data-toggle="nokia3100">
+            <div class="shrink-0 text-xl font-bold text-purple-700 w-12">2003</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 3100</h4><p class="text-slate-600 text-sm">Budgetfreundliches Einsteigermodell</p></div>
+            <a href="https://www.gsmarena.com/nokia_3100-453.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokia3100" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-purple-50 rounded-xl border-2 border-purple-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/no3100.gif" alt="Nokia 3100" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 3100</div><div><span class="font-semibold">Jahr:</span> 2003</div><div><span class="font-semibold">Besonderheit:</span> Farbiges Display</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia 6600 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl cursor-pointer" data-toggle="nokia6600">
+            <div class="shrink-0 text-xl font-bold text-pink-700 w-12">2003</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📷 Nokia 6600</h4><p class="text-slate-600 text-sm">Kamera-Handy – Revolutionär!</p></div>
+            <a href="https://www.gsmarena.com/nokia_6600-454.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokia6600" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-pink-50 rounded-xl border-2 border-pink-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/no6600.gif" alt="Nokia 6600" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 6600</div><div><span class="font-semibold">Jahr:</span> 2003</div><div><span class="font-semibold">Kamera:</span> 1,3 MP – Pionier!</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia 9210i -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-emerald-50 to-emerald-100 rounded-xl cursor-pointer" data-toggle="nokia9210">
+            <div class="shrink-0 text-xl font-bold text-emerald-700 w-12">2003</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">⌨️ Nokia 9210i Communicator</h4><p class="text-slate-600 text-sm">Business-Communicator mit Tastatur</p></div>
+            <a href="https://www.gsmarena.com/nokia_9210i_communicator-319.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokia9210" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-emerald-50 rounded-xl border-2 border-emerald-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/no9210i.gif" alt="Nokia 9210i" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 9210i Communicator</div><div><span class="font-semibold">Jahr:</span> 2003</div><div><span class="font-semibold">Besonderheit:</span> QWERTY-Tastatur</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia 6610i -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-sky-50 to-sky-100 rounded-xl cursor-pointer" data-toggle="nokia6610">
+            <div class="shrink-0 text-xl font-bold text-sky-700 w-12">2004</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 6610i</h4><p class="text-slate-600 text-sm">Beliebtes Mittelklasse-Modell</p></div>
+            <a href="https://www.gsmarena.com/nokia_6610i-742.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokia6610" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-sky-50 rounded-xl border-2 border-sky-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/no6610i.gif" alt="Nokia 6610i" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 6610i</div><div><span class="font-semibold">Jahr:</span> 2004</div><div><span class="font-semibold">Display:</span> Farbdisplay</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia 7610 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-teal-50 to-teal-100 rounded-xl cursor-pointer" data-toggle="nokia7610">
+            <div class="shrink-0 text-xl font-bold text-teal-700 w-12">2004</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 7610</h4><p class="text-slate-600 text-sm">Multimedia-Telefon mit Kamera</p></div>
+            <a href="https://www.gsmarena.com/nokia_7610-703.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokia7610" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-teal-50 rounded-xl border-2 border-teal-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/no7610.gif" alt="Nokia 7610" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 7610</div><div><span class="font-semibold">Jahr:</span> 2004</div><div><span class="font-semibold">OS:</span> Symbian</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia 9500 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-violet-50 to-violet-100 rounded-xl cursor-pointer" data-toggle="nokia9500">
+            <div class="shrink-0 text-xl font-bold text-violet-700 w-12">2004</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">⌨️ Nokia 9500 Communicator</h4><p class="text-slate-600 text-sm">Premium Business-Gerät mit Tastatur</p></div>
+            <a href="https://www.gsmarena.com/nokia_9500-678.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokia9500" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-violet-50 rounded-xl border-2 border-violet-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/no9500.gif" alt="Nokia 9500" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 9500 Communicator</div><div><span class="font-semibold">Jahr:</span> 2004</div><div><span class="font-semibold">Besonderheit:</span> Ausklappbare QWERTY-Tastatur</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia 6230 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-rose-50 to-rose-100 rounded-xl cursor-pointer" data-toggle="nokia6230">
+            <div class="shrink-0 text-xl font-bold text-rose-700 w-12">2005</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 6230</h4><p class="text-slate-600 text-sm">Klassiker der Mittelklasse</p></div>
+            <a href="https://www.gsmarena.com/nokia_6230-566.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokia6230" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-rose-50 rounded-xl border-2 border-rose-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/no6230.gif" alt="Nokia 6230" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 6230</div><div><span class="font-semibold">Jahr:</span> 2005</div><div><span class="font-semibold">Besonderheit:</span> Dual Band GSM</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia 7710 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl cursor-pointer" data-toggle="nokia7710">
+            <div class="shrink-0 text-xl font-bold text-orange-700 w-12">2005</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 7710</h4><p class="text-slate-600 text-sm">Smartphone-Vorreiter mit großem Display</p></div>
+            <a href="https://www.gsmarena.com/nokia_7710-921.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokia7710" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-orange-50 rounded-xl border-2 border-orange-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/no7710.gif" alt="Nokia 7710" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 7710</div><div><span class="font-semibold">Jahr:</span> 2005</div><div><span class="font-semibold">OS:</span> Symbian OS</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia N90 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl cursor-pointer" data-toggle="nokan90">
+            <div class="shrink-0 text-xl font-bold text-amber-700 w-12">2005</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📷 Nokia N90</h4><p class="text-slate-600 text-sm">Handy mit digitaler Kamera</p></div>
+            <a href="https://www.gsmarena.com/nokia_n90-1155.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokan90" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-amber-50 rounded-xl border-2 border-amber-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/nokia-n90.gif" alt="Nokia N90" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia N90</div><div><span class="font-semibold">Jahr:</span> 2005</div><div><span class="font-semibold">Kamera:</span> 2 MP mit Zoom</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia N91 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl cursor-pointer" data-toggle="nokan91">
+            <div class="shrink-0 text-xl font-bold text-yellow-700 w-12">2005</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">🎵 Nokia N91</h4><p class="text-slate-600 text-sm">Musikhandy mit großem Speicher</p></div>
+            <a href="https://www.gsmarena.com/nokia_n91-1154.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokan91" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-yellow-50 rounded-xl border-2 border-yellow-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/nokia-n91.gif" alt="Nokia N91" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia N91</div><div><span class="font-semibold">Jahr:</span> 2005</div><div><span class="font-semibold">Speicher:</span> 4 GB oder 6 GB</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HP iPAQ 910c -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-lime-50 to-lime-100 rounded-xl cursor-pointer" data-toggle="hpipaq910c">
+            <div class="shrink-0 text-xl font-bold text-lime-700 w-12">2006</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 HP iPAQ 910c</h4><p class="text-slate-600 text-sm">Windows Mobile Communicator</p></div>
+            <a href="https://www.gsmarena.com/hp_ipaq_910c-2095.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-hpipaq910c" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-lime-50 rounded-xl border-2 border-lime-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/hp-910c.jpg" alt="HP iPAQ 910c" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> HP iPAQ 910c</div><div><span class="font-semibold">Jahr:</span> 2006</div><div><span class="font-semibold">OS:</span> Windows Mobile</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia N80 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl cursor-pointer" data-toggle="nokan80">
+            <div class="shrink-0 text-xl font-bold text-green-700 w-12">2006</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📷 Nokia N80</h4><p class="text-slate-600 text-sm">Kamera und Multimedia</p></div>
+            <a href="https://www.gsmarena.com/nokia_n80-1347.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokan80" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-green-50 rounded-xl border-2 border-green-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/nokia-n80.gif" alt="Nokia N80" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia N80</div><div><span class="font-semibold">Jahr:</span> 2006</div><div><span class="font-semibold">Kamera:</span> 3,2 MP</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia 6300 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-red-50 to-red-100 rounded-xl cursor-pointer" data-toggle="nokia6300">
+            <div class="shrink-0 text-xl font-bold text-red-700 w-12">2007</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 6300</h4><p class="text-slate-600 text-sm">Elegantes Klassiker-Design</p></div>
+            <a href="https://www.gsmarena.com/nokia_6300-1800.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokia6300" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-red-50 rounded-xl border-2 border-red-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/nokia-6300.gif" alt="Nokia 6300" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 6300</div><div><span class="font-semibold">Jahr:</span> 2007</div><div><span class="font-semibold">Design:</span> Edelstahlgehäuse</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia N95 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl cursor-pointer" data-toggle="nokan95">
+            <div class="shrink-0 text-xl font-bold text-pink-700 w-12">2007</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia N95</h4><p class="text-slate-600 text-sm">Premium Smartphone mit Schieber</p></div>
+            <a href="https://www.gsmarena.com/nokia_n95-1716.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokan95" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-pink-50 rounded-xl border-2 border-pink-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/nokia-n95.gif" alt="Nokia N95" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia N95</div><div><span class="font-semibold">Jahr:</span> 2007</div><div><span class="font-semibold">Besonderheit:</span> Doppel-Schieber</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HTC Touch Diamond -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl cursor-pointer" data-toggle="htctouched">
+            <div class="shrink-0 text-xl font-bold text-purple-700 w-12">2008</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 HTC Touch Diamond</h4><p class="text-slate-600 text-sm">Windows Mobile Smartphone</p></div>
+            <a href="https://www.gsmarena.com/htc_touch_diamond-2368.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-htctouched" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-purple-50 rounded-xl border-2 border-purple-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/htc-touch-diamond.jpg" alt="HTC Touch Diamond" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> HTC Touch Diamond</div><div><span class="font-semibold">Jahr:</span> 2008</div><div><span class="font-semibold">OS:</span> Windows Mobile 6.1</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia N82 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-50 to-indigo-100 rounded-xl cursor-pointer" data-toggle="nokan82">
+            <div class="shrink-0 text-xl font-bold text-indigo-700 w-12">2008</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📷 Nokia N82</h4><p class="text-slate-600 text-sm">Kamera-Smartphone mit GPS</p></div>
+            <a href="https://www.gsmarena.com/nokia_n82-2177.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokan82" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-indigo-50 rounded-xl border-2 border-indigo-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/nokia-n82.gif" alt="Nokia N82" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia N82</div><div><span class="font-semibold">Jahr:</span> 2008</div><div><span class="font-semibold">Kamera:</span> 5 MP mit Stabilisierung</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia E51 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-cyan-50 to-cyan-100 rounded-xl cursor-pointer" data-toggle="nokiae51">
+            <div class="shrink-0 text-xl font-bold text-cyan-700 w-12">2009</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia E51</h4><p class="text-slate-600 text-sm">Business-Smartphone mit Tastatur</p></div>
+            <a href="https://www.gsmarena.com/nokia_e51-2078.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokiae51" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-cyan-50 rounded-xl border-2 border-cyan-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/nokia-e51.gif" alt="Nokia E51" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia E51</div><div><span class="font-semibold">Jahr:</span> 2009</div><div><span class="font-semibold">Tastatur:</span> QWERTY-Schieber</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nokia X6 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-teal-50 to-teal-100 rounded-xl cursor-pointer" data-toggle="nokiax6">
+            <div class="shrink-0 text-xl font-bold text-teal-700 w-12">2010</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">🎵 Nokia X6 32GB</h4><p class="text-slate-600 text-sm">Musik-Smartphone mit großem Speicher</p></div>
+            <a href="https://www.gsmarena.com/nokia_x6-2967.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-nokiax6" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-teal-50 rounded-xl border-2 border-teal-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/nokia-x6.jpg" alt="Nokia X6" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia X6 32GB</div><div><span class="font-semibold">Jahr:</span> 2010</div><div><span class="font-semibold">Speicher:</span> 32 GB</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone 3GS -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl cursor-pointer" data-toggle="iphone3gs">
+            <div class="shrink-0 text-xl font-bold text-slate-700 w-12">2010</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 iPhone 3GS</h4><p class="text-slate-600 text-sm">Einstieg in die Apple-Welt</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_3gs-2826.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-iphone3gs" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl border-2 border-slate-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-3gs-ofic.jpg" alt="iPhone 3GS" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 3GS</div><div><span class="font-semibold">Jahr:</span> 2010</div><div><span class="font-semibold">Kamera:</span> 3 MP mit Video</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone 4 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl cursor-pointer" data-toggle="iphone4">
+            <div class="shrink-0 text-xl font-bold text-blue-800 w-12">2011</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 iPhone 4</h4><p class="text-slate-600 text-sm">Retina Display – Bahnbrechend!</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_4-3275.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-iphone4" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-blue-50 rounded-xl border-2 border-blue-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-4-ofic-final.jpg" alt="iPhone 4" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 4</div><div><span class="font-semibold">Jahr:</span> 2011</div><div><span class="font-semibold">Besonderheit:</span> Glasrückseite, A4-Chip</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone 5 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-100 to-indigo-200 rounded-xl cursor-pointer" data-toggle="iphone5">
+            <div class="shrink-0 text-xl font-bold text-indigo-800 w-12">2012</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 iPhone 5</h4><p class="text-slate-600 text-sm">Dünner und schneller</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_5-4910.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-iphone5" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-indigo-50 rounded-xl border-2 border-indigo-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-5-ofic.jpg" alt="iPhone 5" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 5</div><div><span class="font-semibold">Jahr:</span> 2012</div><div><span class="font-semibold">Besonderheit:</span> Lightning Connector</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone 5s -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-purple-100 to-purple-200 rounded-xl cursor-pointer" data-toggle="iphone5s">
+            <div class="shrink-0 text-xl font-bold text-purple-800 w-12">2013</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">🔐 iPhone 5s</h4><p class="text-slate-600 text-sm">Mit Touch ID Fingerabdruckscanner</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_5s-5685.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-iphone5s" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-purple-50 rounded-xl border-2 border-purple-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-5s-ofic.jpg" alt="iPhone 5s" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 5s</div><div><span class="font-semibold">Jahr:</span> 2013</div><div><span class="font-semibold">Innovation:</span> Touch ID Fingerprint</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone 6 -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-cyan-100 to-cyan-200 rounded-xl cursor-pointer" data-toggle="iphone6">
+            <div class="shrink-0 text-xl font-bold text-cyan-800 w-12">2014</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 iPhone 6</h4><p class="text-slate-600 text-sm">Grösseres Display, dünnere Bauweise</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_6-6378.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-iphone6" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-cyan-50 rounded-xl border-2 border-cyan-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-6-4.jpg" alt="iPhone 6" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 6</div><div><span class="font-semibold">Jahr:</span> 2014</div><div><span class="font-semibold">Display:</span> 4,7 Zoll Retina HD</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone X -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-teal-100 to-teal-200 rounded-xl cursor-pointer" data-toggle="iphonex">
+            <div class="shrink-0 text-xl font-bold text-teal-800 w-12">2017</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">🔐 iPhone X</h4><p class="text-slate-600 text-sm">Gesichtserkennung und OLED Display</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_x-8858.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-iphonex" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-teal-50 rounded-xl border-2 border-teal-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-x.jpg" alt="iPhone X" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone X</div><div><span class="font-semibold">Jahr:</span> 2017</div><div><span class="font-semibold">Innovation:</span> Face ID, OLED Notch</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone 12 Pro -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl cursor-pointer" data-toggle="iphone12pro">
+            <div class="shrink-0 text-xl font-bold text-blue-800 w-12">2020</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 iPhone 12 Pro</h4><p class="text-slate-600 text-sm">5G und Profi-Kamera</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_12_pro-10508.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-iphone12pro" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-blue-50 rounded-xl border-2 border-blue-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-12-pro--.jpg" alt="iPhone 12 Pro" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 12 Pro</div><div><span class="font-semibold">Jahr:</span> 2020</div><div><span class="font-semibold">Features:</span> 5G, Triple-Kamera</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone 14 Pro -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-purple-100 to-purple-200 rounded-xl cursor-pointer" data-toggle="iphone14pro">
+            <div class="shrink-0 text-xl font-bold text-purple-800 w-12">2022</div>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 iPhone 14 Pro</h4><p class="text-slate-600 text-sm">Dynamic Island und 48 MP Kamera</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_14_pro-11860.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-iphone14pro" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-purple-50 rounded-xl border-2 border-purple-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-14-pro.jpg" alt="iPhone 14 Pro" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 14 Pro</div><div><span class="font-semibold">Jahr:</span> 2022</div><div><span class="font-semibold">Kamera:</span> 48 MP Hauptkamera</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone 16 Pro (aktuell) -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-100 to-indigo-200 rounded-xl cursor-pointer border-2 border-indigo-400" data-toggle="iphone16pro">
+            <div class="shrink-0 text-xl font-bold text-indigo-800 w-12">2024</div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-slate-800">📷 iPhone 16 Pro <span class="text-xs bg-indigo-400 text-white px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
+              <p class="text-slate-600 text-sm">KI-Features und Kamera-Upgrade</p>
+            </div>
+            <a href="https://www.gsmarena.com/apple_iphone_16_pro-13315.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+          </div>
+          <div id="detail-iphone16pro" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll grid md:grid-cols-2 gap-4 p-4 bg-indigo-50 rounded-xl border-2 border-indigo-200">
+              <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-16-pro.jpg" alt="iPhone 16 Pro" class="w-full h-52 object-contain rounded-lg" loading="lazy" onerror="this.style.background='#e5e7eb'">
+              <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 16 Pro</div><div><span class="font-semibold">Jahr:</span> 2024</div><div><span class="font-semibold">Features:</span> Apple Intelligence, 5× Zoom</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /space-y-3 -->
+
+      <!-- Stats -->
+      <div class="mt-12 pt-8 border-t-2 border-slate-200">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-blue-600 mb-2">25 Jahre</div>
+            <p class="text-slate-700 font-semibold">📱 Mobile Geschichte (2000–2025)</p>
+          </div>
+          <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-cyan-600 mb-2">25</div>
+            <p class="text-slate-700 font-semibold">Geräte insgesamt</p>
+          </div>
+          <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-indigo-600 mb-2">Ø 1/Jahr</div>
+            <p class="text-slate-700 font-semibold">Durchschnitt</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     3D DRUCK PAGE
+══════════════════════════════════════ -->
+<div id="page-druck" class="page">
+  <div class="hero-druck text-white py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="text-6xl mb-4">🖨️</div>
+      <h2 class="text-4xl font-bold mb-4">3D Druck Projekte</h2>
+      <p class="text-xl opacity-90">Von der Idee zum fertigen Objekt</p>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="grid md:grid-cols-3 gap-6 mb-8">
+      <div class="card bg-white rounded-2xl p-6 shadow-lg text-center">
+        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center text-5xl mb-4">🎨</div>
+        <h3 class="text-xl font-semibold text-slate-800 mb-2">Design</h3>
+        <p class="text-slate-600">3D-Modellierung mit TinkerCAD</p>
+      </div>
+      <div class="card bg-white rounded-2xl p-6 shadow-lg text-center">
+        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center text-5xl mb-4">⚙️</div>
+        <h3 class="text-xl font-semibold text-slate-800 mb-2">Slicing</h3>
+        <p class="text-slate-600">Anycubic Slicer Next</p>
+      </div>
+      <div class="card bg-white rounded-2xl p-6 shadow-lg text-center">
+        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center text-5xl mb-4">🖨️</div>
+        <h3 class="text-xl font-semibold text-slate-800 mb-2">Druck</h3>
+        <p class="text-slate-600">Schicht für Schicht zum Ergebnis</p>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl p-8 shadow-lg">
+      <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Drucker</h3>
+      <div class="space-y-4">
+        <div class="p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl">
+          <h4 class="font-semibold text-slate-800">🖨️ XYZ Printing DaVinci 2.0 Dual (2021–2025)</h4>
+          <p class="text-slate-600 text-sm mt-1">Dual-Extruder FDM Drucker</p>
+        </div>
+        <div class="p-4 bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl border-2 border-pink-300">
+          <h4 class="font-semibold text-slate-800">🖨️✨ Anycubic Kobra 2 Plus Combo (2025) <span class="text-xs bg-pink-300 text-pink-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
+          <p class="text-slate-600 text-sm mt-1">Schneller FDM-Drucker mit großem Bauraum</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     MTB PAGE
+══════════════════════════════════════ -->
+<div id="page-mtb" class="page">
+  <div class="hero-mtb text-white py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="text-6xl mb-4">🚵‍♂️</div>
+      <h2 class="text-4xl font-bold mb-4">Mountainbiking</h2>
+      <p class="text-xl opacity-90">Abenteuer, Natur und pure Freiheit</p>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="grid md:grid-cols-2 gap-8 mb-8">
+      <div class="card bg-white rounded-2xl overflow-hidden shadow-lg">
+        <div class="h-48 bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center">
+          <div class="text-center text-white"><div class="text-6xl mb-2">🚵‍♂️</div><p class="text-xl font-semibold">Trail Riding</p></div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">Trails erkunden</h3>
+          <p class="text-slate-600">Technische Trails und flowige Strecken in der Natur</p>
+        </div>
+      </div>
+      <div class="card bg-white rounded-2xl overflow-hidden shadow-lg">
+        <div class="h-48 bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center">
+          <div class="text-center text-white"><div class="text-6xl mb-2">🔧</div><p class="text-xl font-semibold">Bike Setup</p></div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">Equipment</h3>
+          <p class="text-slate-600">Das richtige Setup für maximalen Fahrspaß</p>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl p-8 shadow-lg">
+      <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Ausrüstung</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="text-center p-4 bg-green-50 rounded-xl"><div class="text-3xl mb-2">🚲</div><p class="text-sm font-medium text-slate-700">Full Suspension</p></div>
+        <div class="text-center p-4 bg-green-50 rounded-xl"><div class="text-3xl mb-2">🛡️</div><p class="text-sm font-medium text-slate-700">Helm</p></div>
+        <div class="text-center p-4 bg-green-50 rounded-xl"><div class="text-3xl mb-2">🧤</div><p class="text-sm font-medium text-slate-700">Handschuhe</p></div>
+        <div class="text-center p-4 bg-green-50 rounded-xl"><div class="text-3xl mb-2">👟</div><p class="text-sm font-medium text-slate-700">MTB-Schuhe</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="bg-slate-800 text-white py-8 px-4 mt-auto">
+  <div class="max-w-6xl mx-auto text-center">
+    <p class="text-slate-400">© 2025 Peter Riemer · riemer.co · Mit ❤️ erstellt</p>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     LIGHTBOX (Golf 1 LS)
+══════════════════════════════════════ -->
+<div id="lb-golf1ls" class="lightbox fixed inset-0 bg-black/90 z-50 flex-col items-center justify-center p-4">
+  <div class="w-full max-w-4xl flex flex-col h-full">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-2xl font-bold text-white">Golf 1 LS Automatic – Fotoalbum</h3>
+      <button class="lb-close text-white hover:text-amber-400 text-3xl leading-none" data-lb="golf1ls">✕</button>
+    </div>
+    <div class="flex-1 flex items-center justify-center mb-4 overflow-hidden rounded-xl">
+      <img id="lb-golf1ls-img" src="" alt="Golf 1 LS Automatic" class="max-w-full max-h-full object-contain rounded-xl">
+    </div>
+    <div class="flex gap-2 justify-center overflow-x-auto pb-2">
+      <img src="https://lh3.googleusercontent.com/d/1HB8GgDFiMxZ3EsTT7cGNfL1RWf11Kofl?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-amber-400 transition-all lb-thumb" data-lb="golf1ls" data-idx="0" alt="Foto 1" loading="lazy">
+      <img src="https://lh3.googleusercontent.com/d/1UhDmXTtumE7e93nWMEJR-7-2cajsRL7Z?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-amber-400 transition-all lb-thumb" data-lb="golf1ls" data-idx="1" alt="Foto 2" loading="lazy">
+      <img src="https://lh3.googleusercontent.com/d/1fA3KBGlo1b0VsKzLnidagYDDy_2nVdpc?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-amber-400 transition-all lb-thumb" data-lb="golf1ls" data-idx="2" alt="Foto 3" loading="lazy">
+      <img src="https://lh3.googleusercontent.com/d/1m9zd6mvEK8io7AzH-KVrazOdg3040gFN?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-amber-400 transition-all lb-thumb" data-lb="golf1ls" data-idx="3" alt="Foto 4" loading="lazy">
+      <img src="https://lh3.googleusercontent.com/d/1uss7tsfOFWFWFqdbg-YpqSTj7216E2n5?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-amber-400 transition-all lb-thumb" data-lb="golf1ls" data-idx="4" alt="Foto 5" loading="lazy">
+    </div>
+    <div class="text-center text-amber-300 text-sm mt-2"><span id="lb-golf1ls-counter">1 / 5</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     LIGHTBOX (Golf 2 G60)
+══════════════════════════════════════ -->
+<div id="lb-golf2g60" class="lightbox fixed inset-0 bg-black/90 z-50 flex-col items-center justify-center p-4">
+  <div class="w-full max-w-4xl flex flex-col h-full">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-2xl font-bold text-white">Golf 2 GTI G60 – Fotoalbum</h3>
+      <button class="lb-close text-white hover:text-violet-400 text-3xl leading-none" data-lb="golf2g60">✕</button>
+    </div>
+    <div class="flex-1 flex items-center justify-center mb-4 overflow-hidden rounded-xl">
+      <img id="lb-golf2g60-img" src="" alt="Golf 2 G60" class="max-w-full max-h-full object-contain rounded-xl">
+    </div>
+    <div class="flex gap-2 justify-center overflow-x-auto pb-2">
+      <img src="https://lh3.googleusercontent.com/d/1HB8GgDFiMxZ3EsTT7cGNfL1RWf11Kofl?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-violet-400 transition-all lb-thumb" data-lb="golf2g60" data-idx="0" alt="Foto 1" loading="lazy">
+      <img src="https://lh3.googleusercontent.com/d/1UhDmXTtumE7e93nWMEJR-7-2cajsRL7Z?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-violet-400 transition-all lb-thumb" data-lb="golf2g60" data-idx="1" alt="Foto 2" loading="lazy">
+      <img src="https://lh3.googleusercontent.com/d/1fA3KBGlo1b0VsKzLnidagYDDy_2nVdpc?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-violet-400 transition-all lb-thumb" data-lb="golf2g60" data-idx="2" alt="Foto 3" loading="lazy">
+      <img src="https://lh3.googleusercontent.com/d/1m9zd6mvEK8io7AzH-KVrazOdg3040gFN?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-violet-400 transition-all lb-thumb" data-lb="golf2g60" data-idx="3" alt="Foto 4" loading="lazy">
+      <img src="https://lh3.googleusercontent.com/d/1uss7tsfOFWFWFqdbg-YpqSTj7216E2n5?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-violet-400 transition-all lb-thumb" data-lb="golf2g60" data-idx="4" alt="Foto 5" loading="lazy">
+    </div>
+    <div class="text-center text-violet-300 text-sm mt-2"><span id="lb-golf2g60-counter">1 / 5</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT – zero inline handlers
+══════════════════════════════════════ -->
+<script>
+  // ── Image data ────────────────────────────────────────────────────
+  const lbImages = {
+    'golf1ls': [
+      'https://lh3.googleusercontent.com/d/1HB8GgDFiMxZ3EsTT7cGNfL1RWf11Kofl?w=800',
+      'https://lh3.googleusercontent.com/d/1UhDmXTtumE7e93nWMEJR-7-2cajsRL7Z?w=800',
+      'https://lh3.googleusercontent.com/d/1fA3KBGlo1b0VsKzLnidagYDDy_2nVdpc?w=800',
+      'https://lh3.googleusercontent.com/d/1m9zd6mvEK8io7AzH-KVrazOdg3040gFN?w=800',
+      'https://lh3.googleusercontent.com/d/1uss7tsfOFWFWFqdbg-YpqSTj7216E2n5?w=800'
+    ],
+    'golf2g60': [
+      'https://lh3.googleusercontent.com/d/1HB8GgDFiMxZ3EsTT7cGNfL1RWf11Kofl?w=800',
+      'https://lh3.googleusercontent.com/d/1UhDmXTtumE7e93nWMEJR-7-2cajsRL7Z?w=800',
+      'https://lh3.googleusercontent.com/d/1fA3KBGlo1b0VsKzLnidagYDDy_2nVdpc?w=800',
+      'https://lh3.googleusercontent.com/d/1m9zd6mvEK8io7AzH-KVrazOdg3040gFN?w=800',
+      'https://lh3.googleusercontent.com/d/1uss7tsfOFWFWFqdbg-YpqSTj7216E2n5?w=800'
+    ]
+  };
+
+  // ── Lightbox helpers ──────────────────────────────────────────────
+  function openLightbox(key, idx = 0) {
+    const lb = document.getElementById('lb-' + key);
+    if (!lb) return;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    showLbImage(key, idx);
+  }
+
+  function closeLightbox(key) {
+    const lb = document.getElementById('lb-' + key);
+    if (!lb) return;
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function showLbImage(key, idx) {
+    const imgs = lbImages[key];
+    if (!imgs) return;
+    document.getElementById('lb-' + key + '-img').src = imgs[idx];
+    document.getElementById('lb-' + key + '-counter').textContent = (idx + 1) + ' / ' + imgs.length;
+    // Highlight active thumbnail
+    document.querySelectorAll('.lb-thumb[data-lb="' + key + '"]').forEach((t, i) => {
+      t.classList.toggle('ring-2', i === idx);
+      t.classList.toggle('opacity-100', i === idx);
+      t.classList.toggle('opacity-60', i !== idx);
+    });
+  }
+
+  // Lightbox open triggers
+  document.addEventListener('click', function(e) {
+    const trigger = e.target.closest('.lb-trigger');
+    if (trigger) {
+      e.stopPropagation();
+      openLightbox(trigger.dataset.lb, 0);
+    }
+    // Close button
+    const closeBtn = e.target.closest('.lb-close');
+    if (closeBtn) closeLightbox(closeBtn.dataset.lb);
+    // Backdrop click
+    if (e.target.classList.contains('lightbox')) closeLightbox(e.target.id.replace('lb-', ''));
+    // Thumbnail
+    const thumb = e.target.closest('.lb-thumb');
+    if (thumb) {
+      e.stopPropagation();
+      showLbImage(thumb.dataset.lb, parseInt(thumb.dataset.idx));
+    }
+  });
+
+  // ESC to close any open lightbox
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.lightbox.open').forEach(lb => {
+        closeLightbox(lb.id.replace('lb-', ''));
+      });
+    }
+  });
+
+  // ── Page navigation ───────────────────────────────────────────────
+  function navigateTo(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + page);
+    if (target) target.classList.add('active');
+    document.querySelectorAll('[data-page]').forEach(b => b.classList.remove('active'));
+    const navBtn = document.querySelector('button[data-page="' + page + '"]');
+    if (navBtn) navBtn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('button[data-page]').forEach(btn => {
+    btn.addEventListener('click', () => navigateTo(btn.dataset.page));
+  });
+  // Logo click → home
+  document.querySelector('h1[data-page]').addEventListener('click', () => navigateTo('home'));
+
+  // Shortcut buttons (hero + home cards)
+  document.querySelectorAll('[data-goto]').forEach(btn => {
+    btn.addEventListener('click', () => navigateTo(btn.dataset.goto));
+  });
+
+  // ── Detail panel toggle ───────────────────────────────────────────
+  document.querySelectorAll('[data-toggle]').forEach(row => {
+    row.addEventListener('click', function(e) {
+      // Don't toggle if the click was on a link or lightbox trigger
+      if (e.target.closest('a, .lb-trigger')) return;
+      const id = this.dataset.toggle;
+      const panel = document.getElementById('detail-' + id);
+      if (!panel) return;
+      // Close others in same list
+      this.closest('.space-y-3, #autos-list, #handys-list')
+        ?.querySelectorAll('.detail-panel.open')
+        .forEach(p => { if (p !== panel) p.classList.remove('open'); });
+      panel.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>
