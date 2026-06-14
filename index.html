@@ -152,6 +152,13 @@
           <span class="hidden sm:inline">MTB</span>
         </button>
 
+        <button class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="rc">
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/>
+          </svg>
+          <span class="hidden sm:inline">RC Cars</span>
+        </button>
+
       </div>
     </div>
   </div>
@@ -170,6 +177,7 @@
         <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="handys">📱 Handys</button>
         <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="druck">🖨️ 3D Druck</button>
         <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="mtb">🚵‍♂️ MTB</button>
+        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="rc">🏎️ RC Cars</button>
       </div>
     </div>
   </div>
@@ -194,6 +202,11 @@
         <div class="feature-icon w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">🚵</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">MTB</h3>
         <p class="text-slate-600">Abenteuer auf zwei Rädern im Gelände</p>
+      </div>
+      <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="rc">
+        <div class="feature-icon w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">🏎️</div>
+        <h3 class="text-xl font-semibold text-slate-800 mb-2">RC Cars</h3>
+        <p class="text-slate-600">Ferngesteuerte Traxxas-Fahrzeuge</p>
       </div>
     </div>
   </div>
@@ -1141,6 +1154,259 @@
     </div>
   </div>
 </div>
+
+<!-- ══════════════════════════════════════
+     RC CARS PAGE
+══════════════════════════════════════ -->
+<div id="page-rc" class="page">
+  <div class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="text-6xl mb-4">🏎️</div>
+      <h2 class="text-4xl font-bold mb-4">RC Cars – Traxxas Collection</h2>
+      <p class="text-xl opacity-90">Ferngesteuerte Leidenschaft auf vier (und sechs) Rädern</p>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-2xl p-8 shadow-lg">
+      <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Traxxas Flotte</h3>
+      <div class="space-y-3">
+
+        <!-- ── Traxxas Maxx ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-red-50 to-red-100 rounded-xl cursor-pointer" data-toggle="rc-maxx">
+            <div class="shrink-0 flex items-center gap-3">
+              <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center text-white font-bold text-xs shrink-0">TRX</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Traxxas Maxx</h4>
+              <p class="text-slate-600 text-sm mt-0.5">1/10 · 4WD Monster Truck · Brushless · 60+ km/h</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+          </div>
+          <div id="detail-rc-maxx" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-red-50 rounded-xl border-2 border-red-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Traxxas Maxx</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Maßstab:</span> <span class="text-slate-600">1/10</span></div>
+                <div><span class="font-semibold text-slate-700">Antrieb:</span> <span class="text-slate-600">4WD, Shaft-driven</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">Velineon 540XL Brushless (2.400 kV)</span></div>
+                <div><span class="font-semibold text-slate-700">Regler:</span> <span class="text-slate-600">Velineon VXL-4s (3s–4s LiPo)</span></div>
+                <div><span class="font-semibold text-slate-700">Höchstgeschwindigkeit:</span> <span class="text-slate-600">60+ mph (~97 km/h) mit 4S LiPo</span></div>
+                <div><span class="font-semibold text-slate-700">Länge:</span> <span class="text-slate-600">572 mm (22,5 Zoll)</span></div>
+                <div><span class="font-semibold text-slate-700">Radstand:</span> <span class="text-slate-600">352 mm (13,85 Zoll)</span></div>
+                <div><span class="font-semibold text-slate-700">Spurbreite v/h:</span> <span class="text-slate-600">405 mm / 405 mm (WideMaxx)</span></div>
+                <div><span class="font-semibold text-slate-700">Bodenfreiheit:</span> <span class="text-slate-600">49–67 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">4,7 kg (ohne Akku)</span></div>
+                <div><span class="font-semibold text-slate-700">Stoßdämpfer:</span> <span class="text-slate-600">GT-Maxx Aluminium, Ø 25 mm, längsverstellbar</span></div>
+                <div><span class="font-semibold text-slate-700">Getriebe:</span> <span class="text-slate-600">Einstufig, Gesamt-Übersetzung 12,37:1</span></div>
+                <div><span class="font-semibold text-slate-700">Differential:</span> <span class="text-slate-600">Hardened steel bevel, Limited Slip, versiegelt</span></div>
+                <div><span class="font-semibold text-slate-700">Reifen:</span> <span class="text-slate-600">Sledgehammer 2.8" pre-glued, Ø 143 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Chassis:</span> <span class="text-slate-600">Composite Modular Tub</span></div>
+                <div><span class="font-semibold text-slate-700">Fernsteuerung:</span> <span class="text-slate-600">TQi 2.4 GHz mit TSM Stabilitätssystem</span></div>
+                <div><span class="font-semibold text-slate-700">Wasserdicht:</span> <span class="text-slate-600">Ja</span></div>
+                <div><span class="font-semibold text-slate-700">Self-Righting:</span> <span class="text-slate-600">Ja</span></div>
+                <div><span class="font-semibold text-slate-700">Akku:</span> <span class="text-slate-600">4S LiPo 14,8 V (nicht enthalten)</span></div>
+              </div>
+            </div>
+            <img src="https://traxxas.com/sites/default/files/styles/max_1300x1300/public/89086-4-maxx-red-3qtr.jpg"
+                 alt="Traxxas Maxx" class="detail-img" loading="lazy"
+                 onerror="this.src='https://www.lprcs.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/r/tra89086-4-red-01.jpg'; this.onerror=null;">
+          </div>
+        </div>
+
+        <!-- ── Traxxas Slash ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl cursor-pointer" data-toggle="rc-slash">
+            <div class="shrink-0">
+              <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-700 rounded-xl flex items-center justify-center text-white font-bold text-xs">TRX</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Traxxas Slash 4X4</h4>
+              <p class="text-slate-600 text-sm mt-0.5">1/10 · 4WD Short Course Truck · Brushless · 60+ km/h</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+          </div>
+          <div id="detail-rc-slash" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-orange-50 rounded-xl border-2 border-orange-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Traxxas Slash 4X4 VXL</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Maßstab:</span> <span class="text-slate-600">1/10</span></div>
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Short Course Truck (SCT)</span></div>
+                <div><span class="font-semibold text-slate-700">Antrieb:</span> <span class="text-slate-600">4WD, Shaft-driven Direct Drive</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">Velineon 3500 Brushless</span></div>
+                <div><span class="font-semibold text-slate-700">Regler:</span> <span class="text-slate-600">VXL-3s (2s–3s LiPo / NiMH)</span></div>
+                <div><span class="font-semibold text-slate-700">Höchstgeschwindigkeit:</span> <span class="text-slate-600">60+ mph (~97 km/h) mit 3S LiPo</span></div>
+                <div><span class="font-semibold text-slate-700">Länge:</span> <span class="text-slate-600">568 mm (22,36 Zoll)</span></div>
+                <div><span class="font-semibold text-slate-700">Radstand:</span> <span class="text-slate-600">324 mm (12,75 Zoll)</span></div>
+                <div><span class="font-semibold text-slate-700">Spurbreite v/h:</span> <span class="text-slate-600">296 mm / 296 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">2,64 kg (93 oz)</span></div>
+                <div><span class="font-semibold text-slate-700">Bodenfreiheit:</span> <span class="text-slate-600">72 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Reifen:</span> <span class="text-slate-600">2.2" pre-glued mit Schaumstoffeinlagen, Ø 109,5 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Differential:</span> <span class="text-slate-600">Hardened Steel Bevel, Limited Slip, versiegelt</span></div>
+                <div><span class="font-semibold text-slate-700">Getriebe:</span> <span class="text-slate-600">Einstufig, Übersetzung 11,82:1</span></div>
+                <div><span class="font-semibold text-slate-700">Chassis:</span> <span class="text-slate-600">Molded Tub / Nylon Composite</span></div>
+                <div><span class="font-semibold text-slate-700">Fernsteuerung:</span> <span class="text-slate-600">TQi 2.4 GHz mit TSM</span></div>
+                <div><span class="font-semibold text-slate-700">Wasserdicht:</span> <span class="text-slate-600">Ja (Extreme HD Upgrade Kit ab Werk)</span></div>
+                <div><span class="font-semibold text-slate-700">Akku:</span> <span class="text-slate-600">2S–3S LiPo oder NiMH (nicht enthalten)</span></div>
+              </div>
+            </div>
+            <img src="https://traxxas.com/sites/default/files/styles/max_1300x1300/public/68086-4-slash-4x4-vxl-3qtr.jpg"
+                 alt="Traxxas Slash 4X4" class="detail-img" loading="lazy"
+                 onerror="this.src='https://www.lprcs.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/r/tra68086-4-01.jpg'; this.onerror=null;">
+          </div>
+        </div>
+
+        <!-- ── TRX-4 Mercedes G500 4x4 ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl cursor-pointer border-l-4 border-slate-400" data-toggle="rc-trx4">
+            <div class="shrink-0">
+              <div class="w-12 h-12 bg-gradient-to-br from-slate-600 to-slate-800 rounded-xl flex items-center justify-center text-white font-bold text-xs">TRX</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Traxxas TRX-4 Mercedes-Benz G500 4×4²</h4>
+              <p class="text-slate-600 text-sm mt-0.5">1/10 · 4WD Trail Crawler · Portal-Achsen · Scale Replica</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+          </div>
+          <div id="detail-rc-trx4" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – TRX-4 Mercedes-Benz G 500 4×4²</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Maßstab:</span> <span class="text-slate-600">1/10</span></div>
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Scale & Trail Crawler</span></div>
+                <div><span class="font-semibold text-slate-700">Antrieb:</span> <span class="text-slate-600">4WD mit Portal-Achsen</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">Titan 21T 550 (gebürstet)</span></div>
+                <div><span class="font-semibold text-slate-700">Regler:</span> <span class="text-slate-600">XL-5 HV Waterproof ESC</span></div>
+                <div><span class="font-semibold text-slate-700">Getriebe:</span> <span class="text-slate-600">High/Low, 2-Gang</span></div>
+                <div><span class="font-semibold text-slate-700">Differentiale:</span> <span class="text-slate-600">3× T-Lock™ fernverriegelbar (v/m/h)</span></div>
+                <div><span class="font-semibold text-slate-700">Achsen:</span> <span class="text-slate-600">Portal-Achsen (höhere Bodenfreiheit)</span></div>
+                <div><span class="font-semibold text-slate-700">Stoßdämpfer:</span> <span class="text-slate-600">GTS Aluminium Coilover, öl-gefüllt</span></div>
+                <div><span class="font-semibold text-slate-700">Reifen:</span> <span class="text-slate-600">2.6" Scale Replica Geländereifen</span></div>
+                <div><span class="font-semibold text-slate-700">Felgen:</span> <span class="text-slate-600">5-Speichen Replica (verchromt)</span></div>
+                <div><span class="font-semibold text-slate-700">Fernsteuerung:</span> <span class="text-slate-600">TQi 2.4 GHz, Traxxas Link fähig</span></div>
+                <div><span class="font-semibold text-slate-700">Akku:</span> <span class="text-slate-600">2S–3S LiPo oder NiMH (nicht enthalten)</span></div>
+                <div><span class="font-semibold text-slate-700">Wasserdicht:</span> <span class="text-slate-600">Ja (vollständig)</span></div>
+                <div><span class="font-semibold text-slate-700">Karosserie:</span> <span class="text-slate-600">Offiziell lizenziertes Mercedes-Benz G 500 4×4² Replica-Body</span></div>
+                <div><span class="font-semibold text-slate-700">Details:</span> <span class="text-slate-600">Chrom-Auspuff, Chrom-Kühlergrill, Seitenschweller, LED-ready Scheinwerfer</span></div>
+                <div><span class="font-semibold text-slate-700">Besonderheit:</span> <span class="text-slate-600">Portal-Achsen eliminieren Drehmomentkurve; massive Bodenfreiheit trotz tiefem Getriebe</span></div>
+              </div>
+            </div>
+            <img src="https://traxxas.com/sites/default/files/styles/max_1300x1300/public/82096-4-trx4-mercedes-g500-4x4-blue-3qtr.jpg"
+                 alt="Traxxas TRX-4 Mercedes G500 4x4" class="detail-img" loading="lazy"
+                 onerror="this.src='https://www.rcsuperstore.com/wp-content/uploads/2019/08/Traxxas-TRX-4-Mercedes-Benz-G-500-4x4-RC-Crawler-RTR.jpg'; this.onerror=null;">
+          </div>
+        </div>
+
+        <!-- ── TRX-6 Mercedes G63 6x6 ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-zinc-50 to-zinc-100 rounded-xl cursor-pointer border-l-4 border-zinc-500" data-toggle="rc-trx6">
+            <div class="shrink-0">
+              <div class="w-12 h-12 bg-gradient-to-br from-zinc-700 to-zinc-900 rounded-xl flex items-center justify-center text-white font-bold text-xs">TRX</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Traxxas TRX-6 Mercedes-Benz G63 AMG 6×6</h4>
+              <p class="text-slate-600 text-sm mt-0.5">1/10 · 6WD Trail Crawler · 3 Achsen · Portal-Achsen</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+          </div>
+          <div id="detail-rc-trx6" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-zinc-50 rounded-xl border-2 border-zinc-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – TRX-6 Mercedes-Benz G 63 AMG 6×6</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Maßstab:</span> <span class="text-slate-600">1/10</span></div>
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Scale & Trail Crawler, 6×6</span></div>
+                <div><span class="font-semibold text-slate-700">Antrieb:</span> <span class="text-slate-600">6WD mit Portal-Achsen (3 Achsen)</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">Titan 21T 550 (gebürstet)</span></div>
+                <div><span class="font-semibold text-slate-700">Regler:</span> <span class="text-slate-600">XL-5 HV Waterproof ESC</span></div>
+                <div><span class="font-semibold text-slate-700">Getriebe:</span> <span class="text-slate-600">High/Low 2-Gang</span></div>
+                <div><span class="font-semibold text-slate-700">Differentiale:</span> <span class="text-slate-600">3× T-Lock™ fernverriegelbar (v/m/h)</span></div>
+                <div><span class="font-semibold text-slate-700">Mittlere Achse:</span> <span class="text-slate-600">Vollständig unabhängig (IFS-ähnlich)</span></div>
+                <div><span class="font-semibold text-slate-700">Stoßdämpfer:</span> <span class="text-slate-600">6× Aluminium Langweg-Stoßdämpfer</span></div>
+                <div><span class="font-semibold text-slate-700">Länge:</span> <span class="text-slate-600">651 mm (25,61 Zoll)</span></div>
+                <div><span class="font-semibold text-slate-700">Spurbreite:</span> <span class="text-slate-600">249 mm (9,78 Zoll)</span></div>
+                <div><span class="font-semibold text-slate-700">Bodenfreiheit:</span> <span class="text-slate-600">80 mm (3,14 Zoll)</span></div>
+                <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">3,99 kg (8,8 lbs)</span></div>
+                <div><span class="font-semibold text-slate-700">Fernsteuerung:</span> <span class="text-slate-600">TQi 2.4 GHz, Cruise Control, Traxxas Link</span></div>
+                <div><span class="font-semibold text-slate-700">Beleuchtung:</span> <span class="text-slate-600">LED-Kit ab Werk (Scheinwerfer, Rücklichter, Dachlicht, Seitenmarker)</span></div>
+                <div><span class="font-semibold text-slate-700">Akku:</span> <span class="text-slate-600">2S–3S LiPo oder NiMH 6–7 Zellen (nicht enthalten)</span></div>
+                <div><span class="font-semibold text-slate-700">Wasserdicht:</span> <span class="text-slate-600">Ja (vollständig)</span></div>
+                <div><span class="font-semibold text-slate-700">Karosserie:</span> <span class="text-slate-600">Offiziell lizenzierter Mercedes-Benz G 63 AMG 6×6 Body</span></div>
+                <div><span class="font-semibold text-slate-700">Details:</span> <span class="text-slate-600">Chrom-Auspuff, Chrom-Kühlergrill, Chrom-Überrollbügel, Seitenschweller, Chrom-Unterfahrschutz</span></div>
+                <div><span class="font-semibold text-slate-700">Besonderheit:</span> <span class="text-slate-600">Erster RC-Crawler mit 3 angetriebenen Achsen; Kabelgesteuerte Diff-Verriegelung für authentischen Look</span></div>
+              </div>
+            </div>
+            <img src="https://traxxas.com/sites/default/files/styles/max_1300x1300/public/88096-4-trx6-g63-silver-3qtr.jpg"
+                 alt="Traxxas TRX-6 Mercedes G63 6x6" class="detail-img" loading="lazy"
+                 onerror="this.src='https://www.rcsuperstore.com/wp-content/uploads/2019/08/Traxxas-TRX-6-Mercedes-Benz-G63-6x6-Scale-Trail-RTR-RC-Crawler.jpg'; this.onerror=null;">
+          </div>
+        </div>
+
+        <!-- ── Traxxas Summit ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl cursor-pointer" data-toggle="rc-summit">
+            <div class="shrink-0">
+              <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-700 rounded-xl flex items-center justify-center text-white font-bold text-xs">TRX</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Traxxas Summit</h4>
+              <p class="text-slate-600 text-sm mt-0.5">1/10 · 4WD Extreme Terrain Monster Truck · ExoCage · LED</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+          </div>
+          <div id="detail-rc-summit" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-amber-50 rounded-xl border-2 border-amber-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Traxxas Summit</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Maßstab:</span> <span class="text-slate-600">1/10</span></div>
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Extreme Terrain Monster Truck</span></div>
+                <div><span class="font-semibold text-slate-700">Antrieb:</span> <span class="text-slate-600">4WD, Shaft-driven</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">Titan 775 (10T, Fan-gekühlt) – größter Elektromotor in einem RC-Truck</span></div>
+                <div><span class="font-semibold text-slate-700">Regler:</span> <span class="text-slate-600">EVX-2 mit Low-Voltage-Erkennung</span></div>
+                <div><span class="font-semibold text-slate-700">Getriebe:</span> <span class="text-slate-600">High/Low, ferngeschaltet</span></div>
+                <div><span class="font-semibold text-slate-700">Differentiale:</span> <span class="text-slate-600">Vorne & hinten fernverriegelbar</span></div>
+                <div><span class="font-semibold text-slate-700">Länge:</span> <span class="text-slate-600">563 mm (22,17 Zoll)</span></div>
+                <div><span class="font-semibold text-slate-700">Radstand:</span> <span class="text-slate-600">377 mm (14,84 Zoll)</span></div>
+                <div><span class="font-semibold text-slate-700">Spurbreite v/h:</span> <span class="text-slate-600">469 mm / 472 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Bodenfreiheit:</span> <span class="text-slate-600">121 mm (4,76 Zoll) – extrem hoch</span></div>
+                <div><span class="font-semibold text-slate-700">Höhe:</span> <span class="text-slate-600">320 mm (12,6 Zoll)</span></div>
+                <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">4,98 kg (11 lbs) ohne Akku</span></div>
+                <div><span class="font-semibold text-slate-700">Beleuchtung:</span> <span class="text-slate-600">10-LED-System (4× weiß vorn, 6× rot hinten)</span></div>
+                <div><span class="font-semibold text-slate-700">Karosserie:</span> <span class="text-slate-600">ExoCage™ – flexibel, selbst-richtend, rockschutz</span></div>
+                <div><span class="font-semibold text-slate-700">Fernsteuerung:</span> <span class="text-slate-600">TQi 2.4 GHz, 4-Kanal (Getriebe + Diff per Fernbedienung)</span></div>
+                <div><span class="font-semibold text-slate-700">Wasserdicht:</span> <span class="text-slate-600">Ja</span></div>
+                <div><span class="font-semibold text-slate-700">Akku:</span> <span class="text-slate-600">Bis zu 16,8 V NiMH/LiPo (nicht enthalten)</span></div>
+                <div><span class="font-semibold text-slate-700">Besonderheit:</span> <span class="text-slate-600">Kombination aus Monster Truck und Trail Crawler; Geländewagen- und Renntruck-Modus</span></div>
+              </div>
+            </div>
+            <img src="https://traxxas.com/sites/default/files/styles/max_1300x1300/public/56076-4-summit-orange-3qtr.jpg"
+                 alt="Traxxas Summit" class="detail-img" loading="lazy"
+                 onerror="this.src='https://www.lprcs.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/r/tra56076-4-orngx-01.jpg'; this.onerror=null;">
+          </div>
+        </div>
+
+      </div><!-- /space-y-3 -->
+
+      <!-- Stats -->
+      <div class="mt-12 pt-8 border-t-2 border-slate-200">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-red-600 mb-2">5</div>
+            <p class="text-slate-700 font-semibold">🏎️ Traxxas Modelle</p>
+          </div>
+          <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-orange-600 mb-2">97 km/h</div>
+            <p class="text-slate-700 font-semibold">Topspeed Traxxas Maxx</p>
+          </div>
+          <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-amber-600 mb-2">6×6</div>
+            <p class="text-slate-700 font-semibold">TRX-6 Antriebsachsen</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- ══════════════════════════════════════
      FOOTER
