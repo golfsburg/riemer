@@ -223,6 +223,8 @@
     .tag-btn, .timeline-row a[href*="gsmarena"] { font-family: var(--mono); font-size: 11px !important; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border: 1px solid var(--line); padding: 3px 8px; white-space: nowrap; transition: color 0.15s, border-color 0.15s; }
     .tag-btn:hover, .timeline-row a[href*="gsmarena"]:hover { color: var(--accent); border-color: var(--accent); }
 
+    .timeline-row h4 span.text-xs.badge-sold { color: var(--muted) !important; border-color: var(--line-strong) !important; }
+
     /* Detailbereich als Datenblatt */
     .detail-panel { margin-left: 0 !important; margin-right: 0 !important; margin-top: 0 !important; }
     .detail-scroll { background: var(--surface-2) !important; border: 1px solid var(--line) !important; border-top: 0 !important; border-left: 3px solid var(--accent) !important; padding: 1.1rem 1.25rem !important; }
@@ -1307,6 +1309,84 @@
         <div class="p-6">
           <h3 class="text-xl font-semibold text-slate-800 mb-2">Equipment</h3>
           <p class="text-slate-600">Das richtige Setup für maximalen Fahrspaß</p>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl p-8 shadow-lg mb-8">
+      <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Bikes</h3>
+      <div class="space-y-3" id="mtb-list">
+
+        <!-- ── Ghost AMR 7500 ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-slate-50 rounded-xl cursor-pointer" data-toggle="mtb-ghost">
+            <div class="shrink-0 text-xl font-bold text-slate-700 w-12">2008</div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Ghost AMR 7500 <span class="text-xs badge-sold bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full ml-1">Verkauft</span></h4>
+              <p class="text-slate-600 text-sm mt-1">26" Alu-Fully · 120 mm Federweg · Shimano XT</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+          <div id="detail-mtb-ghost" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Ghost AMR 7500</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Modelljahr:</span> <span class="text-slate-600">2008</span></div>
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">All Mountain Fully</span></div>
+                <div><span class="font-semibold text-slate-700">Rahmen:</span> <span class="text-slate-600">Aluminium 7005 T6 · OTP Active SCL</span></div>
+                <div><span class="font-semibold text-slate-700">Laufräder:</span> <span class="text-slate-600">26" · DT Swiss XR 4.2 Disc · Shimano XT Naben</span></div>
+                <div><span class="font-semibold text-slate-700">Federweg v/h:</span> <span class="text-slate-600">120 mm / 120 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Gabel:</span> <span class="text-slate-600">FOX Forx 32F-RL</span></div>
+                <div><span class="font-semibold text-slate-700">Dämpfer:</span> <span class="text-slate-600">X-Fusion 02 PVA GCS</span></div>
+                <div><span class="font-semibold text-slate-700">Schaltung:</span> <span class="text-slate-600">Shimano XT (Schaltwerk, Umwerfer, Kurbel, Kassette)</span></div>
+                <div><span class="font-semibold text-slate-700">Bremsen:</span> <span class="text-slate-600">Shimano XT Disc · 180 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Reifen:</span> <span class="text-slate-600">Schwalbe Nobby Nic 2.25 (v) · Racing Ralph 2.25 (h)</span></div>
+                <div><span class="font-semibold text-slate-700">Cockpit:</span> <span class="text-slate-600">Ritchey Pro · Lenker 670 mm · Stütze 31,4 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Sattel:</span> <span class="text-slate-600">GHOST VL 1133-2</span></div>
+                <div><span class="font-semibold text-slate-700">Farbe:</span> <span class="text-slate-600">High Polished</span></div>
+                <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">12,6 kg</span></div>
+              </div>
+            </div>
+            <img src="img/mtb/ghost-amr-7500.jpg" alt="Ghost AMR 7500" class="detail-img" loading="lazy"
+                 onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+          </div>
+        </div>
+
+        <!-- ── YT Jeffsy 29 CF Pro ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-slate-50 rounded-xl cursor-pointer border-2 border-slate-400" data-toggle="mtb-jeffsy">
+            <div class="shrink-0 text-xl font-bold text-slate-700 w-12">2021</div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">YT Jeffsy 29 CF Pro <span class="text-xs bg-slate-300 text-slate-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
+              <p class="text-slate-600 text-sm mt-1">29" Carbon-Trailbike · 140 mm Federweg · Shimano XTR</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+          <div id="detail-mtb-jeffsy" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – YT Jeffsy 29 CF Pro (2018)</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Modelljahr:</span> <span class="text-slate-600">2018</span></div>
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Trail / All Mountain Fully</span></div>
+                <div><span class="font-semibold text-slate-700">Rahmen:</span> <span class="text-slate-600">Carbon (High Modulus) · V4L Virtual 4-Link</span></div>
+                <div><span class="font-semibold text-slate-700">Laufräder:</span> <span class="text-slate-600">29" · e*thirteen TRS+ (30 mm Maulweite)</span></div>
+                <div><span class="font-semibold text-slate-700">Federweg v/h:</span> <span class="text-slate-600">140 mm / 140 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Gabel:</span> <span class="text-slate-600">FOX 34 Float Performance Elite</span></div>
+                <div><span class="font-semibold text-slate-700">Dämpfer:</span> <span class="text-slate-600">FOX Float DPS Performance Elite</span></div>
+                <div><span class="font-semibold text-slate-700">Schaltung:</span> <span class="text-slate-600">Shimano XTR 1×11 · e*thirteen TRS+ 9–46</span></div>
+                <div><span class="font-semibold text-slate-700">Kurbel:</span> <span class="text-slate-600">Race Face Next R · 175 mm · 32 Z</span></div>
+                <div><span class="font-semibold text-slate-700">Bremsen:</span> <span class="text-slate-600">SRAM Guide RSC · 200 / 180 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Reifen:</span> <span class="text-slate-600">e*thirteen TRS+ 2.35</span></div>
+                <div><span class="font-semibold text-slate-700">Sattelstütze:</span> <span class="text-slate-600">FOX Transfer Performance Elite (absenkbar)</span></div>
+                <div><span class="font-semibold text-slate-700">Cockpit:</span> <span class="text-slate-600">Race Face Next R 35 · 780 mm · Turbine R 50 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Größe:</span> <span class="text-slate-600">XL</span></div>
+                <div><span class="font-semibold text-slate-700">Pedale:</span> <span class="text-slate-600">Plattformpedale</span></div>
+                <div><span class="font-semibold text-slate-700">Farbe:</span> <span class="text-slate-600">Chalk White / Black Magic</span></div>
+                <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">ca. 12,8 kg (Herstellerangabe)</span></div>
+              </div>
+            </div>
+            <img src="img/mtb/yt-jeffsy-cf-pro.jpg" alt="YT Jeffsy 29 CF Pro" class="detail-img" loading="lazy"
+                 onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+          </div>
         </div>
       </div>
     </div>
