@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peter Riemer · Homepage</title>
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (t === 'dark' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -100,6 +109,54 @@
       opacity: 1;
       pointer-events: auto;
     }
+
+    /* ── Deep-Links: Platz für die Sticky-Navigation ── */
+    .timeline-entry { scroll-margin-top: 96px; }
+
+    /* ── Foto-Platzhalter (RC Cars ohne eigene Fotos) ── */
+    .photo-placeholder {
+      max-width: 500px;
+      margin: 12px auto 0;
+      padding: 2.5rem 1rem;
+      border: 2px dashed #cbd5e1;
+      border-radius: 0.75rem;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    /* ── Lightbox-Pfeile ── */
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 3rem; height: 3rem; border-radius: 9999px;
+      background: rgba(255,255,255,0.15); color: #fff;
+      font-size: 2rem; line-height: 1; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease; z-index: 1;
+    }
+    .lb-nav:hover { background: rgba(255,255,255,0.3); }
+    .lb-nav[hidden] { display: none; }
+
+    /* ══ DARK MODE ══ */
+    html.dark { color-scheme: dark; }
+    html.dark body { background-color: #0b1120; color: #e2e8f0; }
+    html.dark .bg-white { background-color: #1e293b !important; }
+    html.dark nav.bg-white { background-color: rgba(15,23,42,0.94) !important; backdrop-filter: blur(8px); box-shadow: 0 1px 0 rgba(148,163,184,0.12); }
+    html.dark nav h1 { filter: brightness(1.5); }
+    html.dark .nav-item:not(.active) { background-color: #334155; color: #cbd5e1; }
+    html.dark .tint { box-shadow: inset 0 0 0 100vmax rgba(15,23,42,0.82); }
+    html.dark .timeline-row.tint:hover { box-shadow: inset 0 0 0 100vmax rgba(15,23,42,0.82), 0 4px 14px rgba(0,0,0,0.45); }
+    html.dark .tint-border { border-color: #334155 !important; }
+    html.dark .text-slate-800 { color: #f1f5f9; }
+    html.dark .text-slate-700 { color: #e2e8f0; }
+    html.dark .text-slate-600 { color: #cbd5e1; }
+    html.dark .text-slate-500 { color: #94a3b8; }
+    html.dark .tint .text-xl.font-bold,
+    html.dark .tint .text-4xl.font-bold { filter: brightness(1.9) saturate(0.9); }
+    html.dark .card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+    html.dark .detail-scroll { scrollbar-color: #475569 transparent; }
+    html.dark .detail-scroll::-webkit-scrollbar-thumb { background: #475569; }
+    html.dark .photo-placeholder { border-color: #475569; color: #94a3b8; }
+    html.dark .detail-img, html.dark .detail-img-sm { background-color: #e5e7eb; }
   </style>
 </head>
 <body class="h-full bg-slate-50">
@@ -159,6 +216,8 @@
           <span class="hidden sm:inline">RC Cars</span>
         </button>
 
+        <button id="theme-toggle" type="button" class="px-3 py-2 rounded-xl text-sm bg-slate-100 hover:-translate-y-0.5 transition-transform" aria-pressed="false" aria-label="Dunkelmodus umschalten" title="Dunkelmodus aktivieren">🌙</button>
+
       </div>
     </div>
   </div>
@@ -171,18 +230,18 @@
   <div class="hero-home text-white py-20 px-4">
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-4xl md:text-5xl font-bold mb-6">Willkommen auf meiner Homepage</h2>
-      <p class="text-xl opacity-90 mb-8">Entdecke meine Leidenschaften: Autos, Handys, 3D Druck und Mountainbiking</p>
+      <p class="text-xl opacity-90 mb-8">Entdecke meine Leidenschaften: Autos, Handys, 3D Druck, Mountainbiking und RC Cars</p>
       <div class="flex justify-center gap-3 flex-wrap">
         <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="autos">🏎️ Automobile</button>
         <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="handys">📱 Handys</button>
         <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="druck">🖨️ 3D Druck</button>
         <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="mtb">🚵‍♂️ MTB</button>
-        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="rc">🏎️ RC Cars</button>
+        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="rc">🕹️ RC Cars</button>
       </div>
     </div>
   </div>
   <div class="max-w-6xl mx-auto px-4 py-16">
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
       <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="autos">
         <div class="feature-icon w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">🏎️</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">Autos</h3>
@@ -203,8 +262,8 @@
         <h3 class="text-xl font-semibold text-slate-800 mb-2">MTB</h3>
         <p class="text-slate-600">Abenteuer auf zwei Rädern im Gelände</p>
       </div>
-      <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="rc">
-        <div class="feature-icon w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">🏎️</div>
+      <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer sm:col-span-2 lg:col-span-1" data-goto="rc">
+        <div class="feature-icon w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">🕹️</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">RC Cars</h3>
         <p class="text-slate-600">Ferngesteuerte Traxxas-Fahrzeuge</p>
       </div>
@@ -234,7 +293,7 @@
 
     <div class="bg-white rounded-2xl p-8 shadow-lg">
       <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Fahrzeugsammlung</h3>
-      <div class="space-y-3">
+      <div class="space-y-3" id="autos-list">
 
         <!-- ── Golf 2 GTD ── -->
         <div class="timeline-entry">
@@ -389,10 +448,7 @@
               <h4 class="font-semibold text-slate-800">Golf 1 LS Automatic – Rallyegelb (1975) <span class="text-xs bg-amber-300 text-amber-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
               <p class="text-slate-600 text-sm mt-1">Mit Schiebedach und 3-Gang Automatik</p>
             </div>
-            <div class="flex gap-2 shrink-0">
-              <button class="text-xl hover:scale-125 transition-transform lb-trigger" data-lb="golf1ls" title="Fotoalbum öffnen" onclick="event.stopPropagation()">📸</button>
-              <button class="text-lg hover:scale-125 transition-transform" title="Details anzeigen">ℹ️</button>
-            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
           </div>
           <div id="detail-golf1ls" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-amber-50 rounded-xl border-2 border-amber-200 p-4">
@@ -411,9 +467,6 @@
           <img src="https://drive.google.com/thumbnail?id=16dZaAlf7IMPr04OHkYVBuHYJYWm8gBqO&sz=w500"
                    alt="Golf 1 LS Automatic" class="detail-img" loading="lazy"
                    onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
-          <button class="mt-4 w-full px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-all lb-trigger" data-lb="golf1ls">
-                📸 Fotoalbum öffnen
-              </button>
           </div>
         </div>
 
@@ -431,10 +484,7 @@
               <h4 class="font-semibold text-slate-800">Golf 2 GTI G60 Edition One (1991) <span class="text-xs bg-violet-300 text-violet-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
               <p class="text-slate-600 text-sm mt-1">Dark Burgundy – G-Lader und Recaro</p>
             </div>
-            <div class="flex gap-2 shrink-0">
-              <button class="text-xl hover:scale-125 transition-transform lb-trigger" data-lb="golf2g60" title="Fotoalbum öffnen" onclick="event.stopPropagation()">📸</button>
-              <button class="text-lg hover:scale-125 transition-transform" title="Details anzeigen">ℹ️</button>
-            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
           </div>
           <div id="detail-golf2g60" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-violet-50 rounded-xl border-2 border-violet-200 p-4">
@@ -459,9 +509,6 @@
           <img src="https://drive.google.com/thumbnail?id=1c87rDmDw3_yoU2psZ2RzZ8FwXjxSUShq&sz=w500"
                alt="Golf 2 GTI G60 Edition One" class="detail-img" loading="lazy"
                onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
-          <button class="mt-4 w-full px-4 py-2 bg-violet-500 text-white rounded-lg hover:bg-violet-600 transition-all lb-trigger" data-lb="golf2g60">
-                📸 Fotoalbum öffnen
-              </button>
           </div>
         </div>
 
@@ -550,15 +597,15 @@
       <div class="mt-12 pt-8 border-t-2 border-slate-200">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-6 text-center">
-            <div class="text-4xl font-bold text-red-600 mb-2">8</div>
+            <div class="text-4xl font-bold text-red-600 mb-2" data-stat="autos-count">8</div>
             <p class="text-slate-700 font-semibold">🚗 Fahrzeuge insgesamt</p>
           </div>
           <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 text-center">
-            <div class="text-4xl font-bold text-blue-600 mb-2">1975–2025</div>
-            <p class="text-slate-700 font-semibold">Sammlung über 50 Jahre</p>
+            <div class="text-4xl font-bold text-blue-600 mb-2" data-stat="autos-range">1975–2026</div>
+            <p class="text-slate-700 font-semibold" data-stat="autos-span">Sammlung über 50 Jahre</p>
           </div>
           <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 text-center">
-            <div class="text-4xl font-bold text-purple-600 mb-2">3 aktiv</div>
+            <div class="text-4xl font-bold text-purple-600 mb-2" data-stat="autos-active">3 aktiv</div>
             <p class="text-slate-700 font-semibold">Fahrzeuge in Nutzung</p>
           </div>
         </div>
@@ -631,7 +678,7 @@
             <div class="detail-scroll bg-indigo-50 rounded-xl border-2 border-indigo-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 8310</div><div><span class="font-semibold">Jahr:</span> 2001</div><div><span class="font-semibold">Besonderheit:</span> Robuste Bauweise</div></div>
             </div>
-          <img src="https://fdn2.gsmarena.com/vv/bigpic/no6230.gif" alt="Nokia 8310" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="https://fdn2.gsmarena.com/vv/bigpic/no8310.gif" alt="Nokia 8310" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1049,15 +1096,15 @@
       <div class="mt-12 pt-8 border-t-2 border-slate-200">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 text-center">
-            <div class="text-4xl font-bold text-blue-600 mb-2">25 Jahre</div>
-            <p class="text-slate-700 font-semibold">📱 Mobile Geschichte (2000–2025)</p>
+            <div class="text-4xl font-bold text-blue-600 mb-2" data-stat="phone-years">26 Jahre</div>
+            <p class="text-slate-700 font-semibold" data-stat="phone-range">📱 Mobile Geschichte (2000–2026)</p>
           </div>
           <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-2xl p-6 text-center">
-            <div class="text-4xl font-bold text-cyan-600 mb-2">25</div>
+            <div class="text-4xl font-bold text-cyan-600 mb-2" data-stat="phone-count">30</div>
             <p class="text-slate-700 font-semibold">Geräte insgesamt</p>
           </div>
           <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl p-6 text-center">
-            <div class="text-4xl font-bold text-indigo-600 mb-2">Ø 1/Jahr</div>
+            <div class="text-4xl font-bold text-indigo-600 mb-2" data-stat="phone-avg">Ø 1,1/Jahr</div>
             <p class="text-slate-700 font-semibold">Durchschnitt</p>
           </div>
         </div>
@@ -1169,7 +1216,7 @@
   <div class="max-w-6xl mx-auto px-4 py-12">
     <div class="bg-white rounded-2xl p-8 shadow-lg">
       <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Traxxas Flotte</h3>
-      <div class="space-y-3">
+      <div class="space-y-3" id="rc-list">
 
         <!-- ── Traxxas Maxx ── -->
         <div class="timeline-entry">
@@ -1179,7 +1226,7 @@
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="font-semibold text-slate-800">Traxxas Maxx</h4>
-              <p class="text-slate-600 text-sm mt-0.5">1/10 · 4WD Monster Truck · Brushless · 60+ km/h</p>
+              <p class="text-slate-600 text-sm mt-0.5">1/10 · 4WD Monster Truck · Brushless · bis ~97 km/h</p>
             </div>
             <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
           </div>
@@ -1208,9 +1255,7 @@
                 <div><span class="font-semibold text-slate-700">Akku:</span> <span class="text-slate-600">4S LiPo 14,8 V (nicht enthalten)</span></div>
               </div>
             </div>
-            <img src="https://traxxas.com/sites/default/files/styles/max_1300x1300/public/89086-4-maxx-red-3qtr.jpg"
-                 alt="Traxxas Maxx" class="detail-img" loading="lazy"
-                 onerror="this.src='https://www.lprcs.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/r/tra89086-4-red-01.jpg'; this.onerror=null;">
+            <div class="photo-slot"></div>
           </div>
         </div>
 
@@ -1222,7 +1267,7 @@
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="font-semibold text-slate-800">Traxxas Slash 4X4</h4>
-              <p class="text-slate-600 text-sm mt-0.5">1/10 · 4WD Short Course Truck · Brushless · 60+ km/h</p>
+              <p class="text-slate-600 text-sm mt-0.5">1/10 · 4WD Short Course Truck · Brushless · bis ~97 km/h</p>
             </div>
             <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
           </div>
@@ -1250,9 +1295,7 @@
                 <div><span class="font-semibold text-slate-700">Akku:</span> <span class="text-slate-600">2S–3S LiPo oder NiMH (nicht enthalten)</span></div>
               </div>
             </div>
-            <img src="https://traxxas.com/sites/default/files/styles/max_1300x1300/public/68086-4-slash-4x4-vxl-3qtr.jpg"
-                 alt="Traxxas Slash 4X4" class="detail-img" loading="lazy"
-                 onerror="this.src='https://www.lprcs.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/r/tra68086-4-01.jpg'; this.onerror=null;">
+            <div class="photo-slot"></div>
           </div>
         </div>
 
@@ -1291,9 +1334,7 @@
                 <div><span class="font-semibold text-slate-700">Besonderheit:</span> <span class="text-slate-600">Portal-Achsen eliminieren Drehmomentkurve; massive Bodenfreiheit trotz tiefem Getriebe</span></div>
               </div>
             </div>
-            <img src="https://traxxas.com/sites/default/files/styles/max_1300x1300/public/82096-4-trx4-mercedes-g500-4x4-blue-3qtr.jpg"
-                 alt="Traxxas TRX-4 Mercedes G500 4x4" class="detail-img" loading="lazy"
-                 onerror="this.src='https://www.rcsuperstore.com/wp-content/uploads/2019/08/Traxxas-TRX-4-Mercedes-Benz-G-500-4x4-RC-Crawler-RTR.jpg'; this.onerror=null;">
+            <div class="photo-slot"></div>
           </div>
         </div>
 
@@ -1335,9 +1376,7 @@
                 <div><span class="font-semibold text-slate-700">Besonderheit:</span> <span class="text-slate-600">Erster RC-Crawler mit 3 angetriebenen Achsen; Kabelgesteuerte Diff-Verriegelung für authentischen Look</span></div>
               </div>
             </div>
-            <img src="https://traxxas.com/sites/default/files/styles/max_1300x1300/public/88096-4-trx6-g63-silver-3qtr.jpg"
-                 alt="Traxxas TRX-6 Mercedes G63 6x6" class="detail-img" loading="lazy"
-                 onerror="this.src='https://www.rcsuperstore.com/wp-content/uploads/2019/08/Traxxas-TRX-6-Mercedes-Benz-G63-6x6-Scale-Trail-RTR-RC-Crawler.jpg'; this.onerror=null;">
+            <div class="photo-slot"></div>
           </div>
         </div>
 
@@ -1378,9 +1417,7 @@
                 <div><span class="font-semibold text-slate-700">Besonderheit:</span> <span class="text-slate-600">Kombination aus Monster Truck und Trail Crawler; Geländewagen- und Renntruck-Modus</span></div>
               </div>
             </div>
-            <img src="https://traxxas.com/sites/default/files/styles/max_1300x1300/public/56076-4-summit-orange-3qtr.jpg"
-                 alt="Traxxas Summit" class="detail-img" loading="lazy"
-                 onerror="this.src='https://www.lprcs.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/r/tra56076-4-orngx-01.jpg'; this.onerror=null;">
+            <div class="photo-slot"></div>
           </div>
         </div>
 
@@ -1390,7 +1427,7 @@
       <div class="mt-12 pt-8 border-t-2 border-slate-200">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-6 text-center">
-            <div class="text-4xl font-bold text-red-600 mb-2">5</div>
+            <div class="text-4xl font-bold text-red-600 mb-2" data-stat="rc-count">5</div>
             <p class="text-slate-700 font-semibold">🏎️ Traxxas Modelle</p>
           </div>
           <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 text-center">
@@ -1413,53 +1450,26 @@
 ══════════════════════════════════════ -->
 <footer class="bg-slate-800 text-white py-8 px-4 mt-auto">
   <div class="max-w-6xl mx-auto text-center">
-    <p class="text-slate-400">© 2025 Peter Riemer · riemer.co · Mit ❤️ erstellt</p>
+    <p class="text-slate-400">© <span data-stat="footer-year">2026</span> Peter Riemer · riemer.co · Mit ❤️ erstellt</p>
   </div>
 </footer>
 
 <!-- ══════════════════════════════════════
-     LIGHTBOX (Golf 1 LS)
+     LIGHTBOX (für alle Fotoalben)
 ══════════════════════════════════════ -->
-<div id="lb-golf1ls" class="lightbox fixed inset-0 bg-black/90 z-50 flex-col items-center justify-center p-4">
-  <div class="w-full max-w-4xl flex flex-col h-full">
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="text-2xl font-bold text-white">Golf 1 LS Automatic – Fotoalbum</h3>
-      <button class="lb-close text-white hover:text-amber-400 text-3xl leading-none" data-lb="golf1ls">✕</button>
+<div id="lightbox" class="lightbox fixed inset-0 bg-black/90 z-50 flex-col items-center justify-center p-4" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lb-title">
+  <div class="w-full max-w-5xl flex flex-col h-full">
+    <div class="flex items-center justify-between gap-4 mb-4">
+      <h3 id="lb-title" class="text-xl sm:text-2xl font-bold text-white truncate"></h3>
+      <button id="lb-close" type="button" class="text-white hover:text-indigo-300 text-3xl leading-none" aria-label="Schließen">✕</button>
     </div>
-    <div class="flex-1 flex items-center justify-center mb-4 overflow-hidden rounded-xl">
-      <img id="lb-golf1ls-img" src="" alt="Golf 1 LS Automatic" class="max-w-full max-h-full object-contain rounded-xl">
+    <div id="lb-stage" class="relative flex-1 min-h-0 flex items-center justify-center mb-4">
+      <button id="lb-prev" type="button" class="lb-nav left-0" aria-label="Vorheriges Foto">‹</button>
+      <img id="lb-img" alt="" class="max-w-full max-h-full object-contain rounded-xl select-none">
+      <button id="lb-next" type="button" class="lb-nav right-0" aria-label="Nächstes Foto">›</button>
     </div>
-    <div class="flex gap-2 justify-center overflow-x-auto pb-2">
-      <img src="https://lh3.googleusercontent.com/d/1HB8GgDFiMxZ3EsTT7cGNfL1RWf11Kofl?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-amber-400 transition-all lb-thumb" data-lb="golf1ls" data-idx="0" alt="Foto 1" loading="lazy">
-      <img src="https://lh3.googleusercontent.com/d/1UhDmXTtumE7e93nWMEJR-7-2cajsRL7Z?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-amber-400 transition-all lb-thumb" data-lb="golf1ls" data-idx="1" alt="Foto 2" loading="lazy">
-      <img src="https://lh3.googleusercontent.com/d/1fA3KBGlo1b0VsKzLnidagYDDy_2nVdpc?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-amber-400 transition-all lb-thumb" data-lb="golf1ls" data-idx="2" alt="Foto 3" loading="lazy">
-      <img src="https://lh3.googleusercontent.com/d/1m9zd6mvEK8io7AzH-KVrazOdg3040gFN?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-amber-400 transition-all lb-thumb" data-lb="golf1ls" data-idx="3" alt="Foto 4" loading="lazy">
-      <img src="https://lh3.googleusercontent.com/d/1uss7tsfOFWFWFqdbg-YpqSTj7216E2n5?sz=100" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-amber-400 transition-all lb-thumb" data-lb="golf1ls" data-idx="4" alt="Foto 5" loading="lazy">
-    </div>
-    <div class="text-center text-amber-300 text-sm mt-2"><span id="lb-golf1ls-counter">1 / 5</span></div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     LIGHTBOX (Golf 2 G60)
-══════════════════════════════════════ -->
-<div id="lb-golf2g60" class="lightbox fixed inset-0 bg-black/90 z-50 flex-col items-center justify-center p-4">
-  <div class="w-full max-w-4xl flex flex-col h-full">
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="text-2xl font-bold text-white">Golf 2 GTI G60 – Fotoalbum</h3>
-      <button class="lb-close text-white hover:text-violet-400 text-3xl leading-none" data-lb="golf2g60">✕</button>
-    </div>
-    <div class="flex-1 flex items-center justify-center mb-4 overflow-hidden rounded-xl">
-      <img id="lb-golf2g60-img" src="" alt="Golf 2 G60" class="max-w-full max-h-full object-contain rounded-xl">
-    </div>
-    <div class="flex gap-2 justify-center overflow-x-auto pb-2">
-      <img src="https://drive.google.com/thumbnail?id=1c87rDmDw3_yoU2psZ2RzZ8FwXjxSUShq&sz=w500" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-violet-400 transition-all lb-thumb" data-lb="golf2g60" data-idx="0" alt="Foto 1" loading="lazy">
-      <img src="https://drive.google.com/thumbnail?id=1MNsajkDujfJQjbLI3GpbJhsH5sSEruIe&sz=w500" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-violet-400 transition-all lb-thumb" data-lb="golf2g60" data-idx="1" alt="Foto 2" loading="lazy">
-      <img src="https://drive.google.com/thumbnail?id=1Gc8HzidcGwy9WxshpV_F0z9Sg_Us1rqY&sz=w500" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-violet-400 transition-all lb-thumb" data-lb="golf2g60" data-idx="2" alt="Foto 3" loading="lazy">
-      <img src="https://drive.google.com/thumbnail?id=14QT6wq3qJaoFpAVv-3T31Tz2Ml46lRml&sz=w500" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-violet-400 transition-all lb-thumb" data-lb="golf2g60" data-idx="3" alt="Foto 4" loading="lazy">
-      <img src="https://drive.google.com/thumbnail?id=1S1hQe944iDYgM87RrY5Mh1Pr7pwdlwAE&sz=w500" class="h-16 rounded cursor-pointer hover:ring-2 hover:ring-violet-400 transition-all lb-thumb" data-lb="golf2g60" data-idx="4" alt="Foto 5" loading="lazy">
-    </div>
-    <div class="text-center text-violet-300 text-sm mt-2"><span id="lb-golf2g60-counter">1 / 5</span></div>
+    <div id="lb-thumbs" class="flex gap-2 justify-center overflow-x-auto pb-2"></div>
+    <div class="text-center text-slate-300 text-sm mt-2"><span id="lb-counter"></span></div>
   </div>
 </div>
 
@@ -1467,119 +1477,347 @@
      JAVASCRIPT – zero inline handlers
 ══════════════════════════════════════ -->
 <script>
-  // ── Image data ────────────────────────────────────────────────────
-  const lbImages = {
-    'golf1ls': [
-      'https://lh3.googleusercontent.com/d/1HB8GgDFiMxZ3EsTT7cGNfL1RWf11Kofl?w=800',
-      'https://lh3.googleusercontent.com/d/1UhDmXTtumE7e93nWMEJR-7-2cajsRL7Z?w=800',
-      'https://lh3.googleusercontent.com/d/1fA3KBGlo1b0VsKzLnidagYDDy_2nVdpc?w=800',
-      'https://lh3.googleusercontent.com/d/1m9zd6mvEK8io7AzH-KVrazOdg3040gFN?w=800',
-      'https://lh3.googleusercontent.com/d/1uss7tsfOFWFWFqdbg-YpqSTj7216E2n5?w=800'
-    ],
-    'golf2g60': [
-      'https://drive.google.com/thumbnail?id=1c87rDmDw3_yoU2psZ2RzZ8FwXjxSUShq&sz=w1600',
-      'https://drive.google.com/thumbnail?id=1MNsajkDujfJQjbLI3GpbJhsH5sSEruIe&sz=w1600',
-      'https://drive.google.com/thumbnail?id=1Gc8HzidcGwy9WxshpV_F0z9Sg_Us1rqY&sz=w1600',
-      'https://drive.google.com/thumbnail?id=14QT6wq3qJaoFpAVv-3T31Tz2Ml46lRml&sz=w1600',
-      'https://drive.google.com/thumbnail?id=1S1hQe944iDYgM87RrY5Mh1Pr7pwdlwAE&sz=w1600'
-    ]
+(function () {
+  'use strict';
+
+  // ════════════════════════════════════════════════════════════════
+  //  FOTOALBEN – pro Fahrzeug einfach Google-Drive-IDs eintragen.
+  //  Schlüssel = data-toggle-Name des Eintrags.
+  //  • ab 1 Foto:  RC-Cars zeigen das erste Foto als Vorschau
+  //  • ab 2 Fotos: 📸-Button + "Fotoalbum öffnen" erscheinen automatisch
+  // ════════════════════════════════════════════════════════════════
+  const GALLERIES = {
+    // ── Autos ──
+    'golf2gtd': { title: 'Golf 2 GTD',                 ids: ['1BFEnLRGsliVGn5iBIsITX7v2FICqAN3P'] },
+    'bora':     { title: 'Bora TDI',                   ids: ['157XgHb6gYt0i0xCwgXs9u5TzXr1YkKVE'] },
+    'golf4gti': { title: 'Golf 4 GTI TDI Exclusive',   ids: ['1oXJN4BEsfBtG-ajo9oEqMyVo7sUscZ0a'] },
+    'golf1l':   { title: 'Golf 1 L',                   ids: ['1ayaNKgnAS9hZpkHkx76402wTWnUzrx21'] },
+    'golf1ls':  { title: 'Golf 1 LS Automatic',        ids: [
+      '1HB8GgDFiMxZ3EsTT7cGNfL1RWf11Kofl',
+      '1UhDmXTtumE7e93nWMEJR-7-2cajsRL7Z',
+      '1fA3KBGlo1b0VsKzLnidagYDDy_2nVdpc',
+      '1m9zd6mvEK8io7AzH-KVrazOdg3040gFN',
+      '1uss7tsfOFWFWFqdbg-YpqSTj7216E2n5'
+    ] },
+    'golf2g60': { title: 'Golf 2 GTI G60 Edition One', ids: [
+      '1c87rDmDw3_yoU2psZ2RzZ8FwXjxSUShq',
+      '1MNsajkDujfJQjbLI3GpbJhsH5sSEruIe',
+      '1Gc8HzidcGwy9WxshpV_F0z9Sg_Us1rqY',
+      '14QT6wq3qJaoFpAVv-3T31Tz2Ml46lRml',
+      '1S1hQe944iDYgM87RrY5Mh1Pr7pwdlwAE'
+    ] },
+    'golf3gti': { title: 'Golf 3 GTI TDI',             ids: ['1EP5D6kWUXTD6q3eUlYRwC8uiubIjVT90'] },
+    'vitara':   { title: 'Suzuki Vitara Cabrio',       ids: ['1bnvS16S2AiRDFgTDJpvZQk_Mz8Nz5fNH'] },
+
+    // ── RC Cars (eigene Fotos hier eintragen) ──
+    'rc-maxx':   { title: 'Traxxas Maxx',                      ids: [] },
+    'rc-slash':  { title: 'Traxxas Slash 4X4',                 ids: [] },
+    'rc-trx4':   { title: 'Traxxas TRX-4 Mercedes G500 4×4²',  ids: [] },
+    'rc-trx6':   { title: 'Traxxas TRX-6 Mercedes G63 6×6',    ids: [] },
+    'rc-summit': { title: 'Traxxas Summit',                    ids: [] }
   };
 
-  // ── Lightbox helpers ──────────────────────────────────────────────
-  function openLightbox(key, idx = 0) {
-    const lb = document.getElementById('lb-' + key);
-    if (!lb) return;
-    lb.classList.add('open');
+  const drive = (id, w) => 'https://drive.google.com/thumbnail?id=' + encodeURIComponent(id) + '&sz=w' + w;
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const YEAR = new Date().getFullYear();
+
+  // ── Dark Mode ─────────────────────────────────────────────────────
+  const root = document.documentElement;
+  const themeBtn = $('#theme-toggle');
+  const storedTheme = () => { try { return localStorage.getItem('theme'); } catch (e) { return null; } };
+
+  function applyTheme(t) {
+    const dark = t === 'dark';
+    root.classList.toggle('dark', dark);
+    if (themeBtn) {
+      themeBtn.textContent = dark ? '☀️' : '🌙';
+      themeBtn.setAttribute('aria-pressed', String(dark));
+      themeBtn.title = dark ? 'Hellen Modus aktivieren' : 'Dunkelmodus aktivieren';
+    }
+  }
+  applyTheme(root.classList.contains('dark') ? 'dark' : 'light');
+
+  themeBtn && themeBtn.addEventListener('click', () => {
+    const next = root.classList.contains('dark') ? 'light' : 'dark';
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    applyTheme(next);
+  });
+
+  // Systemeinstellung folgen, solange nichts manuell gewählt wurde
+  if (window.matchMedia) {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = e => { if (!storedTheme()) applyTheme(e.matches ? 'dark' : 'light'); };
+    mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener && mq.addListener(onChange);
+  }
+
+  // Pastell-Flächen markieren, damit sie im Dark Mode abgedunkelt werden
+  const TINT_RE = /^(bg|from)-[a-z]+-(50|100|200)$/;
+  const TINT_BORDER_RE = /^border-[a-z]+-200$/;
+  $$('body [class]').forEach(el => {
+    if (el.classList.contains('nav-item')) return;
+    const cls = Array.from(el.classList);
+    if (cls.some(c => TINT_RE.test(c))) el.classList.add('tint');
+    if (cls.some(c => TINT_BORDER_RE.test(c))) el.classList.add('tint-border');
+  });
+
+  // ── Statistiken automatisch berechnen ─────────────────────────────
+  const setStat = (name, val) => $$('[data-stat="' + name + '"]').forEach(el => { el.textContent = val; });
+  const fmt1 = n => n.toLocaleString('de-AT', { maximumFractionDigits: 1 });
+
+  setStat('footer-year', YEAR);
+
+  const PHONE_START = 2000;
+  const phoneCount = $$('#handys-list > .timeline-entry').length;
+  const phoneYears = YEAR - PHONE_START;
+  setStat('phone-years', phoneYears + ' Jahre');
+  setStat('phone-range', '📱 Mobile Geschichte (' + PHONE_START + '–' + YEAR + ')');
+  setStat('phone-count', phoneCount);
+  setStat('phone-avg', 'Ø ' + fmt1(phoneCount / (phoneYears + 1)) + '/Jahr');
+
+  const CAR_OLDEST = 1975;
+  const carEntries = $$('#autos-list > .timeline-entry');
+  const carsActive = carEntries.filter(e => $$('h4 span', e).some(s => s.textContent.trim() === 'Aktuell')).length;
+  setStat('autos-count', carEntries.length);
+  setStat('autos-range', CAR_OLDEST + '–' + YEAR);
+  setStat('autos-span', 'Sammlung über ' + Math.floor((YEAR - CAR_OLDEST) / 10) * 10 + ' Jahre');
+  setStat('autos-active', carsActive + ' aktiv');
+
+  setStat('rc-count', $$('#rc-list > .timeline-entry').length);
+
+  // ── Fotoalben: Buttons + Vorschaubilder erzeugen ──────────────────
+  Object.keys(GALLERIES).forEach(key => {
+    const g = GALLERIES[key];
+    const row = $('[data-toggle="' + key + '"]');
+    const panel = $('#detail-' + key);
+    if (!row || !panel) return;
+
+    // Foto-Platzhalter (RC Cars)
+    const slot = $('.photo-slot', panel);
+    if (slot) {
+      if (g.ids.length) {
+        slot.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = drive(g.ids[0], 1000);
+        img.alt = g.title;
+        img.className = 'detail-img';
+        img.loading = 'lazy';
+        slot.appendChild(img);
+      } else {
+        slot.innerHTML = '<div class="photo-placeholder">📷 Eigene Fotos folgen</div>';
+      }
+    }
+
+    if (g.ids.length < 2) return;
+
+    // 📸-Icon in der Zeile
+    const info = $('button[title="Details anzeigen"]', row);
+    if (info) {
+      let wrap = info.parentElement;
+      if (wrap === row) {
+        wrap = document.createElement('div');
+        wrap.className = 'flex gap-2 shrink-0';
+        info.before(wrap);
+        wrap.appendChild(info);
+      }
+      const icon = document.createElement('button');
+      icon.type = 'button';
+      icon.className = 'text-xl hover:scale-125 transition-transform lb-trigger';
+      icon.dataset.lb = key;
+      icon.title = 'Fotoalbum öffnen';
+      icon.setAttribute('aria-label', 'Fotoalbum öffnen: ' + g.title);
+      icon.textContent = '📸';
+      wrap.prepend(icon);
+    }
+
+    // Vorschaubild klickbar machen
+    $$('.detail-img', panel).forEach(img => {
+      img.classList.add('cursor-zoom-in');
+      img.dataset.lb = key;
+    });
+
+    // Großer Button im Detailbereich
+    const big = document.createElement('button');
+    big.type = 'button';
+    big.className = 'lb-trigger mt-4 w-full px-4 py-2 rounded-lg text-white font-medium bg-gradient-to-r from-indigo-500 to-purple-600 hover:opacity-90 transition';
+    big.dataset.lb = key;
+    big.textContent = '📸 Fotoalbum öffnen (' + g.ids.length + ' Fotos)';
+    panel.appendChild(big);
+  });
+
+  // ── Lightbox (eine für alle Alben) ────────────────────────────────
+  const lb = {
+    el: $('#lightbox'), title: $('#lb-title'), img: $('#lb-img'), stage: $('#lb-stage'),
+    thumbs: $('#lb-thumbs'), counter: $('#lb-counter'), prev: $('#lb-prev'), next: $('#lb-next'),
+    close: $('#lb-close'), key: null, idx: 0, lastFocus: null
+  };
+
+  function openLightbox(key, idx) {
+    const g = GALLERIES[key];
+    if (!g || !g.ids.length) return;
+    lb.key = key;
+    lb.lastFocus = document.activeElement;
+    lb.title.textContent = g.title + ' – Fotoalbum';
+    lb.thumbs.innerHTML = '';
+    g.ids.forEach((id, i) => {
+      const t = document.createElement('img');
+      t.src = drive(id, 200);
+      t.alt = 'Foto ' + (i + 1);
+      t.loading = 'lazy';
+      t.dataset.idx = i;
+      t.className = 'lb-thumb h-16 w-auto rounded cursor-pointer transition-all';
+      lb.thumbs.appendChild(t);
+    });
+    const multi = g.ids.length > 1;
+    lb.prev.hidden = lb.next.hidden = lb.thumbs.hidden = !multi;
+    lb.el.classList.add('open');
+    lb.el.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    showLbImage(key, idx);
+    showImage(idx || 0);
+    lb.close.focus();
   }
 
-  function closeLightbox(key) {
-    const lb = document.getElementById('lb-' + key);
-    if (!lb) return;
-    lb.classList.remove('open');
+  function closeLightbox() {
+    if (!lb.el.classList.contains('open')) return;
+    lb.el.classList.remove('open');
+    lb.el.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    lb.img.removeAttribute('src');
+    lb.key = null;
+    if (lb.lastFocus && lb.lastFocus.focus) lb.lastFocus.focus();
   }
 
-  function showLbImage(key, idx) {
-    const imgs = lbImages[key];
-    if (!imgs) return;
-    document.getElementById('lb-' + key + '-img').src = imgs[idx];
-    document.getElementById('lb-' + key + '-counter').textContent = (idx + 1) + ' / ' + imgs.length;
-    // Highlight active thumbnail
-    document.querySelectorAll('.lb-thumb[data-lb="' + key + '"]').forEach((t, i) => {
-      t.classList.toggle('ring-2', i === idx);
-      t.classList.toggle('opacity-100', i === idx);
-      t.classList.toggle('opacity-60', i !== idx);
+  function showImage(i) {
+    const g = GALLERIES[lb.key];
+    if (!g) return;
+    const n = g.ids.length;
+    lb.idx = ((i % n) + n) % n;
+    lb.img.src = drive(g.ids[lb.idx], 1600);
+    lb.img.alt = g.title + ' – Foto ' + (lb.idx + 1);
+    lb.counter.textContent = (lb.idx + 1) + ' / ' + n;
+    $$('.lb-thumb', lb.thumbs).forEach((t, k) => {
+      const on = k === lb.idx;
+      t.classList.toggle('ring-2', on);
+      t.classList.toggle('ring-white', on);
+      t.classList.toggle('opacity-100', on);
+      t.classList.toggle('opacity-50', !on);
+      if (on) t.scrollIntoView({ block: 'nearest', inline: 'center' });
     });
   }
 
-  // Lightbox open triggers
-  document.addEventListener('click', function(e) {
-    const trigger = e.target.closest('.lb-trigger');
-    if (trigger) {
-      e.stopPropagation();
-      openLightbox(trigger.dataset.lb, 0);
-    }
-    // Close button
-    const closeBtn = e.target.closest('.lb-close');
-    if (closeBtn) closeLightbox(closeBtn.dataset.lb);
-    // Backdrop click
-    if (e.target.classList.contains('lightbox')) closeLightbox(e.target.id.replace('lb-', ''));
-    // Thumbnail
-    const thumb = e.target.closest('.lb-thumb');
-    if (thumb) {
-      e.stopPropagation();
-      showLbImage(thumb.dataset.lb, parseInt(thumb.dataset.idx));
-    }
+  lb.prev.addEventListener('click', e => { e.stopPropagation(); showImage(lb.idx - 1); });
+  lb.next.addEventListener('click', e => { e.stopPropagation(); showImage(lb.idx + 1); });
+  lb.close.addEventListener('click', closeLightbox);
+  lb.thumbs.addEventListener('click', e => {
+    const t = e.target.closest('.lb-thumb');
+    if (t) showImage(parseInt(t.dataset.idx, 10));
+  });
+  lb.el.addEventListener('click', e => {
+    if (e.target === lb.el || e.target === lb.stage) closeLightbox();
   });
 
-  // ESC to close any open lightbox
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.lightbox.open').forEach(lb => {
-        closeLightbox(lb.id.replace('lb-', ''));
-      });
-    }
+  // Wischen auf dem Handy
+  let touchX = null;
+  lb.stage.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.stage.addEventListener('touchend', e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    touchX = null;
+    if (Math.abs(dx) > 50) showImage(lb.idx + (dx < 0 ? 1 : -1));
   });
 
-  // ── Page navigation ───────────────────────────────────────────────
+  document.addEventListener('keydown', e => {
+    if (!lb.el.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') showImage(lb.idx - 1);
+    else if (e.key === 'ArrowRight') showImage(lb.idx + 1);
+  });
+
+  // Album-Auslöser (Buttons + klickbare Vorschaubilder)
+  document.addEventListener('click', e => {
+    const trigger = e.target.closest('.lb-trigger, .detail-img[data-lb]');
+    if (!trigger) return;
+    e.stopPropagation();
+    openLightbox(trigger.dataset.lb, 0);
+  });
+
+  // ── Seiten-Routing mit eigenen URLs (#autos, #autos/golf2g60 …) ──
+  const PAGES = ['home', 'autos', 'handys', 'druck', 'mtb', 'rc'];
+  const TITLES = { home: 'Homepage', autos: 'Autos', handys: 'Handys', druck: '3D Druck', mtb: 'MTB', rc: 'RC Cars' };
+
+  function parseHash() {
+    const raw = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
+    const parts = raw.split('/');
+    const page = PAGES.indexOf(parts[0]) >= 0 ? parts[0] : 'home';
+    return { page: page, item: parts[1] || null };
+  }
+
+  function showPage(page) {
+    const target = $('#page-' + page);
+    if (!target) return false;
+    const changed = !target.classList.contains('active');
+    $$('.page').forEach(p => p.classList.toggle('active', p === target));
+    $$('.nav-item').forEach(b => b.classList.toggle('active', b.dataset.page === page));
+    $$('.nav-item').forEach(b => b.setAttribute('aria-current', b.dataset.page === page ? 'page' : 'false'));
+    document.title = 'Peter Riemer · ' + TITLES[page];
+    return changed;
+  }
+
+  function setPanel(id, open) {
+    const panel = $('#detail-' + id);
+    if (!panel) return null;
+    if (open) {
+      const list = panel.closest('.space-y-3');
+      list && $$('.detail-panel.open', list).forEach(p => { if (p !== panel) p.classList.remove('open'); });
+    }
+    panel.classList.toggle('open', open);
+    return panel;
+  }
+
+  function route() {
+    closeLightbox();
+    const r = parseHash();
+    const changed = showPage(r.page);
+    if (r.item) {
+      const panel = setPanel(r.item, true);
+      if (panel) {
+        const entry = panel.closest('.timeline-entry');
+        requestAnimationFrame(() => entry.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+        return;
+      }
+    }
+    if (changed) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   function navigateTo(page) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const target = document.getElementById('page-' + page);
-    if (target) target.classList.add('active');
-    document.querySelectorAll('[data-page]').forEach(b => b.classList.remove('active'));
-    const navBtn = document.querySelector('button[data-page="' + page + '"]');
-    if (navBtn) navBtn.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const url = page === 'home' ? location.pathname + location.search : '#' + page;
+    if (url !== location.pathname + location.search + location.hash) history.pushState(null, '', url);
+    route();
   }
 
-  document.querySelectorAll('button[data-page]').forEach(btn => {
-    btn.addEventListener('click', () => navigateTo(btn.dataset.page));
-  });
-  // Logo click → home
-  document.querySelector('h1[data-page]').addEventListener('click', () => navigateTo('home'));
+  window.addEventListener('popstate', route);
+  window.addEventListener('hashchange', route);
 
-  // Shortcut buttons (hero + home cards)
-  document.querySelectorAll('[data-goto]').forEach(btn => {
-    btn.addEventListener('click', () => navigateTo(btn.dataset.goto));
+  $$('[data-page], [data-goto]').forEach(el => {
+    el.addEventListener('click', () => navigateTo(el.dataset.page || el.dataset.goto));
   });
 
-  // ── Detail panel toggle ───────────────────────────────────────────
-  document.querySelectorAll('[data-toggle]').forEach(row => {
-    row.addEventListener('click', function(e) {
-      // Don't toggle if the click was on a link or lightbox trigger
-      if (e.target.closest('a, .lb-trigger')) return;
-      const id = this.dataset.toggle;
-      const panel = document.getElementById('detail-' + id);
-      if (!panel) return;
-      // Close others in same list
-      this.closest('.space-y-3, #autos-list, #handys-list')
-        ?.querySelectorAll('.detail-panel.open')
-        .forEach(p => { if (p !== panel) p.classList.remove('open'); });
-      panel.classList.toggle('open');
-    });
+  // ── Detailbereiche auf-/zuklappen (URL wird mitgeführt) ───────────
+  document.addEventListener('click', e => {
+    const row = e.target.closest('[data-toggle]');
+    if (!row || e.target.closest('a, .lb-trigger')) return;
+    const id = row.dataset.toggle;
+    const panel = $('#detail-' + id);
+    if (!panel) return;
+    const open = !panel.classList.contains('open');
+    setPanel(id, open);
+    const page = parseHash().page;
+    if (page !== 'home') history.replaceState(null, '', '#' + page + (open ? '/' + id : ''));
   });
+
+  // Start
+  route();
+})();
 </script>
 </body>
 </html>
