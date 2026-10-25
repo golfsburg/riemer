@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Peter Riemer · Homepage</title>
+  <title>riemer.co</title>
   <script>
     (function () {
       var t = null;
@@ -14,10 +14,10 @@
     })();
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    * { font-family: 'Outfit', sans-serif; }
+    * { font-family: 'IBM Plex Sans', system-ui, sans-serif; }
 
     /* ── Pages ── */
     .page { display: none; animation: fadeIn 0.35s ease-out; }
@@ -136,27 +136,137 @@
     .lb-nav:hover { background: rgba(255,255,255,0.3); }
     .lb-nav[hidden] { display: none; }
 
-    /* ══ DARK MODE ══ */
-    html.dark { color-scheme: dark; }
-    html.dark body { background-color: #0b1120; color: #e2e8f0; }
-    html.dark .bg-white { background-color: #1e293b !important; }
-    html.dark nav.bg-white { background-color: rgba(15,23,42,0.94) !important; backdrop-filter: blur(8px); box-shadow: 0 1px 0 rgba(148,163,184,0.12); }
-    html.dark nav h1 { filter: brightness(1.5); }
-    html.dark .nav-item:not(.active) { background-color: #334155; color: #cbd5e1; }
-    html.dark .tint { box-shadow: inset 0 0 0 100vmax rgba(15,23,42,0.82); }
-    html.dark .timeline-row.tint:hover { box-shadow: inset 0 0 0 100vmax rgba(15,23,42,0.82), 0 4px 14px rgba(0,0,0,0.45); }
-    html.dark .tint-border { border-color: #334155 !important; }
-    html.dark .text-slate-800 { color: #f1f5f9; }
-    html.dark .text-slate-700 { color: #e2e8f0; }
-    html.dark .text-slate-600 { color: #cbd5e1; }
-    html.dark .text-slate-500 { color: #94a3b8; }
-    html.dark .tint .text-xl.font-bold,
-    html.dark .tint .text-4xl.font-bold { filter: brightness(1.9) saturate(0.9); }
-    html.dark .card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-    html.dark .detail-scroll { scrollbar-color: #475569 transparent; }
-    html.dark .detail-scroll::-webkit-scrollbar-thumb { background: #475569; }
-    html.dark .photo-placeholder { border-color: #475569; color: #94a3b8; }
-    html.dark .detail-img, html.dark .detail-img-sm { background-color: #e5e7eb; }
+    /* ══════════════ DESIGN-SYSTEM (technisch) ══════════════ */
+    :root {
+      --bg: #f3f4f6; --surface: #ffffff; --surface-2: #f8f9fa;
+      --fg: #0e1217; --fg-2: #39414b; --muted: #6b7480;
+      --line: #dfe2e6; --line-strong: #c2c8cf;
+      --accent: #ff5a1f; --hero: #0d1015; --grid: rgba(255,255,255,0.055);
+      --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    }
+    html.dark {
+      color-scheme: dark;
+      --bg: #0a0d11; --surface: #11151b; --surface-2: #0d1116;
+      --fg: #e7eaee; --fg-2: #b6bdc6; --muted: #7c8591;
+      --line: #222830; --line-strong: #323a44;
+    }
+    body { background: var(--bg) !important; color: var(--fg); -webkit-font-smoothing: antialiased; }
+    [class*="rounded"] { border-radius: 2px !important; }
+    .shadow-lg, .shadow-xl { box-shadow: none !important; }
+    .bg-white { background-color: var(--surface) !important; }
+    .bg-white.shadow-lg { border: 1px solid var(--line); }
+    .text-slate-800 { color: var(--fg) !important; }
+    .text-slate-700, .text-slate-600 { color: var(--fg-2) !important; }
+    .text-slate-500, .text-slate-400 { color: var(--muted) !important; }
+    .mono { font-family: var(--mono); }
+
+    /* Navigation */
+    nav.bg-white { background: color-mix(in srgb, var(--surface) 90%, transparent) !important; backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+    nav h1 { background: none !important; -webkit-text-fill-color: currentColor; color: var(--fg) !important; font-size: 17px !important; font-weight: 600 !important; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+    nav h1::before { content: ''; width: 8px; height: 8px; background: var(--accent); }
+    .nav-item { background: transparent !important; color: var(--fg-2) !important; border: 1px solid transparent; font-family: var(--mono); font-size: 12px !important; text-transform: uppercase; letter-spacing: 0.06em; transform: none !important; }
+    .nav-item:hover { border-color: var(--line); color: var(--fg) !important; }
+    .nav-item.active { background: transparent !important; color: var(--fg) !important; box-shadow: inset 0 -2px 0 var(--accent) !important; }
+    .nav-item svg { width: 16px; height: 16px; }
+    #theme-toggle { background: transparent !important; border: 1px solid var(--line); color: var(--fg-2); display: flex; align-items: center; transform: none !important; }
+    #theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    #theme-toggle svg { width: 16px; height: 16px; }
+
+    /* Hero (hell, ruhig) */
+    .hero { background: var(--surface) !important; background-image: none !important; color: var(--fg) !important; border-bottom: 1px solid var(--line); }
+    .hero > div { max-width: 72rem !important; text-align: left !important; }
+    .hero .justify-center { justify-content: flex-start !important; }
+    .hero h2 { color: var(--fg); font-weight: 600 !important; letter-spacing: -0.02em; line-height: 1.1; }
+    .hero p { color: var(--fg-2); opacity: 1 !important; max-width: 40rem; }
+    .kicker { font-family: 'IBM Plex Sans', system-ui, sans-serif; color: var(--muted); font-size: 14px; font-weight: 500; margin-bottom: 0.75rem; }
+    .kicker::before { content: none; }
+    .nav-shortcut { background: var(--surface-2) !important; color: var(--fg-2) !important; border: 1px solid var(--line); font-size: 14px !important; font-weight: 500; padding: 0.45rem 0.9rem !important; transition: border-color 0.15s, color 0.15s; }
+    .nav-shortcut:hover { border-color: var(--accent); color: var(--accent) !important; }
+    @media (max-width: 640px) {
+      .hero { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+      .hero h2 { font-size: 2.5rem !important; }
+      .hero p { font-size: 1.05rem !important; }
+    }
+
+    /* Karten mit Eckmarken */
+    .card { position: relative; border: 1px solid var(--line) !important; box-shadow: none !important; transform: none !important; transition: border-color 0.2s ease; }
+    .card:hover { border-color: var(--line-strong) !important; }
+    .card::before, .card::after { content: ''; position: absolute; width: 14px; height: 14px; opacity: 0; transition: opacity 0.2s ease; pointer-events: none; }
+    .card::before { top: -1px; left: -1px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+    .card::after { bottom: -1px; right: -1px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+    .card:hover::before, .card:hover::after { opacity: 1; }
+    .card.text-center { text-align: left !important; }
+    .card h3 { font-weight: 600 !important; }
+    .card[data-goto] h3::after { content: ' →'; color: var(--muted); transition: color 0.2s; }
+    .card[data-goto]:hover h3::after { color: var(--accent); }
+    .idx { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 2.5rem; }
+
+    /* Abschnittstitel */
+    .page h3.text-2xl { font-family: var(--mono); font-size: 12px !important; font-weight: 500 !important; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted) !important; padding-bottom: 0.75rem; border-bottom: 1px solid var(--line); margin-bottom: 1.25rem !important; display: flex; align-items: center; gap: 10px; }
+    .page h3.text-2xl::before { content: ''; width: 8px; height: 8px; background: var(--accent); }
+
+    /* Timeline-Zeilen als Datenliste */
+    .space-y-3 > * + * { margin-top: 6px !important; }
+    .timeline-row { background: var(--surface) !important; border: 1px solid var(--line) !important; border-left: 3px solid var(--line-strong) !important; box-shadow: none !important; padding: 0.85rem 1rem !important; transition: background 0.15s ease, border-color 0.15s ease; }
+    .timeline-row:hover { background: var(--surface-2) !important; border-color: var(--line-strong) !important; }
+    .timeline-row.border-2 { border-left-color: var(--accent) !important; }
+    .timeline-row .w-0\.5 { display: none; }
+    .timeline-row .text-xl.font-bold { font-family: var(--mono); font-size: 14px !important; font-weight: 500 !important; color: var(--muted) !important; }
+    .timeline-row.border-2 .text-xl.font-bold { color: var(--accent) !important; }
+    .timeline-row h4 { font-weight: 600; letter-spacing: -0.005em; }
+    .timeline-row h4 span.text-xs { background: transparent !important; color: var(--accent) !important; border: 1px solid var(--accent); font-family: var(--mono); font-size: 10px !important; text-transform: uppercase; letter-spacing: 0.08em; padding: 1px 6px !important; vertical-align: 2px; }
+    .timeline-row button, .timeline-row a { transform: none !important; }
+    .timeline-row .w-12.h-12 { background: transparent !important; border: 1px solid var(--line-strong); color: var(--fg) !important; font-family: var(--mono); font-weight: 500 !important; }
+    .chev { width: 18px; height: 18px; color: var(--muted); transition: transform 0.2s ease, color 0.2s ease; }
+    .timeline-entry:has(.detail-panel.open) .chev { transform: rotate(180deg); color: var(--accent); }
+    .timeline-entry:has(.detail-panel.open) > .timeline-row { border-color: var(--line-strong) !important; border-left-color: var(--accent) !important; }
+    .tag-btn, .timeline-row a[href*="gsmarena"] { font-family: var(--mono); font-size: 11px !important; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border: 1px solid var(--line); padding: 3px 8px; white-space: nowrap; transition: color 0.15s, border-color 0.15s; }
+    .tag-btn:hover, .timeline-row a[href*="gsmarena"]:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* Detailbereich als Datenblatt */
+    .detail-panel { margin-left: 0 !important; margin-right: 0 !important; margin-top: 0 !important; }
+    .detail-scroll { background: var(--surface-2) !important; border: 1px solid var(--line) !important; border-top: 0 !important; border-left: 3px solid var(--accent) !important; padding: 1.1rem 1.25rem !important; }
+    .detail-scroll h5 { font-family: var(--mono); font-size: 11px; font-weight: 500 !important; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted) !important; }
+    .detail-scroll .font-semibold { font-family: var(--mono); font-size: 10.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted) !important; margin-right: 4px; }
+    .detail-scroll .grid > div, .detail-scroll .space-y-1 > div { border-bottom: 1px dashed var(--line); padding-bottom: 6px; }
+    .detail-img, .detail-img-sm { border: 1px solid var(--line); border-radius: 0 !important; }
+    .detail-panel > button.lb-trigger { background: var(--fg) !important; color: var(--bg) !important; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; transition: background 0.15s; }
+    .detail-panel > button.lb-trigger:hover { background: var(--accent) !important; opacity: 1 !important; }
+    .photo-placeholder { border-color: var(--line-strong) !important; color: var(--muted) !important; font-family: var(--mono); font-size: 12px !important; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 0 !important; }
+    .detail-scroll { scrollbar-color: var(--line-strong) transparent; }
+    .detail-scroll::-webkit-scrollbar-thumb { background: var(--line-strong); }
+
+    /* Kennzahlen */
+    .border-t-2 { border-top: 1px solid var(--line) !important; }
+    .mt-12 .grid > div { background: var(--surface-2) !important; border: 1px solid var(--line); text-align: left !important; }
+    .mt-12 .text-4xl { font-family: var(--mono); font-weight: 500 !important; color: var(--fg) !important; letter-spacing: -0.03em; }
+    .mt-12 .grid > div:first-child .text-4xl { color: var(--accent) !important; }
+    .mt-12 .grid p { font-family: var(--mono); font-size: 11px; font-weight: 500 !important; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted) !important; }
+
+    /* 3D Druck & MTB */
+    #page-druck .space-y-4 > div, #page-mtb .grid-cols-2 > div { background: var(--surface-2) !important; border: 1px solid var(--line); border-left: 3px solid var(--line-strong); }
+    #page-druck .space-y-4 > div.border-2 { border-left-color: var(--accent) !important; }
+    #page-druck .space-y-4 h4 span.text-xs { background: transparent !important; color: var(--accent) !important; border: 1px solid var(--accent); font-family: var(--mono); font-size: 10px !important; text-transform: uppercase; letter-spacing: 0.08em; }
+    #page-mtb .grid-cols-2 > div { text-align: left !important; font-family: var(--mono); }
+    #page-mtb .grid-cols-2 p { font-family: var(--mono); font-size: 12px !important; text-transform: uppercase; letter-spacing: 0.06em; }
+    #page-mtb .card > .h-48 { background-color: var(--hero) !important; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px) !important; background-size: 24px 24px !important; justify-content: flex-start !important; align-items: flex-end !important; padding: 1.25rem; }
+    #page-mtb .card > .h-48 p { font-family: var(--mono); font-size: 13px !important; font-weight: 500 !important; text-transform: uppercase; letter-spacing: 0.12em; }
+
+    /* Handy */
+    @media (max-width: 640px) {
+      .page .bg-white.p-8 { padding: 1rem !important; }
+      .timeline-row { gap: 0.75rem !important; padding: 0.75rem !important; }
+      .timeline-row a[href*="gsmarena"] { font-size: 0 !important; padding: 4px 8px; }
+      .timeline-row a[href*="gsmarena"]::after { content: '↗'; font-size: 12px; }
+      .tag-btn { font-size: 10px !important; padding: 2px 6px; }
+      .detail-scroll { padding: 0.9rem !important; }
+    }
+
+    /* Footer & Lightbox */
+    footer { background: var(--surface) !important; border-top: 1px solid var(--line); color: var(--muted); }
+    footer p { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .lb-nav { border-radius: 0 !important; }
+    #lb-title { font-family: var(--mono); font-size: 14px !important; font-weight: 500 !important; text-transform: uppercase; letter-spacing: 0.1em; }
   </style>
 </head>
 <body class="h-full bg-slate-50">
@@ -168,7 +278,7 @@
   <div class="max-w-6xl mx-auto px-4">
     <div class="flex items-center justify-between py-4">
       <h1 class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent cursor-pointer" data-page="home">
-        Peter Riemer
+        riemer.co
       </h1>
       <div class="flex gap-2 flex-wrap">
 
@@ -216,7 +326,7 @@
           <span class="hidden sm:inline">RC Cars</span>
         </button>
 
-        <button id="theme-toggle" type="button" class="px-3 py-2 rounded-xl text-sm bg-slate-100 hover:-translate-y-0.5 transition-transform" aria-pressed="false" aria-label="Dunkelmodus umschalten" title="Dunkelmodus aktivieren">🌙</button>
+        <button id="theme-toggle" type="button" class="px-3 py-2 rounded-xl text-sm bg-slate-100 hover:-translate-y-0.5 transition-transform" aria-pressed="false" aria-label="Dunkelmodus umschalten" title="Dunkelmodus aktivieren"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg></button>
 
       </div>
     </div>
@@ -227,43 +337,43 @@
      HOME PAGE
 ══════════════════════════════════════ -->
 <div id="page-home" class="page active">
-  <div class="hero-home text-white py-20 px-4">
+  <div class="hero hero-home text-white py-20 px-4">
     <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl md:text-5xl font-bold mb-6">Willkommen auf meiner Homepage</h2>
-      <p class="text-xl opacity-90 mb-8">Entdecke meine Leidenschaften: Autos, Handys, 3D Druck, Mountainbiking und RC Cars</p>
+      <h2 class="text-4xl md:text-5xl font-bold mb-5">Willkommen</h2>
+      <p class="text-xl opacity-90 mb-8">Fahrzeuge, Technik und Projekte im Überblick.</p>
       <div class="flex justify-center gap-3 flex-wrap">
-        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="autos">🏎️ Automobile</button>
-        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="handys">📱 Handys</button>
-        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="druck">🖨️ 3D Druck</button>
-        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="mtb">🚵‍♂️ MTB</button>
-        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="rc">🕹️ RC Cars</button>
+        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="autos">Automobile</button>
+        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="handys">Handys</button>
+        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="druck">3D Druck</button>
+        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="mtb">MTB</button>
+        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="rc">RC Cars</button>
       </div>
     </div>
   </div>
   <div class="max-w-6xl mx-auto px-4 py-16">
     <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
       <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="autos">
-        <div class="feature-icon w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">🏎️</div>
+        <div class="idx">01</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">Autos</h3>
         <p class="text-slate-600">Meine Leidenschaft für schnelle und schöne Fahrzeuge</p>
       </div>
       <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="handys">
-        <div class="feature-icon w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">📱</div>
+        <div class="idx">02</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">Handys</h3>
         <p class="text-slate-600">Meine mobile Geschichte seit 2000</p>
       </div>
       <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="druck">
-        <div class="feature-icon w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">🖨️</div>
+        <div class="idx">03</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">3D Druck</h3>
         <p class="text-slate-600">Kreative Projekte aus dem 3D Drucker</p>
       </div>
       <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="mtb">
-        <div class="feature-icon w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">🚵</div>
+        <div class="idx">04</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">MTB</h3>
         <p class="text-slate-600">Abenteuer auf zwei Rädern im Gelände</p>
       </div>
       <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer sm:col-span-2 lg:col-span-1" data-goto="rc">
-        <div class="feature-icon w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-4 text-3xl">🕹️</div>
+        <div class="idx">05</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">RC Cars</h3>
         <p class="text-slate-600">Ferngesteuerte Traxxas-Fahrzeuge</p>
       </div>
@@ -275,9 +385,9 @@
      AUTOS PAGE
 ══════════════════════════════════════ -->
 <div id="page-autos" class="page">
-  <div class="hero-autos text-white py-16 px-4">
+  <div class="hero hero-autos text-white py-16 px-4">
     <div class="max-w-4xl mx-auto text-center">
-      <div class="text-6xl mb-4">🏎️</div>
+      <div class="kicker">Fahrzeugsammlung</div>
       <h2 class="text-4xl font-bold mb-4">Automobile Leidenschaft</h2>
       <p class="text-xl opacity-90">Faszination Automobil – von Klassikern bis Supersportwagen</p>
     </div>
@@ -303,13 +413,12 @@
                 <div class="text-xl font-bold text-green-700">1998</div>
                 <div class="w-0.5 h-6 bg-green-300 mx-auto mt-1"></div>
               </div>
-              <div class="text-4xl">🚙</div>
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="font-semibold text-slate-800">Golf 2 GTD – Hellgrünmetallic (1989)</h4>
               <p class="text-slate-600 text-sm mt-1">Mein erstes Auto – Ein Klassiker!</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-golf2gtd" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-green-50 rounded-xl border-2 border-green-200 p-4">
@@ -335,13 +444,12 @@
                 <div class="text-xl font-bold text-blue-700">2002</div>
                 <div class="w-0.5 h-6 bg-blue-300 mx-auto mt-1"></div>
               </div>
-              <div class="text-4xl">🚘</div>
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="font-semibold text-slate-800">Bora TDI – Königsblau (1999)</h4>
               <p class="text-slate-600 text-sm mt-1">Zuverlässige Tourenlimousine</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-bora" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-blue-50 rounded-xl border-2 border-blue-200 p-4">
@@ -368,13 +476,12 @@
                 <div class="text-xl font-bold text-slate-700">2002</div>
                 <div class="w-0.5 h-6 bg-slate-300 mx-auto mt-1"></div>
               </div>
-              <div class="text-4xl">🏁</div>
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="font-semibold text-slate-800">Golf 4 GTI TDI Exclusive (2000)</h4>
               <p class="text-slate-600 text-sm mt-1">Blackmagic Perleffekt mit sportlichem Design</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-golf4gti" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
@@ -408,13 +515,12 @@
                 <div class="text-xl font-bold text-lime-700">2004</div>
                 <div class="w-0.5 h-6 bg-lime-300 mx-auto mt-1"></div>
               </div>
-              <div class="text-4xl">🚙</div>
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="font-semibold text-slate-800">Golf 1 L – Baligrün (1977)</h4>
               <p class="text-slate-600 text-sm mt-1">Originaler Klassiker in Originalfarbe</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-golf1l" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-lime-50 rounded-xl border-2 border-lime-200 p-4">
@@ -442,13 +548,12 @@
                 <div class="text-xl font-bold text-amber-700">2006</div>
                 <div class="w-0.5 h-6 bg-amber-300 mx-auto mt-1"></div>
               </div>
-              <div class="text-4xl">🚗</div>
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="font-semibold text-slate-800">Golf 1 LS Automatic – Rallyegelb (1975) <span class="text-xs bg-amber-300 text-amber-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
               <p class="text-slate-600 text-sm mt-1">Mit Schiebedach und 3-Gang Automatik</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-golf1ls" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-amber-50 rounded-xl border-2 border-amber-200 p-4">
@@ -478,13 +583,12 @@
                 <div class="text-xl font-bold text-violet-700">2006</div>
                 <div class="w-0.5 h-6 bg-violet-300 mx-auto mt-1"></div>
               </div>
-              <div class="text-4xl">🏁</div>
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="font-semibold text-slate-800">Golf 2 GTI G60 Edition One (1991) <span class="text-xs bg-violet-300 text-violet-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
               <p class="text-slate-600 text-sm mt-1">Dark Burgundy – G-Lader und Recaro</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-golf2g60" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-violet-50 rounded-xl border-2 border-violet-200 p-4">
@@ -520,13 +624,12 @@
                 <div class="text-xl font-bold text-gray-700">2007</div>
                 <div class="w-0.5 h-6 bg-gray-300 mx-auto mt-1"></div>
               </div>
-              <div class="text-4xl">🚗</div>
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="font-semibold text-slate-800">Golf 3 GTI TDI (1996)</h4>
               <p class="text-slate-600 text-sm mt-1">Black Magic Perleffekt mit Ledersportausstattung</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-golf3gti" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-gray-50 rounded-xl border-2 border-gray-200 p-4">
@@ -561,13 +664,12 @@
                 <div class="text-xl font-bold text-yellow-700">2022</div>
                 <div class="w-0.5 h-6 bg-yellow-400 mx-auto mt-1"></div>
               </div>
-              <div class="text-4xl">🚙</div>
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="font-semibold text-slate-800">Suzuki Vitara 2,0 16V Cabrio (1999) <span class="text-xs bg-yellow-300 text-yellow-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
               <p class="text-slate-600 text-sm mt-1">Sportliches Cabrio mit Allradantrieb</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-vitara" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-yellow-50 rounded-xl border-2 border-yellow-200 p-4">
@@ -598,7 +700,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-6 text-center">
             <div class="text-4xl font-bold text-red-600 mb-2" data-stat="autos-count">8</div>
-            <p class="text-slate-700 font-semibold">🚗 Fahrzeuge insgesamt</p>
+            <p class="text-slate-700 font-semibold">Fahrzeuge insgesamt</p>
           </div>
           <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 text-center">
             <div class="text-4xl font-bold text-blue-600 mb-2" data-stat="autos-range">1975–2026</div>
@@ -618,9 +720,9 @@
      HANDYS PAGE
 ══════════════════════════════════════ -->
 <div id="page-handys" class="page">
-  <div class="hero-handys text-white py-16 px-4">
+  <div class="hero hero-handys text-white py-16 px-4">
     <div class="max-w-4xl mx-auto text-center">
-      <div class="text-6xl mb-4">📱</div>
+      <div class="kicker">Mobile Geschichte</div>
       <h2 class="text-4xl font-bold mb-4">Handys</h2>
       <p class="text-xl opacity-90">Meine Mobile Journey seit 2000</p>
     </div>
@@ -641,8 +743,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl cursor-pointer" data-toggle="nokia8210">
             <div class="shrink-0 text-xl font-bold text-blue-700 w-12">2000</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 8210</h4><p class="text-slate-600 text-sm">Mein erstes Handy – kompakt und zuverlässig</p></div>
-            <a href="https://www.gsmarena.com/nokia_8210-19.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()" title="GSMArena">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia 8210</h4><p class="text-slate-600 text-sm">Mein erstes Handy – kompakt und zuverlässig</p></div>
+            <a href="https://www.gsmarena.com/nokia_8210-19.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()" title="GSMArena">GSMArena ↗</a>
           </div>
           <div id="detail-nokia8210" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-blue-50 rounded-xl border-2 border-blue-200 p-4">
@@ -656,8 +758,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-cyan-50 to-cyan-100 rounded-xl cursor-pointer" data-toggle="siemens">
             <div class="shrink-0 text-xl font-bold text-cyan-700 w-12">2000</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Siemens S10</h4><p class="text-slate-600 text-sm">Hochwertiges Business-Handy</p></div>
-            <a href="https://www.gsmarena.com/siemens_s10-86.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Siemens S10</h4><p class="text-slate-600 text-sm">Hochwertiges Business-Handy</p></div>
+            <a href="https://www.gsmarena.com/siemens_s10-86.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-siemens" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-cyan-50 rounded-xl border-2 border-cyan-200 p-4">
@@ -671,8 +773,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-50 to-indigo-100 rounded-xl cursor-pointer" data-toggle="nokia8310">
             <div class="shrink-0 text-xl font-bold text-indigo-700 w-12">2001</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 8310</h4><p class="text-slate-600 text-sm">Verbesserte Version mit mehr Features</p></div>
-            <a href="https://www.gsmarena.com/nokia_8310-241.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia 8310</h4><p class="text-slate-600 text-sm">Verbesserte Version mit mehr Features</p></div>
+            <a href="https://www.gsmarena.com/nokia_8310-241.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokia8310" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-indigo-50 rounded-xl border-2 border-indigo-200 p-4">
@@ -686,8 +788,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl cursor-pointer" data-toggle="nokia3100">
             <div class="shrink-0 text-xl font-bold text-purple-700 w-12">2003</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 3100</h4><p class="text-slate-600 text-sm">Budgetfreundliches Einsteigermodell</p></div>
-            <a href="https://www.gsmarena.com/nokia_3100-453.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia 3100</h4><p class="text-slate-600 text-sm">Budgetfreundliches Einsteigermodell</p></div>
+            <a href="https://www.gsmarena.com/nokia_3100-453.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokia3100" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-purple-50 rounded-xl border-2 border-purple-200 p-4">
@@ -701,8 +803,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl cursor-pointer" data-toggle="nokia6600">
             <div class="shrink-0 text-xl font-bold text-pink-700 w-12">2003</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📷 Nokia 6600</h4><p class="text-slate-600 text-sm">Kamera-Handy – Revolutionär!</p></div>
-            <a href="https://www.gsmarena.com/nokia_6600-454.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia 6600</h4><p class="text-slate-600 text-sm">Kamera-Handy – Revolutionär!</p></div>
+            <a href="https://www.gsmarena.com/nokia_6600-454.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokia6600" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-pink-50 rounded-xl border-2 border-pink-200 p-4">
@@ -716,8 +818,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-emerald-50 to-emerald-100 rounded-xl cursor-pointer" data-toggle="nokia9210">
             <div class="shrink-0 text-xl font-bold text-emerald-700 w-12">2003</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">⌨️ Nokia 9210i Communicator</h4><p class="text-slate-600 text-sm">Business-Communicator mit Tastatur</p></div>
-            <a href="https://www.gsmarena.com/nokia_9210i_communicator-319.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia 9210i Communicator</h4><p class="text-slate-600 text-sm">Business-Communicator mit Tastatur</p></div>
+            <a href="https://www.gsmarena.com/nokia_9210i_communicator-319.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokia9210" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-emerald-50 rounded-xl border-2 border-emerald-200 p-4">
@@ -731,8 +833,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-sky-50 to-sky-100 rounded-xl cursor-pointer" data-toggle="nokia6610">
             <div class="shrink-0 text-xl font-bold text-sky-700 w-12">2004</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 6610i</h4><p class="text-slate-600 text-sm">Beliebtes Mittelklasse-Modell</p></div>
-            <a href="https://www.gsmarena.com/nokia_6610i-742.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia 6610i</h4><p class="text-slate-600 text-sm">Beliebtes Mittelklasse-Modell</p></div>
+            <a href="https://www.gsmarena.com/nokia_6610i-742.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokia6610" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-sky-50 rounded-xl border-2 border-sky-200 p-4">
@@ -746,8 +848,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-teal-50 to-teal-100 rounded-xl cursor-pointer" data-toggle="nokia7610">
             <div class="shrink-0 text-xl font-bold text-teal-700 w-12">2004</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 7610</h4><p class="text-slate-600 text-sm">Multimedia-Telefon mit Kamera</p></div>
-            <a href="https://www.gsmarena.com/nokia_7610-703.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia 7610</h4><p class="text-slate-600 text-sm">Multimedia-Telefon mit Kamera</p></div>
+            <a href="https://www.gsmarena.com/nokia_7610-703.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokia7610" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-teal-50 rounded-xl border-2 border-teal-200 p-4">
@@ -761,8 +863,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-violet-50 to-violet-100 rounded-xl cursor-pointer" data-toggle="nokia9500">
             <div class="shrink-0 text-xl font-bold text-violet-700 w-12">2004</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">⌨️ Nokia 9500 Communicator</h4><p class="text-slate-600 text-sm">Premium Business-Gerät mit Tastatur</p></div>
-            <a href="https://www.gsmarena.com/nokia_9500-678.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia 9500 Communicator</h4><p class="text-slate-600 text-sm">Premium Business-Gerät mit Tastatur</p></div>
+            <a href="https://www.gsmarena.com/nokia_9500-678.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokia9500" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-violet-50 rounded-xl border-2 border-violet-200 p-4">
@@ -776,8 +878,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-rose-50 to-rose-100 rounded-xl cursor-pointer" data-toggle="nokia6230">
             <div class="shrink-0 text-xl font-bold text-rose-700 w-12">2005</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 6230</h4><p class="text-slate-600 text-sm">Klassiker der Mittelklasse</p></div>
-            <a href="https://www.gsmarena.com/nokia_6230-566.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia 6230</h4><p class="text-slate-600 text-sm">Klassiker der Mittelklasse</p></div>
+            <a href="https://www.gsmarena.com/nokia_6230-566.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokia6230" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-rose-50 rounded-xl border-2 border-rose-200 p-4">
@@ -791,8 +893,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl cursor-pointer" data-toggle="nokia7710">
             <div class="shrink-0 text-xl font-bold text-orange-700 w-12">2005</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 7710</h4><p class="text-slate-600 text-sm">Smartphone-Vorreiter mit großem Display</p></div>
-            <a href="https://www.gsmarena.com/nokia_7710-921.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia 7710</h4><p class="text-slate-600 text-sm">Smartphone-Vorreiter mit großem Display</p></div>
+            <a href="https://www.gsmarena.com/nokia_7710-921.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokia7710" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-orange-50 rounded-xl border-2 border-orange-200 p-4">
@@ -806,8 +908,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl cursor-pointer" data-toggle="nokan90">
             <div class="shrink-0 text-xl font-bold text-amber-700 w-12">2005</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📷 Nokia N90</h4><p class="text-slate-600 text-sm">Handy mit digitaler Kamera</p></div>
-            <a href="https://www.gsmarena.com/nokia_n90-1155.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia N90</h4><p class="text-slate-600 text-sm">Handy mit digitaler Kamera</p></div>
+            <a href="https://www.gsmarena.com/nokia_n90-1155.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokan90" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-amber-50 rounded-xl border-2 border-amber-200 p-4">
@@ -821,8 +923,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl cursor-pointer" data-toggle="nokan91">
             <div class="shrink-0 text-xl font-bold text-yellow-700 w-12">2005</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">🎵 Nokia N91</h4><p class="text-slate-600 text-sm">Musikhandy mit großem Speicher</p></div>
-            <a href="https://www.gsmarena.com/nokia_n91-1154.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia N91</h4><p class="text-slate-600 text-sm">Musikhandy mit großem Speicher</p></div>
+            <a href="https://www.gsmarena.com/nokia_n91-1154.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokan91" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-yellow-50 rounded-xl border-2 border-yellow-200 p-4">
@@ -836,8 +938,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-lime-50 to-lime-100 rounded-xl cursor-pointer" data-toggle="hpipaq910c">
             <div class="shrink-0 text-xl font-bold text-lime-700 w-12">2006</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 HP iPAQ 910c</h4><p class="text-slate-600 text-sm">Windows Mobile Communicator</p></div>
-            <a href="https://www.gsmarena.com/hp_ipaq_910c-2095.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">HP iPAQ 910c</h4><p class="text-slate-600 text-sm">Windows Mobile Communicator</p></div>
+            <a href="https://www.gsmarena.com/hp_ipaq_910c-2095.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-hpipaq910c" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-lime-50 rounded-xl border-2 border-lime-200 p-4">
@@ -851,8 +953,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl cursor-pointer" data-toggle="nokan80">
             <div class="shrink-0 text-xl font-bold text-green-700 w-12">2006</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📷 Nokia N80</h4><p class="text-slate-600 text-sm">Kamera und Multimedia</p></div>
-            <a href="https://www.gsmarena.com/nokia_n80-1347.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia N80</h4><p class="text-slate-600 text-sm">Kamera und Multimedia</p></div>
+            <a href="https://www.gsmarena.com/nokia_n80-1347.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokan80" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-green-50 rounded-xl border-2 border-green-200 p-4">
@@ -866,8 +968,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-red-50 to-red-100 rounded-xl cursor-pointer" data-toggle="nokia6300">
             <div class="shrink-0 text-xl font-bold text-red-700 w-12">2007</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia 6300</h4><p class="text-slate-600 text-sm">Elegantes Klassiker-Design</p></div>
-            <a href="https://www.gsmarena.com/nokia_6300-1800.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia 6300</h4><p class="text-slate-600 text-sm">Elegantes Klassiker-Design</p></div>
+            <a href="https://www.gsmarena.com/nokia_6300-1800.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokia6300" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-red-50 rounded-xl border-2 border-red-200 p-4">
@@ -881,8 +983,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl cursor-pointer" data-toggle="nokan95">
             <div class="shrink-0 text-xl font-bold text-pink-700 w-12">2007</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia N95</h4><p class="text-slate-600 text-sm">Premium Smartphone mit Schieber</p></div>
-            <a href="https://www.gsmarena.com/nokia_n95-1716.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia N95</h4><p class="text-slate-600 text-sm">Premium Smartphone mit Schieber</p></div>
+            <a href="https://www.gsmarena.com/nokia_n95-1716.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokan95" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-pink-50 rounded-xl border-2 border-pink-200 p-4">
@@ -896,8 +998,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl cursor-pointer" data-toggle="htctouched">
             <div class="shrink-0 text-xl font-bold text-purple-700 w-12">2008</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 HTC Touch Diamond</h4><p class="text-slate-600 text-sm">Windows Mobile Smartphone</p></div>
-            <a href="https://www.gsmarena.com/htc_touch_diamond-2368.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">HTC Touch Diamond</h4><p class="text-slate-600 text-sm">Windows Mobile Smartphone</p></div>
+            <a href="https://www.gsmarena.com/htc_touch_diamond-2368.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-htctouched" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-purple-50 rounded-xl border-2 border-purple-200 p-4">
@@ -911,8 +1013,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-50 to-indigo-100 rounded-xl cursor-pointer" data-toggle="nokan82">
             <div class="shrink-0 text-xl font-bold text-indigo-700 w-12">2008</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📷 Nokia N82</h4><p class="text-slate-600 text-sm">Kamera-Smartphone mit GPS</p></div>
-            <a href="https://www.gsmarena.com/nokia_n82-2177.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia N82</h4><p class="text-slate-600 text-sm">Kamera-Smartphone mit GPS</p></div>
+            <a href="https://www.gsmarena.com/nokia_n82-2177.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokan82" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-indigo-50 rounded-xl border-2 border-indigo-200 p-4">
@@ -926,8 +1028,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-cyan-50 to-cyan-100 rounded-xl cursor-pointer" data-toggle="nokiae51">
             <div class="shrink-0 text-xl font-bold text-cyan-700 w-12">2009</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 Nokia E51</h4><p class="text-slate-600 text-sm">Business-Smartphone mit Tastatur</p></div>
-            <a href="https://www.gsmarena.com/nokia_e51-2078.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia E51</h4><p class="text-slate-600 text-sm">Business-Smartphone mit Tastatur</p></div>
+            <a href="https://www.gsmarena.com/nokia_e51-2078.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokiae51" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-cyan-50 rounded-xl border-2 border-cyan-200 p-4">
@@ -941,8 +1043,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-teal-50 to-teal-100 rounded-xl cursor-pointer" data-toggle="nokiax6">
             <div class="shrink-0 text-xl font-bold text-teal-700 w-12">2010</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">🎵 Nokia X6 32GB</h4><p class="text-slate-600 text-sm">Musik-Smartphone mit großem Speicher</p></div>
-            <a href="https://www.gsmarena.com/nokia_x6-2967.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">Nokia X6 32GB</h4><p class="text-slate-600 text-sm">Musik-Smartphone mit großem Speicher</p></div>
+            <a href="https://www.gsmarena.com/nokia_x6-2967.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-nokiax6" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-teal-50 rounded-xl border-2 border-teal-200 p-4">
@@ -956,8 +1058,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl cursor-pointer" data-toggle="iphone3gs">
             <div class="shrink-0 text-xl font-bold text-slate-700 w-12">2010</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 iPhone 3GS</h4><p class="text-slate-600 text-sm">Einstieg in die Apple-Welt</p></div>
-            <a href="https://www.gsmarena.com/apple_iphone_3gs-2826.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">iPhone 3GS</h4><p class="text-slate-600 text-sm">Einstieg in die Apple-Welt</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_3gs-2826.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-iphone3gs" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
@@ -971,8 +1073,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl cursor-pointer" data-toggle="iphone4">
             <div class="shrink-0 text-xl font-bold text-blue-800 w-12">2011</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 iPhone 4</h4><p class="text-slate-600 text-sm">Retina Display – Bahnbrechend!</p></div>
-            <a href="https://www.gsmarena.com/apple_iphone_4-3275.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">iPhone 4</h4><p class="text-slate-600 text-sm">Retina Display – Bahnbrechend!</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_4-3275.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-iphone4" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-blue-50 rounded-xl border-2 border-blue-200 p-4">
@@ -986,8 +1088,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-100 to-indigo-200 rounded-xl cursor-pointer" data-toggle="iphone5">
             <div class="shrink-0 text-xl font-bold text-indigo-800 w-12">2012</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 iPhone 5</h4><p class="text-slate-600 text-sm">Dünner und schneller</p></div>
-            <a href="https://www.gsmarena.com/apple_iphone_5-4910.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">iPhone 5</h4><p class="text-slate-600 text-sm">Dünner und schneller</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_5-4910.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-iphone5" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-indigo-50 rounded-xl border-2 border-indigo-200 p-4">
@@ -1001,8 +1103,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-purple-100 to-purple-200 rounded-xl cursor-pointer" data-toggle="iphone5s">
             <div class="shrink-0 text-xl font-bold text-purple-800 w-12">2013</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">🔐 iPhone 5s</h4><p class="text-slate-600 text-sm">Mit Touch ID Fingerabdruckscanner</p></div>
-            <a href="https://www.gsmarena.com/apple_iphone_5s-5685.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">iPhone 5s</h4><p class="text-slate-600 text-sm">Mit Touch ID Fingerabdruckscanner</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_5s-5685.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-iphone5s" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-purple-50 rounded-xl border-2 border-purple-200 p-4">
@@ -1016,8 +1118,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-cyan-100 to-cyan-200 rounded-xl cursor-pointer" data-toggle="iphone6">
             <div class="shrink-0 text-xl font-bold text-cyan-800 w-12">2014</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 iPhone 6</h4><p class="text-slate-600 text-sm">Grösseres Display, dünnere Bauweise</p></div>
-            <a href="https://www.gsmarena.com/apple_iphone_6-6378.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">iPhone 6</h4><p class="text-slate-600 text-sm">Grösseres Display, dünnere Bauweise</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_6-6378.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-iphone6" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-cyan-50 rounded-xl border-2 border-cyan-200 p-4">
@@ -1031,8 +1133,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-teal-100 to-teal-200 rounded-xl cursor-pointer" data-toggle="iphonex">
             <div class="shrink-0 text-xl font-bold text-teal-800 w-12">2017</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">🔐 iPhone X</h4><p class="text-slate-600 text-sm">Gesichtserkennung und OLED Display</p></div>
-            <a href="https://www.gsmarena.com/apple_iphone_x-8858.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">iPhone X</h4><p class="text-slate-600 text-sm">Gesichtserkennung und OLED Display</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_x-8858.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-iphonex" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-teal-50 rounded-xl border-2 border-teal-200 p-4">
@@ -1046,8 +1148,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl cursor-pointer" data-toggle="iphone12pro">
             <div class="shrink-0 text-xl font-bold text-blue-800 w-12">2020</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 iPhone 12 Pro</h4><p class="text-slate-600 text-sm">5G und Profi-Kamera</p></div>
-            <a href="https://www.gsmarena.com/apple_iphone_12_pro-10508.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">iPhone 12 Pro</h4><p class="text-slate-600 text-sm">5G und Profi-Kamera</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_12_pro-10508.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-iphone12pro" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-blue-50 rounded-xl border-2 border-blue-200 p-4">
@@ -1061,8 +1163,8 @@
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-purple-100 to-purple-200 rounded-xl cursor-pointer" data-toggle="iphone14pro">
             <div class="shrink-0 text-xl font-bold text-purple-800 w-12">2022</div>
-            <div class="flex-1"><h4 class="font-semibold text-slate-800">📱 iPhone 14 Pro</h4><p class="text-slate-600 text-sm">Dynamic Island und 48 MP Kamera</p></div>
-            <a href="https://www.gsmarena.com/apple_iphone_14_pro-11860.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <div class="flex-1"><h4 class="font-semibold text-slate-800">iPhone 14 Pro</h4><p class="text-slate-600 text-sm">Dynamic Island und 48 MP Kamera</p></div>
+            <a href="https://www.gsmarena.com/apple_iphone_14_pro-11860.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-iphone14pro" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-purple-50 rounded-xl border-2 border-purple-200 p-4">
@@ -1077,10 +1179,10 @@
           <div class="timeline-row flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-100 to-indigo-200 rounded-xl cursor-pointer border-2 border-indigo-400" data-toggle="iphone16pro">
             <div class="shrink-0 text-xl font-bold text-indigo-800 w-12">2024</div>
             <div class="flex-1">
-              <h4 class="font-semibold text-slate-800">📷 iPhone 16 Pro <span class="text-xs bg-indigo-400 text-white px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
+              <h4 class="font-semibold text-slate-800">iPhone 16 Pro <span class="text-xs bg-indigo-400 text-white px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
               <p class="text-slate-600 text-sm">KI-Features und Kamera-Upgrade</p>
             </div>
-            <a href="https://www.gsmarena.com/apple_iphone_16_pro-13315.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">ℹ️</a>
+            <a href="https://www.gsmarena.com/apple_iphone_16_pro-13315.php" target="_blank" rel="noopener noreferrer" class="text-lg hover:scale-125 transition-transform shrink-0" onclick="event.stopPropagation()">GSMArena ↗</a>
           </div>
           <div id="detail-iphone16pro" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-indigo-50 rounded-xl border-2 border-indigo-200 p-4">
@@ -1097,7 +1199,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 text-center">
             <div class="text-4xl font-bold text-blue-600 mb-2" data-stat="phone-years">26 Jahre</div>
-            <p class="text-slate-700 font-semibold" data-stat="phone-range">📱 Mobile Geschichte (2000–2026)</p>
+            <p class="text-slate-700 font-semibold" data-stat="phone-range">Mobile Geschichte (2000–2026)</p>
           </div>
           <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-2xl p-6 text-center">
             <div class="text-4xl font-bold text-cyan-600 mb-2" data-stat="phone-count">30</div>
@@ -1117,9 +1219,9 @@
      3D DRUCK PAGE
 ══════════════════════════════════════ -->
 <div id="page-druck" class="page">
-  <div class="hero-druck text-white py-16 px-4">
+  <div class="hero hero-druck text-white py-16 px-4">
     <div class="max-w-4xl mx-auto text-center">
-      <div class="text-6xl mb-4">🖨️</div>
+      <div class="kicker">3D Druck</div>
       <h2 class="text-4xl font-bold mb-4">3D Druck Projekte</h2>
       <p class="text-xl opacity-90">Von der Idee zum fertigen Objekt</p>
     </div>
@@ -1127,17 +1229,17 @@
   <div class="max-w-6xl mx-auto px-4 py-12">
     <div class="grid md:grid-cols-3 gap-6 mb-8">
       <div class="card bg-white rounded-2xl p-6 shadow-lg text-center">
-        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center text-5xl mb-4">🎨</div>
+        <div class="idx">01</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">Design</h3>
         <p class="text-slate-600">3D-Modellierung mit TinkerCAD</p>
       </div>
       <div class="card bg-white rounded-2xl p-6 shadow-lg text-center">
-        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center text-5xl mb-4">⚙️</div>
+        <div class="idx">02</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">Slicing</h3>
         <p class="text-slate-600">Anycubic Slicer Next</p>
       </div>
       <div class="card bg-white rounded-2xl p-6 shadow-lg text-center">
-        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center text-5xl mb-4">🖨️</div>
+        <div class="idx">03</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">Druck</h3>
         <p class="text-slate-600">Schicht für Schicht zum Ergebnis</p>
       </div>
@@ -1146,11 +1248,11 @@
       <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Drucker</h3>
       <div class="space-y-4">
         <div class="p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl">
-          <h4 class="font-semibold text-slate-800">🖨️ XYZ Printing DaVinci 2.0 Dual (2021–2025)</h4>
+          <h4 class="font-semibold text-slate-800">XYZ Printing DaVinci 2.0 Dual (2021–2025)</h4>
           <p class="text-slate-600 text-sm mt-1">Dual-Extruder FDM Drucker</p>
         </div>
         <div class="p-4 bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl border-2 border-pink-300">
-          <h4 class="font-semibold text-slate-800">🖨️✨ Anycubic Kobra 2 Plus Combo (2025) <span class="text-xs bg-pink-300 text-pink-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
+          <h4 class="font-semibold text-slate-800">Anycubic Kobra 2 Plus Combo (2025) <span class="text-xs bg-pink-300 text-pink-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
           <p class="text-slate-600 text-sm mt-1">Schneller FDM-Drucker mit großem Bauraum</p>
         </div>
       </div>
@@ -1162,9 +1264,9 @@
      MTB PAGE
 ══════════════════════════════════════ -->
 <div id="page-mtb" class="page">
-  <div class="hero-mtb text-white py-16 px-4">
+  <div class="hero hero-mtb text-white py-16 px-4">
     <div class="max-w-4xl mx-auto text-center">
-      <div class="text-6xl mb-4">🚵‍♂️</div>
+      <div class="kicker">Mountainbiking</div>
       <h2 class="text-4xl font-bold mb-4">Mountainbiking</h2>
       <p class="text-xl opacity-90">Abenteuer, Natur und pure Freiheit</p>
     </div>
@@ -1173,7 +1275,7 @@
     <div class="grid md:grid-cols-2 gap-8 mb-8">
       <div class="card bg-white rounded-2xl overflow-hidden shadow-lg">
         <div class="h-48 bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center">
-          <div class="text-center text-white"><div class="text-6xl mb-2">🚵‍♂️</div><p class="text-xl font-semibold">Trail Riding</p></div>
+          <div class="text-center text-white"><p class="text-xl font-semibold">Trail Riding</p></div>
         </div>
         <div class="p-6">
           <h3 class="text-xl font-semibold text-slate-800 mb-2">Trails erkunden</h3>
@@ -1182,7 +1284,7 @@
       </div>
       <div class="card bg-white rounded-2xl overflow-hidden shadow-lg">
         <div class="h-48 bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center">
-          <div class="text-center text-white"><div class="text-6xl mb-2">🔧</div><p class="text-xl font-semibold">Bike Setup</p></div>
+          <div class="text-center text-white"><p class="text-xl font-semibold">Bike Setup</p></div>
         </div>
         <div class="p-6">
           <h3 class="text-xl font-semibold text-slate-800 mb-2">Equipment</h3>
@@ -1193,10 +1295,10 @@
     <div class="bg-white rounded-2xl p-8 shadow-lg">
       <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Ausrüstung</h3>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="text-center p-4 bg-green-50 rounded-xl"><div class="text-3xl mb-2">🚲</div><p class="text-sm font-medium text-slate-700">Full Suspension</p></div>
-        <div class="text-center p-4 bg-green-50 rounded-xl"><div class="text-3xl mb-2">🛡️</div><p class="text-sm font-medium text-slate-700">Helm</p></div>
-        <div class="text-center p-4 bg-green-50 rounded-xl"><div class="text-3xl mb-2">🧤</div><p class="text-sm font-medium text-slate-700">Handschuhe</p></div>
-        <div class="text-center p-4 bg-green-50 rounded-xl"><div class="text-3xl mb-2">👟</div><p class="text-sm font-medium text-slate-700">MTB-Schuhe</p></div>
+        <div class="text-center p-4 bg-green-50 rounded-xl"><p class="text-sm font-medium text-slate-700">Full Suspension</p></div>
+        <div class="text-center p-4 bg-green-50 rounded-xl"><p class="text-sm font-medium text-slate-700">Helm</p></div>
+        <div class="text-center p-4 bg-green-50 rounded-xl"><p class="text-sm font-medium text-slate-700">Handschuhe</p></div>
+        <div class="text-center p-4 bg-green-50 rounded-xl"><p class="text-sm font-medium text-slate-700">MTB-Schuhe</p></div>
       </div>
     </div>
   </div>
@@ -1206,9 +1308,9 @@
      RC CARS PAGE
 ══════════════════════════════════════ -->
 <div id="page-rc" class="page">
-  <div class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-16 px-4">
+  <div class="hero hero-rc text-white py-16 px-4">
     <div class="max-w-4xl mx-auto text-center">
-      <div class="text-6xl mb-4">🏎️</div>
+      <div class="kicker">Modellbau</div>
       <h2 class="text-4xl font-bold mb-4">RC Cars – Traxxas Collection</h2>
       <p class="text-xl opacity-90">Ferngesteuerte Leidenschaft auf vier (und sechs) Rädern</p>
     </div>
@@ -1228,7 +1330,7 @@
               <h4 class="font-semibold text-slate-800">Traxxas Maxx</h4>
               <p class="text-slate-600 text-sm mt-0.5">1/10 · 4WD Monster Truck · Brushless · bis ~97 km/h</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-rc-maxx" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-red-50 rounded-xl border-2 border-red-200 p-4">
@@ -1269,7 +1371,7 @@
               <h4 class="font-semibold text-slate-800">Traxxas Slash 4X4</h4>
               <p class="text-slate-600 text-sm mt-0.5">1/10 · 4WD Short Course Truck · Brushless · bis ~97 km/h</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-rc-slash" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-orange-50 rounded-xl border-2 border-orange-200 p-4">
@@ -1309,7 +1411,7 @@
               <h4 class="font-semibold text-slate-800">Traxxas TRX-4 Mercedes-Benz G500 4×4²</h4>
               <p class="text-slate-600 text-sm mt-0.5">1/10 · 4WD Trail Crawler · Portal-Achsen · Scale Replica</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-rc-trx4" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
@@ -1348,7 +1450,7 @@
               <h4 class="font-semibold text-slate-800">Traxxas TRX-6 Mercedes-Benz G63 AMG 6×6</h4>
               <p class="text-slate-600 text-sm mt-0.5">1/10 · 6WD Trail Crawler · 3 Achsen · Portal-Achsen</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-rc-trx6" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-zinc-50 rounded-xl border-2 border-zinc-200 p-4">
@@ -1390,7 +1492,7 @@
               <h4 class="font-semibold text-slate-800">Traxxas Summit</h4>
               <p class="text-slate-600 text-sm mt-0.5">1/10 · 4WD Extreme Terrain Monster Truck · ExoCage · LED</p>
             </div>
-            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen">ℹ️</button>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-rc-summit" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-amber-50 rounded-xl border-2 border-amber-200 p-4">
@@ -1428,7 +1530,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-6 text-center">
             <div class="text-4xl font-bold text-red-600 mb-2" data-stat="rc-count">5</div>
-            <p class="text-slate-700 font-semibold">🏎️ Traxxas Modelle</p>
+            <p class="text-slate-700 font-semibold">Traxxas Modelle</p>
           </div>
           <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 text-center">
             <div class="text-4xl font-bold text-orange-600 mb-2">97 km/h</div>
@@ -1450,7 +1552,7 @@
 ══════════════════════════════════════ -->
 <footer class="bg-slate-800 text-white py-8 px-4 mt-auto">
   <div class="max-w-6xl mx-auto text-center">
-    <p class="text-slate-400">© <span data-stat="footer-year">2026</span> Peter Riemer · riemer.co · Mit ❤️ erstellt</p>
+    <p class="text-slate-400">© <span data-stat="footer-year">2026</span> Peter Riemer · riemer.co</p>
   </div>
 </footer>
 
@@ -1531,7 +1633,7 @@
     const dark = t === 'dark';
     root.classList.toggle('dark', dark);
     if (themeBtn) {
-      themeBtn.textContent = dark ? '☀️' : '🌙';
+      themeBtn.innerHTML = dark ? '<svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>' : '<svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>';
       themeBtn.setAttribute('aria-pressed', String(dark));
       themeBtn.title = dark ? 'Hellen Modus aktivieren' : 'Dunkelmodus aktivieren';
     }
@@ -1571,7 +1673,7 @@
   const phoneCount = $$('#handys-list > .timeline-entry').length;
   const phoneYears = YEAR - PHONE_START;
   setStat('phone-years', phoneYears + ' Jahre');
-  setStat('phone-range', '📱 Mobile Geschichte (' + PHONE_START + '–' + YEAR + ')');
+  setStat('phone-range', 'Mobile Geschichte (' + PHONE_START + '–' + YEAR + ')');
   setStat('phone-count', phoneCount);
   setStat('phone-avg', 'Ø ' + fmt1(phoneCount / (phoneYears + 1)) + '/Jahr');
 
@@ -1604,7 +1706,7 @@
         img.loading = 'lazy';
         slot.appendChild(img);
       } else {
-        slot.innerHTML = '<div class="photo-placeholder">📷 Eigene Fotos folgen</div>';
+        slot.innerHTML = '<div class="photo-placeholder">Foto folgt</div>';
       }
     }
 
@@ -1622,11 +1724,11 @@
       }
       const icon = document.createElement('button');
       icon.type = 'button';
-      icon.className = 'text-xl hover:scale-125 transition-transform lb-trigger';
+      icon.className = 'lb-trigger tag-btn';
       icon.dataset.lb = key;
       icon.title = 'Fotoalbum öffnen';
       icon.setAttribute('aria-label', 'Fotoalbum öffnen: ' + g.title);
-      icon.textContent = '📸';
+      icon.textContent = g.ids.length + ' Fotos';
       wrap.prepend(icon);
     }
 
@@ -1641,7 +1743,7 @@
     big.type = 'button';
     big.className = 'lb-trigger mt-4 w-full px-4 py-2 rounded-lg text-white font-medium bg-gradient-to-r from-indigo-500 to-purple-600 hover:opacity-90 transition';
     big.dataset.lb = key;
-    big.textContent = '📸 Fotoalbum öffnen (' + g.ids.length + ' Fotos)';
+    big.textContent = 'Fotoalbum öffnen · ' + g.ids.length + ' Fotos';
     panel.appendChild(big);
   });
 
@@ -1759,7 +1861,7 @@
     $$('.page').forEach(p => p.classList.toggle('active', p === target));
     $$('.nav-item').forEach(b => b.classList.toggle('active', b.dataset.page === page));
     $$('.nav-item').forEach(b => b.setAttribute('aria-current', b.dataset.page === page ? 'page' : 'false'));
-    document.title = 'Peter Riemer · ' + TITLES[page];
+    document.title = page === 'home' ? 'riemer.co' : TITLES[page] + ' · riemer.co';
     return changed;
   }
 
