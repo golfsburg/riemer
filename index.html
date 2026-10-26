@@ -250,6 +250,7 @@
     .pb-cars .pb-img img, html.dark .pb-cars .pb-img img { width: 100%; height: 100%; max-width: none; object-fit: cover; mix-blend-mode: normal; transition: transform 0.3s ease; }
     .pb-cars .pb-tile:hover .pb-img img { transform: scale(1.03); }
     .pb-cars .pb-name { font-size: 13px; padding: 0 8px; }
+    #druck-list .detail-img { max-height: 480px; width: auto; max-width: 100%; }
     .pb-grid.pb-wide { grid-template-columns: repeat(2, 1fr); }
     .pb-wide .pb-tile { padding: 0 0 14px; gap: 4px; }
     .pb-wide .pb-img, html.dark .pb-wide .pb-img { height: auto; aspect-ratio: 3 / 2; background: #fff; margin-bottom: 8px; overflow: hidden; }
@@ -1331,40 +1332,43 @@
                 <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">27,5 kg (brutto)</span></div>
               </div>
             </div>
-            <img src="https://static.rapidonline.com/catalogueimages/product/25/01/s25-0157p01wl.jpg" alt="XYZprinting da Vinci 2.0 Duo" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
+            <img src="img/druck/xyz-da-vinci-2-0-duo.jpg" alt="XYZprinting da Vinci 2.0 Duo" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
                  onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
           </div>
         </div>
 
-        <!-- ── Anycubic Kobra 2 Plus ── -->
+        <!-- ── Anycubic Kobra S1 Combo ── -->
         <div class="timeline-entry">
           <div class="timeline-row flex items-center gap-4 p-4 bg-slate-50 rounded-xl cursor-pointer border-2 border-slate-400" data-toggle="druck-kobra">
             <div class="shrink-0 text-xl font-bold text-slate-700 w-12">2025</div>
             <div class="flex-1 min-w-0">
-              <h4 class="font-semibold text-slate-800">Anycubic Kobra 2 Plus Combo <span class="text-xs bg-slate-300 text-slate-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
-              <p class="text-slate-600 text-sm mt-1">Schneller FDM-Drucker mit großem Bauraum · 320 × 320 × 400 mm</p>
+              <h4 class="font-semibold text-slate-800">Anycubic Kobra S1 Combo <span class="text-xs bg-slate-300 text-slate-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
+              <p class="text-slate-600 text-sm mt-1">Geschlossener CoreXY-Drucker · bis zu 4 Farben mit ACE 2 Pro</p>
             </div>
             <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
           </div>
           <div id="detail-druck-kobra" class="detail-panel mt-2 mx-2">
             <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
-              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Anycubic Kobra 2 Plus</h5>
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Anycubic Kobra S1 Combo</h5>
               <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
                 <div><span class="font-semibold text-slate-700">Im Einsatz:</span> <span class="text-slate-600">seit 2025</span></div>
-                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">FDM · Direct-Drive-Extruder</span></div>
-                <div><span class="font-semibold text-slate-700">Bauraum:</span> <span class="text-slate-600">320 × 320 × 400 mm</span></div>
-                <div><span class="font-semibold text-slate-700">Geschwindigkeit:</span> <span class="text-slate-600">bis 500 mm/s (empfohlen 300 mm/s)</span></div>
-                <div><span class="font-semibold text-slate-700">Beschleunigung:</span> <span class="text-slate-600">bis 10.000 mm/s²</span></div>
-                <div><span class="font-semibold text-slate-700">Düse:</span> <span class="text-slate-600">0,4 mm · max. 260 °C</span></div>
-                <div><span class="font-semibold text-slate-700">Druckbett:</span> <span class="text-slate-600">beheizt · magnetische Federstahlplatte</span></div>
-                <div><span class="font-semibold text-slate-700">Nivellierung:</span> <span class="text-slate-600">LeviQ 2.0 (automatisch)</span></div>
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">FDM · CoreXY · vollständig geschlossen</span></div>
+                <div><span class="font-semibold text-slate-700">Mehrfarbig:</span> <span class="text-slate-600">ACE 2 Pro – 4 Farben (erweiterbar auf 16)</span></div>
+                <div><span class="font-semibold text-slate-700">Bauraum:</span> <span class="text-slate-600">250 × 250 × 250 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Geschwindigkeit:</span> <span class="text-slate-600">bis 600 mm/s (empfohlen 300 mm/s)</span></div>
+                <div><span class="font-semibold text-slate-700">Beschleunigung:</span> <span class="text-slate-600">bis 20.000 mm/s²</span></div>
+                <div><span class="font-semibold text-slate-700">Düse:</span> <span class="text-slate-600">0,4 mm · max. 320 °C</span></div>
+                <div><span class="font-semibold text-slate-700">Druckbett:</span> <span class="text-slate-600">PEI-Federstahl · max. 120 °C</span></div>
+                <div><span class="font-semibold text-slate-700">Nivellierung:</span> <span class="text-slate-600">LeviQ 3.0 · automatischer Z-Offset</span></div>
+                <div><span class="font-semibold text-slate-700">Filamenttrocknung:</span> <span class="text-slate-600">ACE 2 Pro · aktiv bis 65 °C</span></div>
+                <div><span class="font-semibold text-slate-700">Kamera:</span> <span class="text-slate-600">integriert (Fernüberwachung)</span></div>
                 <div><span class="font-semibold text-slate-700">Display:</span> <span class="text-slate-600">4,3" Touchscreen</span></div>
-                <div><span class="font-semibold text-slate-700">Anschlüsse:</span> <span class="text-slate-600">USB · microSD · WLAN (Anycubic App)</span></div>
+                <div><span class="font-semibold text-slate-700">Anschlüsse:</span> <span class="text-slate-600">WLAN (Anycubic App) · LAN-Modus · USB</span></div>
                 <div><span class="font-semibold text-slate-700">Slicer:</span> <span class="text-slate-600">Anycubic Slicer Next</span></div>
-                <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">13 kg</span></div>
+                <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">18 kg + 3,7 kg (ACE 2 Pro)</span></div>
               </div>
             </div>
-            <img src="https://gzhls.at/pix/6f/60/6f60ada845ce4643-n.webp" alt="Anycubic Kobra 2 Plus" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
+            <img src="img/druck/anycubic-kobra-s1-combo.webp" alt="Anycubic Kobra S1 Combo" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
                  onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
           </div>
         </div>
