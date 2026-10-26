@@ -251,6 +251,13 @@
     .pb-cars .pb-tile:hover .pb-img img { transform: scale(1.03); }
     .pb-cars .pb-name { font-size: 13px; padding: 0 8px; }
     #druck-list .detail-img { max-height: 480px; width: auto; max-width: 100%; }
+    .pb-grid.pb-rc { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 768px) { .pb-grid.pb-rc { grid-template-columns: repeat(5, 1fr); } }
+    .pb-rc .pb-tile { padding: 0 0 12px; gap: 4px; }
+    .pb-rc .pb-img, html.dark .pb-rc .pb-img { height: auto; aspect-ratio: 4 / 3; background: #fff; margin-bottom: 6px; overflow: hidden; }
+    .pb-rc .pb-img img, html.dark .pb-rc .pb-img img { width: 100%; height: 100%; max-width: none; object-fit: contain; padding: 6px; mix-blend-mode: normal; transition: transform 0.3s ease; }
+    .pb-rc .pb-tile:hover .pb-img img { transform: scale(1.04); }
+    .pb-rc .pb-name { font-size: 13px; padding: 0 8px; }
     .pb-grid.pb-wide { grid-template-columns: repeat(2, 1fr); }
     .pb-wide .pb-tile { padding: 0 0 14px; gap: 4px; }
     .pb-wide .pb-img, html.dark .pb-wide .pb-img { height: auto; aspect-ratio: 3 / 2; background: #fff; margin-bottom: 8px; overflow: hidden; }
@@ -1496,6 +1503,12 @@
     </div>
   </div>
   <div class="max-w-6xl mx-auto px-4 py-12">
+    <!-- Banner: wird automatisch aus der Liste unten erzeugt -->
+    <div class="phone-banner mb-6" aria-label="Alle RC Cars im Überblick">
+      <div class="pb-head"><span>Traxxas Flotte</span><span id="rb-count"></span></div>
+      <div class="pb-grid pb-rc" id="rb-grid"></div>
+    </div>
+
     <div class="bg-white rounded-2xl p-8 shadow-lg">
       <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Traxxas Flotte</h3>
       <div class="space-y-3" id="rc-list">
@@ -1537,7 +1550,8 @@
                 <div><span class="font-semibold text-slate-700">Akku:</span> <span class="text-slate-600">4S LiPo 14,8 V (nicht enthalten)</span></div>
               </div>
             </div>
-            <div class="photo-slot"></div>
+            <img src="https://997rcraceway.com/cdn/shop/products/89086-4-maxx-3qtr-front-red.jpg?v=1673464842&amp;width=800" alt="Traxxas Maxx" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
           </div>
         </div>
 
@@ -1577,7 +1591,8 @@
                 <div><span class="font-semibold text-slate-700">Akku:</span> <span class="text-slate-600">2S–3S LiPo oder NiMH (nicht enthalten)</span></div>
               </div>
             </div>
-            <div class="photo-slot"></div>
+            <img src="https://997rcraceway.com/cdn/shop/files/68386-4-slash-4x4-vxl-ehd-3qrtr-front-blue.jpg?v=1732648318&amp;width=800" alt="Traxxas Slash 4X4" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
           </div>
         </div>
 
@@ -1616,7 +1631,8 @@
                 <div><span class="font-semibold text-slate-700">Besonderheit:</span> <span class="text-slate-600">Portal-Achsen eliminieren Drehmomentkurve; massive Bodenfreiheit trotz tiefem Getriebe</span></div>
               </div>
             </div>
-            <div class="photo-slot"></div>
+            <img src="https://rcnewb.com/wp-content/uploads/Traxxas-TRX-4-Mercedes-Benz-G-500.jpg" alt="Traxxas TRX-4 Mercedes-Benz G500 4×4²" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
           </div>
         </div>
 
@@ -1658,7 +1674,8 @@
                 <div><span class="font-semibold text-slate-700">Besonderheit:</span> <span class="text-slate-600">Erster RC-Crawler mit 3 angetriebenen Achsen; Kabelgesteuerte Diff-Verriegelung für authentischen Look</span></div>
               </div>
             </div>
-            <div class="photo-slot"></div>
+            <img src="https://www.lindinger.at/media/58/5e/ed/1725956941/9802509.jpg?ts=1725956941" alt="Traxxas TRX-6 Mercedes-Benz G63 AMG 6×6" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
           </div>
         </div>
 
@@ -1699,7 +1716,8 @@
                 <div><span class="font-semibold text-slate-700">Besonderheit:</span> <span class="text-slate-600">Kombination aus Monster Truck und Trail Crawler; Geländewagen- und Renntruck-Modus</span></div>
               </div>
             </div>
-            <div class="photo-slot"></div>
+            <img src="https://rcnewb.com/wp-content/uploads/Traxxas-Summit-Orange.jpg" alt="Traxxas Summit" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
           </div>
         </div>
 
@@ -1866,7 +1884,7 @@
   setStat('autos-active', carsActive + ' aktiv');
 
   // Banner (Handys, Autos) aus der jeweiligen Liste erzeugen
-  function buildBanner(listSel, gridSel, countSel, page, noun) {
+  function buildBanner(listSel, gridSel, countSel, page, noun, stripPrefix) {
     const grid = $(gridSel);
     if (!grid) return;
     const entries = $$(listSel + ' > .timeline-entry');
@@ -1878,7 +1896,8 @@
       const h4 = $('h4', row).cloneNode(true);
       const current = $$('span', h4).some(sp => sp.textContent.trim() === 'Aktuell');
       $$('span', h4).forEach(sp => sp.remove());
-      const name = h4.textContent.split(' – ')[0].replace(/\s*\(\d{4}\)\s*$/, '').trim();
+      let name = h4.textContent.split(' – ')[0].replace(/\s*\(\d{4}\)\s*$/, '').trim();
+      if (stripPrefix && name.indexOf(stripPrefix) === 0) name = name.slice(stripPrefix.length);
       const yearEl = $('.text-xl.font-bold', row);
       const year = yearEl ? yearEl.textContent.trim() : '';
       if (parseInt(year, 10) < firstYear) firstYear = parseInt(year, 10);
@@ -1893,7 +1912,7 @@
         im.onerror = () => { im.remove(); };
         $('.pb-img', tile).appendChild(im);
       }
-      $('.pb-year', tile).textContent = year;
+      if (year) $('.pb-year', tile).textContent = year; else $('.pb-year', tile).remove();
       $('.pb-name', tile).textContent = name;
       grid.appendChild(tile);
     });
@@ -1904,6 +1923,7 @@
   buildBanner('#autos-list', '#cb-grid', '#cb-count', 'autos', 'Fahrzeuge');
   buildBanner('#mtb-list', '#mb-grid', '#mb-count', 'mtb', 'Bikes');
   buildBanner('#druck-list', '#db-grid', '#db-count', 'druck', 'Drucker');
+  buildBanner('#rc-list', '#rb-grid', '#rb-count', 'rc', 'Modelle', 'Traxxas ');
 
   setStat('rc-count', $$('#rc-list > .timeline-entry').length);
 
