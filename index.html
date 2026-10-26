@@ -229,7 +229,8 @@
     .phone-banner { background: var(--surface); border: 1px solid var(--line); overflow: hidden; }
     .pb-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 1rem; padding: 14px 18px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
     .pb-head span:last-child { color: var(--fg-2); white-space: nowrap; }
-    .pb-tile, .pb-tile:hover { text-decoration: none; color: inherit; }
+    .pb-tile, .pb-tile:hover, a.nav-item, a.nav-shortcut, a.card, nav h1 a { text-decoration: none; color: inherit; }
+    a.card { display: block; }
     .pb-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 -1px -1px 0; }
     @media (min-width: 768px) { .pb-grid { grid-template-columns: repeat(8, 1fr); } }
     .pb-tile { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; padding: 14px 6px 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); cursor: pointer; transition: background 0.15s ease; }
@@ -306,53 +307,53 @@
   <div class="max-w-6xl mx-auto px-4">
     <div class="flex items-center justify-between py-4">
       <h1 class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent cursor-pointer" data-page="home">
-        riemer.co
+        <a href="#home">riemer.co</a>
       </h1>
       <div class="flex gap-2 flex-wrap">
 
-        <button class="nav-item active px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="home">
+        <a href="#home" class="nav-item active px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="home">
           <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
           </svg>
           <span class="hidden sm:inline">Home</span>
-        </button>
+        </a>
 
-        <button class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="autos">
+        <a href="#autos" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="autos">
           <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l1.5-4.5a2 2 0 011.9-1.5h7.2a2 2 0 011.9 1.5L19 11M5 11h14M5 11v5a1 1 0 001 1h1m12-6v5a1 1 0 01-1 1h-1"/>
           </svg>
           <span class="hidden sm:inline">Autos</span>
-        </button>
+        </a>
 
-        <button class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="handys">
+        <a href="#handys" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="handys">
           <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
           </svg>
           <span class="hidden sm:inline">Handys</span>
-        </button>
+        </a>
 
-        <button class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="druck">
+        <a href="#druck" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="druck">
           <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/>
           </svg>
           <span class="hidden sm:inline">3D Druck</span>
-        </button>
+        </a>
 
-        <button class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="mtb">
+        <a href="#mtb" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="mtb">
           <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <circle cx="5.5" cy="17.5" r="3.5" stroke-width="2"/>
             <circle cx="18.5" cy="17.5" r="3.5" stroke-width="2"/>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 17.5V12l-3.5 5.5M12 12l6.5 5.5M12 12l-2-5h4"/>
           </svg>
           <span class="hidden sm:inline">MTB</span>
-        </button>
+        </a>
 
-        <button class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="rc">
+        <a href="#rc" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="rc">
           <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/>
           </svg>
           <span class="hidden sm:inline">RC Cars</span>
-        </button>
+        </a>
 
         <button id="theme-toggle" type="button" class="px-3 py-2 rounded-xl text-sm bg-slate-100 hover:-translate-y-0.5 transition-transform" aria-pressed="false" aria-label="Dunkelmodus umschalten" title="Dunkelmodus aktivieren"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg></button>
 
@@ -370,41 +371,41 @@
       <h2 class="text-4xl md:text-5xl font-bold mb-5">Willkommen</h2>
       <p class="text-xl opacity-90 mb-8">Fahrzeuge, Technik und Projekte im Überblick.</p>
       <div class="flex justify-center gap-3 flex-wrap">
-        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="autos">Automobile</button>
-        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="handys">Handys</button>
-        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="druck">3D Druck</button>
-        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="mtb">MTB</button>
-        <button class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="rc">RC Cars</button>
+        <a href="#autos" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="autos">Automobile</a>
+        <a href="#handys" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="handys">Handys</a>
+        <a href="#druck" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="druck">3D Druck</a>
+        <a href="#mtb" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="mtb">MTB</a>
+        <a href="#rc" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="rc">RC Cars</a>
       </div>
     </div>
   </div>
   <div class="max-w-6xl mx-auto px-4 py-16">
     <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
-      <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="autos">
+      <a href="#autos" class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="autos">
         <div class="idx">01</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">Autos</h3>
         <p class="text-slate-600">Meine Leidenschaft für schnelle und schöne Fahrzeuge</p>
-      </div>
-      <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="handys">
+      </a>
+      <a href="#handys" class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="handys">
         <div class="idx">02</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">Handys</h3>
         <p class="text-slate-600">Meine mobile Geschichte seit 2000</p>
-      </div>
-      <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="druck">
+      </a>
+      <a href="#druck" class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="druck">
         <div class="idx">03</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">3D Druck</h3>
         <p class="text-slate-600">Kreative Projekte aus dem 3D Drucker</p>
-      </div>
-      <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="mtb">
+      </a>
+      <a href="#mtb" class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="mtb">
         <div class="idx">04</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">MTB</h3>
         <p class="text-slate-600">Abenteuer auf zwei Rädern im Gelände</p>
-      </div>
-      <div class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer sm:col-span-2 lg:col-span-1" data-goto="rc">
+      </a>
+      <a href="#rc" class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer sm:col-span-2 lg:col-span-1" data-goto="rc">
         <div class="idx">05</div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">RC Cars</h3>
         <p class="text-slate-600">Ferngesteuerte Traxxas-Fahrzeuge</p>
-      </div>
+      </a>
     </div>
   </div>
 </div>
@@ -2062,7 +2063,11 @@
   window.addEventListener('hashchange', route);
 
   $$('[data-page], [data-goto]').forEach(el => {
-    el.addEventListener('click', () => navigateTo(el.dataset.page || el.dataset.goto));
+    el.addEventListener('click', e => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return; // neuer Tab erlaubt
+      e.preventDefault();
+      navigateTo(el.dataset.page || el.dataset.goto);
+    });
   });
 
   // ── Detailbereiche auf-/zuklappen (URL wird mitgeführt) ───────────
