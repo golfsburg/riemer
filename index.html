@@ -250,6 +250,12 @@
     .pb-cars .pb-img img, html.dark .pb-cars .pb-img img { width: 100%; height: 100%; max-width: none; object-fit: cover; mix-blend-mode: normal; transition: transform 0.3s ease; }
     .pb-cars .pb-tile:hover .pb-img img { transform: scale(1.03); }
     .pb-cars .pb-name { font-size: 13px; padding: 0 8px; }
+    .pb-grid.pb-wide { grid-template-columns: repeat(2, 1fr); }
+    .pb-wide .pb-tile { padding: 0 0 14px; gap: 4px; }
+    .pb-wide .pb-img, html.dark .pb-wide .pb-img { height: auto; aspect-ratio: 3 / 2; background: #fff; margin-bottom: 8px; overflow: hidden; }
+    .pb-wide .pb-img img, html.dark .pb-wide .pb-img img { width: 100%; height: 100%; max-width: none; object-fit: contain; mix-blend-mode: normal; transition: transform 0.3s ease; }
+    .pb-wide .pb-tile:hover .pb-img img { transform: scale(1.03); }
+    .pb-wide .pb-name { font-size: 14px; padding: 0 8px; }
     .pb-tile.is-current::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); }
 
     /* Detailbereich als Datenblatt */
@@ -1273,6 +1279,11 @@
     </div>
   </div>
   <div class="max-w-6xl mx-auto px-4 py-12">
+    <!-- Banner: wird automatisch aus der Liste unten erzeugt -->
+    <div class="phone-banner mb-8" aria-label="Alle 3D-Drucker im Überblick">
+      <div class="pb-head"><span>Druckergeschichte</span><span id="db-count"></span></div>
+      <div class="pb-grid pb-wide" id="db-grid"></div>
+    </div>
     <div class="grid md:grid-cols-3 gap-6 mb-8">
       <div class="card bg-white rounded-2xl p-6 shadow-lg text-center">
         <div class="idx">01</div>
@@ -1292,14 +1303,70 @@
     </div>
     <div class="bg-white rounded-2xl p-8 shadow-lg">
       <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Drucker</h3>
-      <div class="space-y-4">
-        <div class="p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl">
-          <h4 class="font-semibold text-slate-800">XYZ Printing DaVinci 2.0 Dual (2021–2025)</h4>
-          <p class="text-slate-600 text-sm mt-1">Dual-Extruder FDM Drucker</p>
+      <div class="space-y-3" id="druck-list">
+
+        <!-- ── XYZprinting da Vinci 2.0 Duo ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-slate-50 rounded-xl cursor-pointer" data-toggle="druck-davinci">
+            <div class="shrink-0 text-xl font-bold text-slate-700 w-12">2021</div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">XYZprinting da Vinci 2.0 Duo</h4>
+              <p class="text-slate-600 text-sm mt-1">Dual-Extruder FDM-Drucker · zweifarbig · 2021–2025</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+          <div id="detail-druck-davinci" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – da Vinci 2.0 Duo</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Im Einsatz:</span> <span class="text-slate-600">2021–2025</span></div>
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">FDM · geschlossenes Gehäuse</span></div>
+                <div><span class="font-semibold text-slate-700">Extruder:</span> <span class="text-slate-600">Dual – 2 Düsen à 0,4 mm (zweifarbig)</span></div>
+                <div><span class="font-semibold text-slate-700">Bauraum:</span> <span class="text-slate-600">150 × 200 × 200 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Schichtdicke:</span> <span class="text-slate-600">0,1–0,4 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Filament:</span> <span class="text-slate-600">1,75 mm ABS / PLA (Kartuschen)</span></div>
+                <div><span class="font-semibold text-slate-700">Software:</span> <span class="text-slate-600">XYZware</span></div>
+                <div><span class="font-semibold text-slate-700">Anschlüsse:</span> <span class="text-slate-600">USB · SD-Karte</span></div>
+                <div><span class="font-semibold text-slate-700">Abmessungen:</span> <span class="text-slate-600">468 × 510 × 558 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">27,5 kg (brutto)</span></div>
+              </div>
+            </div>
+            <img src="https://static.rapidonline.com/catalogueimages/product/25/01/s25-0157p01wl.jpg" alt="XYZprinting da Vinci 2.0 Duo" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+          </div>
         </div>
-        <div class="p-4 bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl border-2 border-pink-300">
-          <h4 class="font-semibold text-slate-800">Anycubic Kobra 2 Plus Combo (2025) <span class="text-xs bg-pink-300 text-pink-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
-          <p class="text-slate-600 text-sm mt-1">Schneller FDM-Drucker mit großem Bauraum</p>
+
+        <!-- ── Anycubic Kobra 2 Plus ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-slate-50 rounded-xl cursor-pointer border-2 border-slate-400" data-toggle="druck-kobra">
+            <div class="shrink-0 text-xl font-bold text-slate-700 w-12">2025</div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Anycubic Kobra 2 Plus Combo <span class="text-xs bg-slate-300 text-slate-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
+              <p class="text-slate-600 text-sm mt-1">Schneller FDM-Drucker mit großem Bauraum · 320 × 320 × 400 mm</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+          <div id="detail-druck-kobra" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Anycubic Kobra 2 Plus</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Im Einsatz:</span> <span class="text-slate-600">seit 2025</span></div>
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">FDM · Direct-Drive-Extruder</span></div>
+                <div><span class="font-semibold text-slate-700">Bauraum:</span> <span class="text-slate-600">320 × 320 × 400 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Geschwindigkeit:</span> <span class="text-slate-600">bis 500 mm/s (empfohlen 300 mm/s)</span></div>
+                <div><span class="font-semibold text-slate-700">Beschleunigung:</span> <span class="text-slate-600">bis 10.000 mm/s²</span></div>
+                <div><span class="font-semibold text-slate-700">Düse:</span> <span class="text-slate-600">0,4 mm · max. 260 °C</span></div>
+                <div><span class="font-semibold text-slate-700">Druckbett:</span> <span class="text-slate-600">beheizt · magnetische Federstahlplatte</span></div>
+                <div><span class="font-semibold text-slate-700">Nivellierung:</span> <span class="text-slate-600">LeviQ 2.0 (automatisch)</span></div>
+                <div><span class="font-semibold text-slate-700">Display:</span> <span class="text-slate-600">4,3" Touchscreen</span></div>
+                <div><span class="font-semibold text-slate-700">Anschlüsse:</span> <span class="text-slate-600">USB · microSD · WLAN (Anycubic App)</span></div>
+                <div><span class="font-semibold text-slate-700">Slicer:</span> <span class="text-slate-600">Anycubic Slicer Next</span></div>
+                <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">13 kg</span></div>
+              </div>
+            </div>
+            <img src="https://gzhls.at/pix/6f/60/6f60ada845ce4643-n.webp" alt="Anycubic Kobra 2 Plus" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+          </div>
         </div>
       </div>
     </div>
@@ -1318,25 +1385,10 @@
     </div>
   </div>
   <div class="max-w-6xl mx-auto px-4 py-12">
-    <div class="grid md:grid-cols-2 gap-8 mb-8">
-      <div class="card bg-white rounded-2xl overflow-hidden shadow-lg">
-        <div class="h-48 bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center">
-          <div class="text-center text-white"><p class="text-xl font-semibold">Trail Riding</p></div>
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-slate-800 mb-2">Trails erkunden</h3>
-          <p class="text-slate-600">Technische Trails und flowige Strecken in der Natur</p>
-        </div>
-      </div>
-      <div class="card bg-white rounded-2xl overflow-hidden shadow-lg">
-        <div class="h-48 bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center">
-          <div class="text-center text-white"><p class="text-xl font-semibold">Bike Setup</p></div>
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-slate-800 mb-2">Equipment</h3>
-          <p class="text-slate-600">Das richtige Setup für maximalen Fahrspaß</p>
-        </div>
-      </div>
+    <!-- Banner: wird automatisch aus der Liste unten erzeugt -->
+    <div class="phone-banner mb-8" aria-label="Alle Mountainbikes im Überblick">
+      <div class="pb-head"><span>Bike-Geschichte</span><span id="mb-count"></span></div>
+      <div class="pb-grid pb-wide" id="mb-grid"></div>
     </div>
     <div class="bg-white rounded-2xl p-8 shadow-lg mb-8">
       <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Bikes</h3>
@@ -1833,7 +1885,7 @@
       tile.innerHTML = '<div class="pb-img"></div><div class="pb-year"></div><div class="pb-name"></div>';
       if (img) {
         const im = document.createElement('img');
-        im.src = img.getAttribute('src'); im.alt = name; im.loading = 'lazy';
+        im.src = img.getAttribute('src'); im.alt = name; im.loading = 'lazy'; im.referrerPolicy = 'no-referrer';
         im.onerror = () => { im.remove(); };
         $('.pb-img', tile).appendChild(im);
       }
@@ -1846,6 +1898,8 @@
   }
   buildBanner('#handys-list', '#pb-grid', '#pb-count', 'handys', 'Geräte');
   buildBanner('#autos-list', '#cb-grid', '#cb-count', 'autos', 'Fahrzeuge');
+  buildBanner('#mtb-list', '#mb-grid', '#mb-count', 'mtb', 'Bikes');
+  buildBanner('#druck-list', '#db-grid', '#db-count', 'druck', 'Drucker');
 
   setStat('rc-count', $$('#rc-list > .timeline-entry').length);
 
