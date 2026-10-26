@@ -227,8 +227,9 @@
 
     /* Handy-Banner */
     .phone-banner { background: var(--surface); border: 1px solid var(--line); overflow: hidden; }
-    .pb-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 14px 18px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-    .pb-head span:last-child { color: var(--fg-2); }
+    .pb-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 1rem; padding: 14px 18px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .pb-head span:last-child { color: var(--fg-2); white-space: nowrap; }
+    .pb-tile, .pb-tile:hover { text-decoration: none; color: inherit; }
     .pb-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 -1px -1px 0; }
     @media (min-width: 768px) { .pb-grid { grid-template-columns: repeat(8, 1fr); } }
     .pb-tile { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; padding: 14px 6px 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); cursor: pointer; transition: background 0.15s ease; }
@@ -241,6 +242,13 @@
     .pb-year { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.04em; }
     .pb-name { font-size: 12px; line-height: 1.25; color: var(--fg-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.5em; }
     .pb-tile.is-current .pb-year { color: var(--accent); }
+    .pb-grid.pb-cars { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 768px) { .pb-grid.pb-cars { grid-template-columns: repeat(4, 1fr); } }
+    .pb-cars .pb-tile { padding: 0 0 12px; gap: 4px; }
+    .pb-cars .pb-img, html.dark .pb-cars .pb-img { height: auto; aspect-ratio: 4 / 3; background: var(--surface-2); margin-bottom: 6px; overflow: hidden; }
+    .pb-cars .pb-img img, html.dark .pb-cars .pb-img img { width: 100%; height: 100%; max-width: none; object-fit: cover; mix-blend-mode: normal; transition: transform 0.3s ease; }
+    .pb-cars .pb-tile:hover .pb-img img { transform: scale(1.03); }
+    .pb-cars .pb-name { font-size: 13px; padding: 0 8px; }
     .pb-tile.is-current::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); }
 
     /* Detailbereich als Datenblatt */
@@ -414,11 +422,10 @@
   </div>
   <div class="max-w-6xl mx-auto px-4 py-12">
 
-    <!-- Timeline banner image -->
-    <div class="bg-white rounded-2xl p-6 shadow-lg mb-6">
-      <img src="https://drive.google.com/thumbnail?id=1N4FCWdD_10RyW-NHxVBSVmfdcgDkI-C_&sz=w500"
-           alt="Meine Fahrzeuggeschichte" class="w-full rounded-xl" loading="lazy"
-           onerror="this.style.background='#e5e7eb'; this.alt='Bild nicht verfügbar';">
+    <!-- Banner: wird automatisch aus der Liste unten erzeugt -->
+    <div class="phone-banner mb-6" aria-label="Alle Fahrzeuge im Überblick">
+      <div class="pb-head"><span>Fahrzeuggeschichte</span><span id="cb-count"></span></div>
+      <div class="pb-grid pb-cars" id="cb-grid"></div>
     </div>
 
     <div class="bg-white rounded-2xl p-8 shadow-lg">
@@ -1801,22 +1808,27 @@
   setStat('autos-span', 'Sammlung über ' + Math.floor((YEAR - CAR_OLDEST) / 10) * 10 + ' Jahre');
   setStat('autos-active', carsActive + ' aktiv');
 
-  // Handy-Banner aus der Liste erzeugen
-  const pbGrid = $('#pb-grid');
-  if (pbGrid) {
-    const phones = $$('#handys-list > .timeline-entry');
-    phones.forEach(entry => {
+  // Banner (Handys, Autos) aus der jeweiligen Liste erzeugen
+  function buildBanner(listSel, gridSel, countSel, page, noun) {
+    const grid = $(gridSel);
+    if (!grid) return;
+    const entries = $$(listSel + ' > .timeline-entry');
+    let firstYear = Infinity;
+    entries.forEach(entry => {
       const row = $('.timeline-row', entry);
-      const img = $('.detail-panel img', entry);
       if (!row) return;
+      const img = $('.detail-panel img', entry);
       const h4 = $('h4', row).cloneNode(true);
-      const current = !!$('span', h4);
+      const current = $$('span', h4).some(sp => sp.textContent.trim() === 'Aktuell');
       $$('span', h4).forEach(sp => sp.remove());
-      const name = h4.textContent.trim();
+      const name = h4.textContent.split(' – ')[0].replace(/\s*\(\d{4}\)\s*$/, '').trim();
+      const yearEl = $('.text-xl.font-bold', row);
+      const year = yearEl ? yearEl.textContent.trim() : '';
+      if (parseInt(year, 10) < firstYear) firstYear = parseInt(year, 10);
       const tile = document.createElement('a');
       tile.className = 'pb-tile' + (current ? ' is-current' : '');
-      tile.href = '#handys/' + row.dataset.toggle;
-      tile.title = name;
+      tile.href = '#' + page + '/' + row.dataset.toggle;
+      tile.title = h4.textContent.trim();
       tile.innerHTML = '<div class="pb-img"></div><div class="pb-year"></div><div class="pb-name"></div>';
       if (img) {
         const im = document.createElement('img');
@@ -1824,13 +1836,15 @@
         im.onerror = () => { im.remove(); };
         $('.pb-img', tile).appendChild(im);
       }
-      $('.pb-year', tile).textContent = ($('.w-12', row) || {}).textContent || '';
+      $('.pb-year', tile).textContent = year;
       $('.pb-name', tile).textContent = name;
-      pbGrid.appendChild(tile);
+      grid.appendChild(tile);
     });
-    const c = $('#pb-count');
-    if (c) c.textContent = phones.length + ' Geräte · ' + PHONE_START + '–' + YEAR;
+    const c = $(countSel);
+    if (c) c.textContent = entries.length + ' ' + noun + (isFinite(firstYear) ? ' · ' + firstYear + '–' + YEAR : '');
   }
+  buildBanner('#handys-list', '#pb-grid', '#pb-count', 'handys', 'Geräte');
+  buildBanner('#autos-list', '#cb-grid', '#cb-count', 'autos', 'Fahrzeuge');
 
   setStat('rc-count', $$('#rc-list > .timeline-entry').length);
 
