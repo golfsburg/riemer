@@ -1,34 +1,3 @@
-SKIP  img/handys/no8210t.gif
-SKIP  img/handys/sis10b.gif
-SKIP  img/handys/no8310.gif
-SKIP  img/handys/no3100.gif
-SKIP  img/handys/no6600.gif
-SKIP  img/handys/no9210i.gif
-SKIP  img/handys/no6610i.gif
-SKIP  img/handys/no7610.gif
-SKIP  img/handys/no9500.gif
-SKIP  img/handys/no6230.gif
-SKIP  img/handys/no7710.gif
-SKIP  img/handys/nokia-n90.gif
-SKIP  img/handys/nokia-n91.gif
-SKIP  img/handys/hp-910c.jpg
-SKIP  img/handys/nokia-n80.gif
-SKIP  img/handys/nokia-6300.gif
-SKIP  img/handys/nokia-n95.gif
-SKIP  img/handys/htc-touch-diamond.jpg
-SKIP  img/handys/nokia-n82.gif
-SKIP  img/handys/nokia-e51.gif
-SKIP  img/handys/nokia-x6.jpg
-SKIP  img/handys/apple-iphone-3gs-ofic.jpg
-SKIP  img/handys/apple-iphone-4-ofic-final.jpg
-SKIP  img/handys/apple-iphone-5-ofic.jpg
-SKIP  img/handys/apple-iphone-5s-ofic.jpg
-SKIP  img/handys/apple-iphone-6-4.jpg
-SKIP  img/handys/apple-iphone-x.jpg
-SKIP  img/handys/apple-iphone-12-pro--.jpg
-SKIP  img/handys/apple-iphone-14-pro.jpg
-SKIP  img/handys/apple-iphone-16-pro.jpg
-SKIP  img/handys/apple-iphone18-pro-max.jpg
 SKIP  img/autos/1BFEnLRGsliVGn5iBIsITX7v2FICqAN3P.jpg
 SKIP  img/autos/157XgHb6gYt0i0xCwgXs9u5TzXr1YkKVE.jpg
 SKIP  img/autos/1oXJN4BEsfBtG-ajo9oEqMyVo7sUscZ0a.jpg
@@ -47,4 +16,4 @@ SKIP  img/autos/1EP5D6kWUXTD6q3eUlYRwC8uiubIjVT90.jpg
 SKIP  img/autos/1bnvS16S2AiRDFgTDJpvZQk_Mz8Nz5fNH.jpg
 SKIP  img/autos/16dZaAlf7IMPr04OHkYVBuHYJYWm8gBqO.jpg
 
-48/48 vorhanden, 0 Fehler
+17/17 vorhanden, 0 Fehler
