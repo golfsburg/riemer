@@ -260,6 +260,10 @@
     .pb-rc .pb-name { font-size: 13px; padding: 0 8px; }
     html.dark #rc-list .detail-img { background-color: transparent; }
     #rc-list .detail-img { border: 0; }
+    .pb-vespa .pb-img, html.dark .pb-vespa .pb-img { background: transparent; }
+    .pb-vespa .pb-img img { padding: 16px; }
+    html.dark #vespa-list .detail-img { background-color: transparent; }
+    #vespa-list .detail-img { border: 0; max-height: 420px; width: auto; max-width: 100%; }
     .pb-grid.pb-wide { grid-template-columns: repeat(2, 1fr); }
     .pb-wide .pb-tile { padding: 0 0 14px; gap: 4px; }
     .pb-wide .pb-img, html.dark .pb-wide .pb-img { height: auto; aspect-ratio: 3 / 2; background: #fff; margin-bottom: 8px; overflow: hidden; }
@@ -368,6 +372,11 @@
           <span class="hidden sm:inline">RC Cars</span>
         </a>
 
+        <a href="#vespa" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="vespa">
+          <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18.5" cy="18" r="2.5"/><path d="M2.5 16V14a3.5 3.5 0 0 1 3.5-3.5h5L12.5 16H2.5"/><path d="M5 8h5"/><path d="M12.5 16h3.5L18 5"/><path d="M16 5h4"/><path d="M16.5 13.5l3.5 1"/></svg>
+          <span class="hidden sm:inline">Vespa</span>
+        </a>
+
         <button id="theme-toggle" type="button" class="px-3 py-2 rounded-xl text-sm bg-slate-100 hover:-translate-y-0.5 transition-transform" aria-pressed="false" aria-label="Dunkelmodus umschalten" title="Dunkelmodus aktivieren"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg></button>
 
       </div>
@@ -389,11 +398,12 @@
         <a href="#druck" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="druck"><svg class="chip-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 21V3h16v18"/><path d="M2.5 21h19"/><path d="M4 7h16"/><path d="M10.5 7v3h3V7"/><path d="M11.3 10l.7 1.5.7-1.5"/><path d="M8 18.5h8M9 16.5h6M10 14.5h4"/></svg>3D Druck</a>
         <a href="#mtb" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="mtb"><svg class="chip-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="5.5" cy="16" r="3.5"/><circle cx="18.5" cy="16" r="3.5"/><path d="M5.5 16l4-7h6l3 7"/><path d="M9.5 9l3.5 7 2.5-7"/><path d="M8.5 7h2.5"/><path d="M15.5 9l-.8-3h2.3"/></svg>MTB</a>
         <a href="#rc" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="rc"><svg class="chip-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="6.5" cy="17" r="3.5"/><circle cx="17.5" cy="17" r="3.5"/><path d="M10 17h4"/><path d="M3 12.5h18"/><path d="M4 12.5V10l3.5-.6L9.5 6h5.5l2 3.4 3 .6v2.5"/><path d="M10.5 6 8.8 1.8"/></svg>RC Cars</a>
+        <a href="#vespa" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="vespa"><svg class="chip-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18.5" cy="18" r="2.5"/><path d="M2.5 16V14a3.5 3.5 0 0 1 3.5-3.5h5L12.5 16H2.5"/><path d="M5 8h5"/><path d="M12.5 16h3.5L18 5"/><path d="M16 5h4"/><path d="M16.5 13.5l3.5 1"/></svg>Vespa</a>
       </div>
     </div>
   </div>
   <div class="max-w-6xl mx-auto px-4 py-16">
-    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <a href="#autos" class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="autos">
         <div class="card-top"><svg class="card-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M2.5 16v-3.5l3-.6L8.6 7.5h6.6l3.6 4.4 2.7.6V16"/><path d="M5.5 12h13.3"/><path d="M12 7.5V12"/><circle cx="7" cy="16.5" r="2"/><circle cx="17" cy="16.5" r="2"/><path d="M9 16.5h6"/></svg><span class="idx">01</span></div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">Autos</h3>
@@ -414,10 +424,15 @@
         <h3 class="text-xl font-semibold text-slate-800 mb-2">MTB</h3>
         <p class="text-slate-600">Abenteuer auf zwei Rädern im Gelände</p>
       </a>
-      <a href="#rc" class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer sm:col-span-2 lg:col-span-1" data-goto="rc">
+      <a href="#rc" class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="rc">
         <div class="card-top"><svg class="card-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="6.5" cy="17" r="3.5"/><circle cx="17.5" cy="17" r="3.5"/><path d="M10 17h4"/><path d="M3 12.5h18"/><path d="M4 12.5V10l3.5-.6L9.5 6h5.5l2 3.4 3 .6v2.5"/><path d="M10.5 6 8.8 1.8"/></svg><span class="idx">05</span></div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">RC Cars</h3>
         <p class="text-slate-600">Ferngesteuerte Monster Trucks und Crawler</p>
+      </a>
+      <a href="#vespa" class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer" data-goto="vespa">
+        <div class="card-top"><svg class="card-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18.5" cy="18" r="2.5"/><path d="M2.5 16V14a3.5 3.5 0 0 1 3.5-3.5h5L12.5 16H2.5"/><path d="M5 8h5"/><path d="M12.5 16h3.5L18 5"/><path d="M16 5h4"/><path d="M16.5 13.5l3.5 1"/></svg><span class="idx">06</span></div>
+        <h3 class="text-xl font-semibold text-slate-800 mb-2">Vespa</h3>
+        <p class="text-slate-600">Italienische Roller-Klassiker</p>
       </a>
     </div>
   </div>
@@ -1850,6 +1865,97 @@
 
 
 <!-- ══════════════════════════════════════
+     VESPA PAGE
+══════════════════════════════════════ -->
+<div id="page-vespa" class="page">
+  <div class="hero hero-vespa text-white py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="kicker"><svg class="kicker-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18.5" cy="18" r="2.5"/><path d="M2.5 16V14a3.5 3.5 0 0 1 3.5-3.5h5L12.5 16H2.5"/><path d="M5 8h5"/><path d="M12.5 16h3.5L18 5"/><path d="M16 5h4"/><path d="M16.5 13.5l3.5 1"/></svg>Roller-Klassiker</div>
+      <h2 class="text-4xl font-bold mb-4">Vespa</h2>
+      <p class="text-xl opacity-90">Italienisches Design auf zwei kleinen Rädern</p>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <!-- Banner: wird automatisch aus der Liste unten erzeugt -->
+    <div class="phone-banner mb-8" aria-label="Alle Vespas im Überblick">
+      <div class="pb-head"><span>Vespa-Geschichte</span><span id="vb-count"></span></div>
+      <div class="pb-grid pb-wide pb-vespa" id="vb-grid"></div>
+    </div>
+
+    <div class="bg-white rounded-2xl p-8 shadow-lg">
+      <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Vespas</h3>
+      <div class="space-y-3" id="vespa-list">
+
+        <!-- ── Vespa 50 S ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-slate-50 rounded-xl cursor-pointer border-2 border-slate-400" data-toggle="vespa-50s">
+            <div class="shrink-0 text-xl font-bold text-slate-700 w-12">1968</div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Vespa 50 S <span class="text-xs bg-slate-300 text-slate-900 px-2 py-0.5 rounded-full ml-1">Aktuell</span></h4>
+              <p class="text-slate-600 text-sm mt-1">49,8 cm³ Zweitakt · 2 PS · 4 Gänge · Gelb</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+          <div id="detail-vespa-50s" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Vespa 50 S (V5SA1T)</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Baujahr:</span> <span class="text-slate-600">1968</span></div>
+                <div><span class="font-semibold text-slate-700">Modellcode:</span> <span class="text-slate-600">V5SA1T (Bauzeit 1963–1968)</span></div>
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Kleinroller · Stahlblech-Karosserie</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">Einzylinder-Zweitakt · 49,8 cm³ · Gebläsekühlung</span></div>
+                <div><span class="font-semibold text-slate-700">Leistung:</span> <span class="text-slate-600">2 PS bei 5.800 U/min</span></div>
+                <div><span class="font-semibold text-slate-700">Getriebe:</span> <span class="text-slate-600">4 Gänge · Drehgriffschaltung</span></div>
+                <div><span class="font-semibold text-slate-700">Vergaser:</span> <span class="text-slate-600">Dell'Orto 16 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Bremsen:</span> <span class="text-slate-600">Trommel vorne/hinten · Ø 125 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Reifen:</span> <span class="text-slate-600">3.00-10 vorne · 3.10-10 hinten</span></div>
+                <div><span class="font-semibold text-slate-700">Tank:</span> <span class="text-slate-600">5,3 l (Gemisch)</span></div>
+                <div><span class="font-semibold text-slate-700">Sitzhöhe:</span> <span class="text-slate-600">780 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">66 kg (trocken)</span></div>
+                <div><span class="font-semibold text-slate-700">Farbe:</span> <span class="text-slate-600">Gelb</span></div>
+              </div>
+            </div>
+            <img src="img/vespa/vespa-50-s-1968.webp" alt="Vespa 50 S" class="detail-img" loading="lazy"
+                 onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+          </div>
+        </div>
+
+        <!-- ── Vespa PK 50 S ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-slate-50 rounded-xl cursor-pointer" data-toggle="vespa-pk50s">
+            <div class="shrink-0 text-xl font-bold text-slate-700 w-12">1989</div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Vespa PK 50 S <span class="text-xs badge-sold bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full ml-1">Verkauft</span></h4>
+              <p class="text-slate-600 text-sm mt-1">49,79 cm³ Zweitakt · 1,5 PS · 4 Gänge · Rot</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+          <div id="detail-vespa-pk50s" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Vespa PK 50 S (V5X2T)</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Baujahr:</span> <span class="text-slate-600">1989</span></div>
+                <div><span class="font-semibold text-slate-700">Modellcode:</span> <span class="text-slate-600">V5X2T</span></div>
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Kleinroller · PK-Serie</span></div>
+                <div><span class="font-semibold text-slate-700">Motor:</span> <span class="text-slate-600">Einzylinder-Zweitakt · 49,79 cm³ · Bohrung × Hub 38,4 × 43 mm</span></div>
+                <div><span class="font-semibold text-slate-700">Leistung:</span> <span class="text-slate-600">1,5 PS bei 4.500 U/min</span></div>
+                <div><span class="font-semibold text-slate-700">Getriebe:</span> <span class="text-slate-600">4 Gänge · Drehgriffschaltung</span></div>
+                <div><span class="font-semibold text-slate-700">Höchstgeschwindigkeit:</span> <span class="text-slate-600">ca. 40 km/h</span></div>
+                <div><span class="font-semibold text-slate-700">Bremsen:</span> <span class="text-slate-600">Trommel vorne/hinten</span></div>
+                <div><span class="font-semibold text-slate-700">Farbe:</span> <span class="text-slate-600">Rot</span></div>
+              </div>
+            </div>
+            <img src="img/vespa/vespa-pk-50-s-1989.webp" alt="Vespa PK 50 S" class="detail-img" loading="lazy"
+                 onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
      FOOTER
 ══════════════════════════════════════ -->
 <footer class="bg-slate-800 text-white py-8 px-4 mt-auto">
@@ -2029,6 +2135,7 @@
   buildBanner('#mtb-list', '#mb-grid', '#mb-count', 'mtb', 'Bikes');
   buildBanner('#druck-list', '#db-grid', '#db-count', 'druck', 'Drucker');
   buildBanner('#rc-list', '#rb-grid', '#rb-count', 'rc', 'Modelle');
+  buildBanner('#vespa-list', '#vb-grid', '#vb-count', 'vespa', 'Roller');
 
   setStat('rc-count', $$('#rc-list > .timeline-entry').length);
 
@@ -2189,8 +2296,8 @@
   });
 
   // ── Seiten-Routing mit eigenen URLs (#autos, #autos/golf2g60 …) ──
-  const PAGES = ['home', 'autos', 'handys', 'druck', 'mtb', 'rc'];
-  const TITLES = { home: 'Homepage', autos: 'Autos', handys: 'Handys', druck: '3D Druck', mtb: 'MTB', rc: 'RC Cars' };
+  const PAGES = ['home', 'autos', 'handys', 'druck', 'mtb', 'rc', 'vespa'];
+  const TITLES = { home: 'Homepage', autos: 'Autos', handys: 'Handys', druck: '3D Druck', mtb: 'MTB', rc: 'RC Cars', vespa: 'Vespa' };
 
   function parseHash() {
     const raw = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
