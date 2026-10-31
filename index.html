@@ -236,9 +236,8 @@
     .pb-tile { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; padding: 14px 6px 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); cursor: pointer; transition: background 0.15s ease; }
     .pb-tile:hover { background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--accent); }
     .pb-img { width: 100%; height: 84px; display: flex; align-items: center; justify-content: center; }
-    .pb-img img { max-height: 100%; max-width: 70%; object-fit: contain; mix-blend-mode: multiply; }
-    html.dark .pb-img { background: #e9ebee; height: 92px; }
-    html.dark .pb-img img { mix-blend-mode: multiply; }
+    .pb-img img { max-height: 100%; max-width: 70%; object-fit: contain; }
+    html.dark .pb-img { height: 92px; }
     @media (min-width: 768px) { .pb-img { height: 104px; } html.dark .pb-img { height: 112px; } }
     .pb-year { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.04em; }
     .pb-name { font-size: 12px; line-height: 1.25; color: var(--fg-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.5em; }
@@ -262,11 +261,12 @@
     #rc-list .detail-img { border: 0; }
     .pb-grid.pb-vespa .pb-img, html.dark .pb-grid.pb-vespa .pb-img { background: transparent; }
     .pb-vespa .pb-img img { padding: 16px; }
-    html.dark #vespa-list .detail-img { background-color: transparent; }
+    html.dark #vespa-list .detail-img, html.dark #handys-list .detail-img-sm, html.dark #mtb-list .detail-img, html.dark #druck-list .detail-img { background-color: transparent; }
+    #handys-list .detail-img-sm, #mtb-list .detail-img, #druck-list .detail-img { border: 0; }
     #vespa-list .detail-img { border: 0; max-height: 420px; width: auto; max-width: 100%; }
     .pb-grid.pb-wide { grid-template-columns: repeat(2, 1fr); }
     .pb-wide .pb-tile { padding: 0 0 14px; gap: 4px; }
-    .pb-wide .pb-img, html.dark .pb-wide .pb-img { height: auto; aspect-ratio: 3 / 2; background: #fff; margin-bottom: 8px; overflow: hidden; }
+    .pb-wide .pb-img, html.dark .pb-wide .pb-img { height: auto; aspect-ratio: 3 / 2; background: transparent; margin-bottom: 8px; overflow: hidden; }
     .pb-wide .pb-img img, html.dark .pb-wide .pb-img img { width: 100%; height: 100%; max-width: none; object-fit: contain; mix-blend-mode: normal; transition: transform 0.3s ease; }
     .pb-wide .pb-tile:hover .pb-img img { transform: scale(1.03); }
     .pb-wide .pb-name { font-size: 14px; padding: 0 8px; }
@@ -806,7 +806,7 @@
             <div class="detail-scroll bg-blue-50 rounded-xl border-2 border-blue-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 8210</div><div><span class="font-semibold">Jahr:</span> 2000</div><div><span class="font-semibold">Besonderheit:</span> Legendäres kompaktes Design</div></div>
             </div>
-          <img src="img/handys/no8210t.gif" alt="Nokia 8210" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/no8210t.webp" alt="Nokia 8210" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -821,7 +821,7 @@
             <div class="detail-scroll bg-cyan-50 rounded-xl border-2 border-cyan-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Siemens S10</div><div><span class="font-semibold">Jahr:</span> 2000</div><div><span class="font-semibold">Display:</span> LCD Monochrom</div></div>
             </div>
-          <img src="img/handys/sis10b.gif" alt="Siemens S10" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/sis10b.webp" alt="Siemens S10" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -836,7 +836,7 @@
             <div class="detail-scroll bg-indigo-50 rounded-xl border-2 border-indigo-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 8310</div><div><span class="font-semibold">Jahr:</span> 2001</div><div><span class="font-semibold">Besonderheit:</span> Robuste Bauweise</div></div>
             </div>
-          <img src="img/handys/no8310.gif" alt="Nokia 8310" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/no8310.webp" alt="Nokia 8310" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -851,7 +851,7 @@
             <div class="detail-scroll bg-purple-50 rounded-xl border-2 border-purple-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 3100</div><div><span class="font-semibold">Jahr:</span> 2003</div><div><span class="font-semibold">Besonderheit:</span> Farbiges Display</div></div>
             </div>
-          <img src="img/handys/no3100.gif" alt="Nokia 3100" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/no3100.webp" alt="Nokia 3100" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -866,7 +866,7 @@
             <div class="detail-scroll bg-pink-50 rounded-xl border-2 border-pink-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 6600</div><div><span class="font-semibold">Jahr:</span> 2003</div><div><span class="font-semibold">Kamera:</span> 1,3 MP – Pionier!</div></div>
             </div>
-          <img src="img/handys/no6600.gif" alt="Nokia 6600" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/no6600.webp" alt="Nokia 6600" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -881,7 +881,7 @@
             <div class="detail-scroll bg-emerald-50 rounded-xl border-2 border-emerald-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 9210i Communicator</div><div><span class="font-semibold">Jahr:</span> 2003</div><div><span class="font-semibold">Besonderheit:</span> QWERTY-Tastatur</div></div>
             </div>
-          <img src="img/handys/no9210i.gif" alt="Nokia 9210i" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/no9210i.webp" alt="Nokia 9210i" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -896,7 +896,7 @@
             <div class="detail-scroll bg-sky-50 rounded-xl border-2 border-sky-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 6610i</div><div><span class="font-semibold">Jahr:</span> 2004</div><div><span class="font-semibold">Display:</span> Farbdisplay</div></div>
             </div>
-          <img src="img/handys/no6610i.gif" alt="Nokia 6610i" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/no6610i.webp" alt="Nokia 6610i" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -911,7 +911,7 @@
             <div class="detail-scroll bg-teal-50 rounded-xl border-2 border-teal-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 7610</div><div><span class="font-semibold">Jahr:</span> 2004</div><div><span class="font-semibold">OS:</span> Symbian</div></div>
             </div>
-          <img src="img/handys/no7610.gif" alt="Nokia 7610" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/no7610.webp" alt="Nokia 7610" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -926,7 +926,7 @@
             <div class="detail-scroll bg-violet-50 rounded-xl border-2 border-violet-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 9500 Communicator</div><div><span class="font-semibold">Jahr:</span> 2004</div><div><span class="font-semibold">Besonderheit:</span> Ausklappbare QWERTY-Tastatur</div></div>
             </div>
-          <img src="img/handys/no9500.gif" alt="Nokia 9500" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/no9500.webp" alt="Nokia 9500" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -941,7 +941,7 @@
             <div class="detail-scroll bg-rose-50 rounded-xl border-2 border-rose-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 6230</div><div><span class="font-semibold">Jahr:</span> 2005</div><div><span class="font-semibold">Besonderheit:</span> Dual Band GSM</div></div>
             </div>
-          <img src="img/handys/no6230.gif" alt="Nokia 6230" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/no6230.webp" alt="Nokia 6230" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -956,7 +956,7 @@
             <div class="detail-scroll bg-orange-50 rounded-xl border-2 border-orange-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 7710</div><div><span class="font-semibold">Jahr:</span> 2005</div><div><span class="font-semibold">OS:</span> Symbian OS</div></div>
             </div>
-          <img src="img/handys/no7710.gif" alt="Nokia 7710" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/no7710.webp" alt="Nokia 7710" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -971,7 +971,7 @@
             <div class="detail-scroll bg-amber-50 rounded-xl border-2 border-amber-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia N90</div><div><span class="font-semibold">Jahr:</span> 2005</div><div><span class="font-semibold">Kamera:</span> 2 MP mit Zoom</div></div>
             </div>
-          <img src="img/handys/nokia-n90.gif" alt="Nokia N90" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/nokia-n90.webp" alt="Nokia N90" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -986,7 +986,7 @@
             <div class="detail-scroll bg-yellow-50 rounded-xl border-2 border-yellow-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia N91</div><div><span class="font-semibold">Jahr:</span> 2005</div><div><span class="font-semibold">Speicher:</span> 4 GB oder 6 GB</div></div>
             </div>
-          <img src="img/handys/nokia-n91.gif" alt="Nokia N91" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/nokia-n91.webp" alt="Nokia N91" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1001,7 +1001,7 @@
             <div class="detail-scroll bg-lime-50 rounded-xl border-2 border-lime-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> HP iPAQ 910c</div><div><span class="font-semibold">Jahr:</span> 2006</div><div><span class="font-semibold">OS:</span> Windows Mobile</div></div>
             </div>
-          <img src="img/handys/hp-910c.jpg" alt="HP iPAQ 910c" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/hp-910c.webp" alt="HP iPAQ 910c" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1016,7 +1016,7 @@
             <div class="detail-scroll bg-green-50 rounded-xl border-2 border-green-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia N80</div><div><span class="font-semibold">Jahr:</span> 2006</div><div><span class="font-semibold">Kamera:</span> 3,2 MP</div></div>
             </div>
-          <img src="img/handys/nokia-n80.gif" alt="Nokia N80" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/nokia-n80.webp" alt="Nokia N80" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1031,7 +1031,7 @@
             <div class="detail-scroll bg-red-50 rounded-xl border-2 border-red-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia 6300</div><div><span class="font-semibold">Jahr:</span> 2007</div><div><span class="font-semibold">Design:</span> Edelstahlgehäuse</div></div>
             </div>
-          <img src="img/handys/nokia-6300.gif" alt="Nokia 6300" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/nokia-6300.webp" alt="Nokia 6300" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1046,7 +1046,7 @@
             <div class="detail-scroll bg-pink-50 rounded-xl border-2 border-pink-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia N95</div><div><span class="font-semibold">Jahr:</span> 2007</div><div><span class="font-semibold">Besonderheit:</span> Doppel-Schieber</div></div>
             </div>
-          <img src="img/handys/nokia-n95.gif" alt="Nokia N95" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/nokia-n95.webp" alt="Nokia N95" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1061,7 +1061,7 @@
             <div class="detail-scroll bg-purple-50 rounded-xl border-2 border-purple-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> HTC Touch Diamond</div><div><span class="font-semibold">Jahr:</span> 2008</div><div><span class="font-semibold">OS:</span> Windows Mobile 6.1</div></div>
             </div>
-          <img src="img/handys/htc-touch-diamond.jpg" alt="HTC Touch Diamond" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/htc-touch-diamond.webp" alt="HTC Touch Diamond" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1076,7 +1076,7 @@
             <div class="detail-scroll bg-indigo-50 rounded-xl border-2 border-indigo-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia N82</div><div><span class="font-semibold">Jahr:</span> 2008</div><div><span class="font-semibold">Kamera:</span> 5 MP mit Stabilisierung</div></div>
             </div>
-          <img src="img/handys/nokia-n82.gif" alt="Nokia N82" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/nokia-n82.webp" alt="Nokia N82" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1091,7 +1091,7 @@
             <div class="detail-scroll bg-cyan-50 rounded-xl border-2 border-cyan-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia E51</div><div><span class="font-semibold">Jahr:</span> 2009</div><div><span class="font-semibold">Tastatur:</span> QWERTY-Schieber</div></div>
             </div>
-          <img src="img/handys/nokia-e51.gif" alt="Nokia E51" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/nokia-e51.webp" alt="Nokia E51" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1106,7 +1106,7 @@
             <div class="detail-scroll bg-teal-50 rounded-xl border-2 border-teal-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Typ:</span> Nokia X6 32GB</div><div><span class="font-semibold">Jahr:</span> 2010</div><div><span class="font-semibold">Speicher:</span> 32 GB</div></div>
             </div>
-          <img src="img/handys/nokia-x6.jpg" alt="Nokia X6" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/nokia-x6.webp" alt="Nokia X6" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1121,7 +1121,7 @@
             <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 3GS</div><div><span class="font-semibold">Jahr:</span> 2010</div><div><span class="font-semibold">Kamera:</span> 3 MP mit Video</div></div>
             </div>
-          <img src="img/handys/apple-iphone-3gs-ofic.jpg" alt="iPhone 3GS" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/apple-iphone-3gs-ofic.webp" alt="iPhone 3GS" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1136,7 +1136,7 @@
             <div class="detail-scroll bg-blue-50 rounded-xl border-2 border-blue-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 4</div><div><span class="font-semibold">Jahr:</span> 2011</div><div><span class="font-semibold">Besonderheit:</span> Glasrückseite, A4-Chip</div></div>
             </div>
-          <img src="img/handys/apple-iphone-4-ofic-final.jpg" alt="iPhone 4" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/apple-iphone-4-ofic-final.webp" alt="iPhone 4" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1151,7 +1151,7 @@
             <div class="detail-scroll bg-indigo-50 rounded-xl border-2 border-indigo-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 5</div><div><span class="font-semibold">Jahr:</span> 2012</div><div><span class="font-semibold">Besonderheit:</span> Lightning Connector</div></div>
             </div>
-          <img src="img/handys/apple-iphone-5-ofic.jpg" alt="iPhone 5" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/apple-iphone-5-ofic.webp" alt="iPhone 5" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1166,7 +1166,7 @@
             <div class="detail-scroll bg-purple-50 rounded-xl border-2 border-purple-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 5s</div><div><span class="font-semibold">Jahr:</span> 2013</div><div><span class="font-semibold">Innovation:</span> Touch ID Fingerprint</div></div>
             </div>
-          <img src="img/handys/apple-iphone-5s-ofic.jpg" alt="iPhone 5s" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/apple-iphone-5s-ofic.webp" alt="iPhone 5s" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1181,7 +1181,7 @@
             <div class="detail-scroll bg-cyan-50 rounded-xl border-2 border-cyan-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 6</div><div><span class="font-semibold">Jahr:</span> 2014</div><div><span class="font-semibold">Display:</span> 4,7 Zoll Retina HD</div></div>
             </div>
-          <img src="img/handys/apple-iphone-6-4.jpg" alt="iPhone 6" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/apple-iphone-6-4.webp" alt="iPhone 6" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1196,7 +1196,7 @@
             <div class="detail-scroll bg-teal-50 rounded-xl border-2 border-teal-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone X</div><div><span class="font-semibold">Jahr:</span> 2017</div><div><span class="font-semibold">Innovation:</span> Face ID, OLED Notch</div></div>
             </div>
-          <img src="img/handys/apple-iphone-x.jpg" alt="iPhone X" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/apple-iphone-x.webp" alt="iPhone X" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1211,7 +1211,7 @@
             <div class="detail-scroll bg-blue-50 rounded-xl border-2 border-blue-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 12 Pro</div><div><span class="font-semibold">Jahr:</span> 2020</div><div><span class="font-semibold">Features:</span> 5G, Triple-Kamera</div></div>
             </div>
-          <img src="img/handys/apple-iphone-12-pro--.jpg" alt="iPhone 12 Pro" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/apple-iphone-12-pro--.webp" alt="iPhone 12 Pro" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1226,7 +1226,7 @@
             <div class="detail-scroll bg-purple-50 rounded-xl border-2 border-purple-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 14 Pro</div><div><span class="font-semibold">Jahr:</span> 2022</div><div><span class="font-semibold">Kamera:</span> 48 MP Hauptkamera</div></div>
             </div>
-          <img src="img/handys/apple-iphone-14-pro.jpg" alt="iPhone 14 Pro" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/apple-iphone-14-pro.webp" alt="iPhone 14 Pro" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1244,7 +1244,7 @@
             <div class="detail-scroll bg-indigo-50 rounded-xl border-2 border-indigo-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 16 Pro</div><div><span class="font-semibold">Jahr:</span> 2024</div><div><span class="font-semibold">Features:</span> Apple Intelligence, 5× Zoom</div></div>
             </div>
-          <img src="img/handys/apple-iphone-16-pro.jpg" alt="iPhone 16 Pro" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/apple-iphone-16-pro.webp" alt="iPhone 16 Pro" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1262,7 +1262,7 @@
             <div class="detail-scroll bg-red-50 rounded-xl border-2 border-red-200 p-4">
               <div class="text-sm space-y-1"><div><span class="font-semibold">Modell:</span> iPhone 18 Pro Max</div><div><span class="font-semibold">Jahr:</span> 2026</div><div><span class="font-semibold">Farbe:</span> Burgundy</div><div><span class="font-semibold">Display:</span> 6,9" LTPO OLED, 120 Hz</div><div><span class="font-semibold">Chip:</span> Apple A20 Pro (2 nm)</div><div><span class="font-semibold">Kamera:</span> 48 MP Hauptkamera, 4× optischer Zoom</div></div>
             </div>
-          <img src="img/handys/apple-iphone18-pro-max.jpg" alt="iPhone 18 Pro Max" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
+          <img src="img/handys/apple-iphone18-pro-max.webp" alt="iPhone 18 Pro Max" class="detail-img-sm" loading="lazy" onerror="this.style.background='#e5e7eb'">
           </div>
         </div>
 
@@ -1353,7 +1353,7 @@
                 <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">27,5 kg (brutto)</span></div>
               </div>
             </div>
-            <img src="img/druck/xyz-da-vinci-2-0-duo.jpg" alt="XYZprinting da Vinci 2.0 Duo" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
+            <img src="img/druck/xyz-da-vinci-2-0-duo.webp" alt="XYZprinting da Vinci 2.0 Duo" class="detail-img" loading="lazy" referrerpolicy="no-referrer"
                  onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
           </div>
         </div>
@@ -1449,7 +1449,7 @@
                 <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">12,6 kg</span></div>
               </div>
             </div>
-            <img src="img/mtb/ghost-amr-7500.jpg" alt="Ghost AMR 7500" class="detail-img" loading="lazy"
+            <img src="img/mtb/ghost-amr-7500.webp" alt="Ghost AMR 7500" class="detail-img" loading="lazy"
                  onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
           </div>
         </div>
@@ -1487,7 +1487,7 @@
                 <div><span class="font-semibold text-slate-700">Gewicht:</span> <span class="text-slate-600">ca. 12,8 kg (Herstellerangabe)</span></div>
               </div>
             </div>
-            <img src="img/mtb/yt-jeffsy-cf-pro.jpg" alt="YT Jeffsy 29 CF Pro" class="detail-img" loading="lazy"
+            <img src="img/mtb/yt-jeffsy-cf-pro.webp" alt="YT Jeffsy 29 CF Pro" class="detail-img" loading="lazy"
                  onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
           </div>
         </div>
