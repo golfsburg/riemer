@@ -298,12 +298,7 @@
     .kicker-ico { width: 18px; height: 18px; color: var(--accent); }
 
     /* Startseite: breite Karte mit Foto */
-    a.card-wide { display: grid; grid-template-columns: 1fr; overflow: hidden; padding: 0 !important; }
-    .card-wide-body { padding: 1.5rem; }
-    .card-wide-img { width: 100%; height: 200px; object-fit: cover; display: block; border-top: 1px solid var(--line); }
-    @media (min-width: 640px) { a.card-wide { grid-template-columns: 1fr 1fr; } .card-wide-img { height: 100%; min-height: 220px; border-top: 0; border-left: 1px solid var(--line); } }
 
-    @media (min-width: 640px) { .card-wide-img { max-height: 260px; } }
     @media (max-width: 639px) { .nav-item { padding-left: 0.55rem !important; padding-right: 0.55rem !important; } nav .flex.gap-2 { gap: 2px; } }
 
     /* We7: Karussell */
@@ -511,13 +506,10 @@
         <h3 class="text-xl font-semibold text-slate-800 mb-2">Vespa</h3>
         <p class="text-slate-600">Italienische Roller-Klassiker</p>
       </a>
-      <a href="#we7" class="card card-wide bg-white rounded-2xl shadow-lg cursor-pointer sm:col-span-2 lg:col-span-3" data-goto="we7">
-        <div class="card-wide-body">
-          <div class="card-top"><svg class="card-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M2.5 21h19"/><path d="M4 21v-8h7"/><path d="M11 21V8.5L16 4.5l5 4V21"/><path d="M2.5 13.5 7 10l4 3"/><path d="M14.5 11h3v3h-3z"/><path d="M14.5 21v-4h3v4"/><path d="M6.5 17h2.5"/></svg><span class="idx">07</span></div>
+      <a href="#we7" class="card bg-white rounded-2xl p-6 shadow-lg cursor-pointer sm:col-span-2 lg:col-span-3" data-goto="we7">
+        <div class="card-top"><svg class="card-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M2.5 21h19"/><path d="M4 21v-8h7"/><path d="M11 21V8.5L16 4.5l5 4V21"/><path d="M2.5 13.5 7 10l4 3"/><path d="M14.5 11h3v3h-3z"/><path d="M14.5 21v-4h3v4"/><path d="M6.5 17h2.5"/></svg><span class="idx">07</span></div>
           <h3 class="text-xl font-semibold text-slate-800 mb-2">We7 – Unser Zuhause</h3>
           <p class="text-slate-600">Vom Papiermodell 2010 bis heute: Planung, Bau und Garten unseres Hauses.</p>
-        </div>
-        <img class="card-wide-img" src="img/we7/thumb/sommer-heute.jpg" alt="We7 – Unser Zuhause" loading="lazy">
       </a>
     </div>
   </div>
