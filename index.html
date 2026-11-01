@@ -278,6 +278,7 @@
     #handys-list .detail-img-sm, #mtb-list .detail-img, #druck-list .detail-img { border: 0; }
     #vespa-list .detail-img { border: 0; max-height: 420px; width: auto; max-width: 100%; }
     .pb-grid.pb-wide { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 768px) { .pb-grid.pb-wide.pb-three { grid-template-columns: repeat(3, 1fr); } }
     .pb-wide .pb-tile { padding: 0 0 14px; gap: 4px; }
     .pb-wide .pb-img, html.dark .pb-wide .pb-img { height: auto; aspect-ratio: 3 / 2; background: transparent; margin-bottom: 8px; overflow: hidden; }
     .pb-wide .pb-img img, html.dark .pb-wide .pb-img img { width: 100%; height: 100%; max-width: none; object-fit: contain; mix-blend-mode: normal; transition: transform 0.3s ease; }
@@ -1442,11 +1443,41 @@
     <!-- Banner: wird automatisch aus der Liste unten erzeugt -->
     <div class="phone-banner mb-8" aria-label="Alle Mountainbikes im Überblick">
       <div class="pb-head"><span>Bike-Geschichte</span><span id="mb-count"></span></div>
-      <div class="pb-grid pb-wide" id="mb-grid"></div>
+      <div class="pb-grid pb-wide pb-three" id="mb-grid"></div>
     </div>
     <div class="bg-white rounded-2xl p-8 shadow-lg mb-8">
       <h3 class="text-2xl font-bold text-slate-800 mb-6">Meine Bikes</h3>
       <div class="space-y-3" id="mtb-list">
+
+        <!-- ── Bianchi Thomisus ── -->
+        <div class="timeline-entry">
+          <div class="timeline-row flex items-center gap-4 p-4 bg-slate-50 rounded-xl cursor-pointer" data-toggle="mtb-bianchi">
+            <div class="shrink-0 text-xl font-bold text-slate-700 w-12">1990</div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-semibold text-slate-800">Bianchi Thomisus</h4>
+              <p class="text-slate-600 text-sm mt-1">26" Stahl-Hardtail · Kettenschaltung · Cantilever-Bremsen · ca. 1990</p>
+            </div>
+            <button class="text-lg hover:scale-125 transition-transform shrink-0" title="Details anzeigen"><svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="square" d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+          <div id="detail-mtb-bianchi" class="detail-panel mt-2 mx-2">
+            <div class="detail-scroll bg-slate-50 rounded-xl border-2 border-slate-200 p-4">
+              <h5 class="font-bold text-slate-800 mb-3">Technische Daten – Bianchi Thomisus (laut Foto)</h5>
+              <div class="grid sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="font-semibold text-slate-700">Hersteller:</span> <span class="text-slate-600">Bianchi (Italien)</span></div>
+                <div><span class="font-semibold text-slate-700">Baujahr:</span> <span class="text-slate-600">ca. 1990</span></div>
+                <div><span class="font-semibold text-slate-700">Typ:</span> <span class="text-slate-600">Mountainbike · Hardtail ohne Federung</span></div>
+                <div><span class="font-semibold text-slate-700">Rahmen:</span> <span class="text-slate-600">Diamantrahmen, Stahl</span></div>
+                <div><span class="font-semibold text-slate-700">Laufräder:</span> <span class="text-slate-600">26" mit Stollenreifen</span></div>
+                <div><span class="font-semibold text-slate-700">Antrieb:</span> <span class="text-slate-600">3-fach-Kurbel mit Kettenschaltung</span></div>
+                <div><span class="font-semibold text-slate-700">Bremsen:</span> <span class="text-slate-600">Cantilever</span></div>
+                <div><span class="font-semibold text-slate-700">Farbe:</span> <span class="text-slate-600">Schwarz / Mint mit Lila-Verlauf</span></div>
+                <div><span class="font-semibold text-slate-700">Extras:</span> <span class="text-slate-600">Bar-Ends mit pinkem Lenkerband, Seitenständer, Flaschenhalter</span></div>
+              </div>
+            </div>
+            <img src="img/mtb/bianchi-thomisus.webp" alt="Bianchi Thomisus" class="detail-img" loading="lazy"
+                 onerror="this.outerHTML='<p class=\'text-slate-500 text-center py-6\'>Foto konnte nicht geladen werden.</p>'">
+          </div>
+        </div>
 
         <!-- ── Ghost AMR 7500 ── -->
         <div class="timeline-entry">
@@ -2015,7 +2046,7 @@
       </section>
       <section class="legal-block">
         <h3>Bildnachweise</h3>
-        <p>Eigene Fotos: Autos, Vespas, YT Jeffsy sowie die RC Cars Traxxas Maxx, TRX-4, TRX-6 und Summit.</p>
+        <p>Eigene Fotos: Autos, Vespas, Bianchi Thomisus, YT Jeffsy sowie die RC Cars Traxxas Maxx, TRX-4, TRX-6 und Summit.</p>
         <p>Produktabbildungen: Handys – GSMArena (gsmarena.com); Ghost AMR 7500 – Ghost Bikes (Datenblatt); 3D-Drucker – XYZprinting bzw. Anycubic. Die Rechte an diesen Abbildungen liegen bei den jeweiligen Inhabern.</p>
       </section>
       <section class="legal-block">
