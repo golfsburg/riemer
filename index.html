@@ -297,6 +297,47 @@
     .kicker { display: flex; align-items: center; gap: 8px; }
     .kicker-ico { width: 18px; height: 18px; color: var(--accent); }
 
+    /* Startseite: breite Karte mit Foto */
+    a.card-wide { display: grid; grid-template-columns: 1fr; overflow: hidden; padding: 0 !important; }
+    .card-wide-body { padding: 1.5rem; }
+    .card-wide-img { width: 100%; height: 200px; object-fit: cover; display: block; border-top: 1px solid var(--line); }
+    @media (min-width: 640px) { a.card-wide { grid-template-columns: 1fr 1fr; } .card-wide-img { height: 100%; min-height: 220px; border-top: 0; border-left: 1px solid var(--line); } }
+
+    @media (min-width: 640px) { .card-wide-img { max-height: 260px; } }
+    @media (max-width: 639px) { .nav-item { padding-left: 0.55rem !important; padding-right: 0.55rem !important; } nav .flex.gap-2 { gap: 2px; } }
+
+    /* We7: Karussell */
+    .we7-carousel { background: var(--surface); border: 1px solid var(--line); }
+    .we7-stage { position: relative; }
+    .we7-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
+    .we7-track::-webkit-scrollbar { display: none; }
+    .we7-slide { flex: 0 0 100%; scroll-snap-align: center; margin: 0; position: relative; aspect-ratio: 16 / 10; background: var(--surface-2); }
+    .we7-slide img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .we7-slide figcaption { position: absolute; left: 0; bottom: 0; padding: 8px 14px; background: rgba(14,18,23,0.72); color: #fff; font-size: 14px; }
+    .we7-slide figcaption .we7-date { color: var(--accent); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 8px; }
+    .we7-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; background: rgba(14,18,23,0.6); color: #fff; font-size: 28px; line-height: 1; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+    .we7-nav:hover { background: var(--accent); }
+    .we7-prev { left: 10px; } .we7-next { right: 10px; }
+    .we7-dots { display: flex; justify-content: center; gap: 6px; padding: 12px; border-top: 1px solid var(--line); }
+    .we7-dots button { width: 22px; height: 4px; background: var(--line-strong); transition: background 0.15s; }
+    .we7-dots button.on { background: var(--accent); }
+
+    /* We7: Zeitleiste */
+    .we7-timeline { list-style: none; margin: 0; padding: 0 0 0 22px; position: relative; }
+    .we7-timeline::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--line-strong); }
+    .we7-step { position: relative; margin-bottom: 10px; }
+    .we7-step::before { content: ''; position: absolute; left: -22px; top: 18px; width: 11px; height: 11px; background: var(--surface); border: 2px solid var(--line-strong); }
+    .we7-step.we7-current::before, .we7-step.active::before { background: var(--accent); border-color: var(--accent); }
+    .we7-step-btn { width: 100%; text-align: left; display: grid; grid-template-columns: 88px 1fr; grid-template-areas: "img date" "img title" "img text"; gap: 2px 14px; padding: 10px; border: 1px solid var(--line); background: var(--surface); transition: border-color 0.15s, background 0.15s; }
+    .we7-step-btn:hover { border-color: var(--line-strong); background: var(--surface-2); }
+    .we7-step.active .we7-step-btn { border-color: var(--accent); }
+    .we7-step-btn img { grid-area: img; width: 88px; height: 66px; object-fit: cover; }
+    .we7-step-btn .we7-date { grid-area: date; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .we7-step.we7-current .we7-date { color: var(--accent); }
+    .we7-step-btn .we7-title { grid-area: title; font-weight: 600; color: var(--fg); }
+    .we7-step-btn .we7-text { grid-area: text; font-size: 14px; color: var(--fg-2); }
+    @media (min-width: 640px) { .we7-step-btn { grid-template-columns: 140px 1fr; } .we7-step-btn img { width: 140px; height: 96px; } }
+
     /* Impressum */
     .legal { max-width: 52rem; }
     .legal-block { padding: 1.25rem 0; border-bottom: 1px dashed var(--line); }
@@ -372,39 +413,44 @@
       </h1>
       <div class="flex gap-2 flex-wrap">
 
-        <a href="#home" class="nav-item active px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="home">
+        <a href="#home" class="nav-item active px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="home" title="Home">
           <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>
-          <span class="hidden sm:inline">Home</span>
+          <span class="hidden xl:inline">Home</span>
         </a>
 
-        <a href="#autos" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="autos">
+        <a href="#autos" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="autos" title="Autos">
           <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M2.5 16v-3.5l3-.6L8.6 7.5h6.6l3.6 4.4 2.7.6V16"/><path d="M5.5 12h13.3"/><path d="M12 7.5V12"/><circle cx="7" cy="16.5" r="2"/><circle cx="17" cy="16.5" r="2"/><path d="M9 16.5h6"/></svg>
-          <span class="hidden sm:inline">Autos</span>
+          <span class="hidden xl:inline">Autos</span>
         </a>
 
-        <a href="#handys" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="handys">
+        <a href="#handys" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="handys" title="Handys">
           <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="1.5"/><path d="M10.5 5h3"/><path d="M11 18.5h2"/><path d="M6.5 7h11M6.5 16h11"/></svg>
-          <span class="hidden sm:inline">Handys</span>
+          <span class="hidden xl:inline">Handys</span>
         </a>
 
-        <a href="#druck" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="druck">
+        <a href="#druck" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="druck" title="3D Druck">
           <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 21V3h16v18"/><path d="M2.5 21h19"/><path d="M4 7h16"/><path d="M10.5 7v3h3V7"/><path d="M11.3 10l.7 1.5.7-1.5"/><path d="M8 18.5h8M9 16.5h6M10 14.5h4"/></svg>
-          <span class="hidden sm:inline">3D Druck</span>
+          <span class="hidden xl:inline">3D Druck</span>
         </a>
 
-        <a href="#mtb" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="mtb">
+        <a href="#mtb" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="mtb" title="MTB">
           <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="5.5" cy="16" r="3.5"/><circle cx="18.5" cy="16" r="3.5"/><path d="M5.5 16l4-7h6l3 7"/><path d="M9.5 9l3.5 7 2.5-7"/><path d="M8.5 7h2.5"/><path d="M15.5 9l-.8-3h2.3"/></svg>
-          <span class="hidden sm:inline">MTB</span>
+          <span class="hidden xl:inline">MTB</span>
         </a>
 
-        <a href="#rc" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="rc">
+        <a href="#rc" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="rc" title="RC Cars">
           <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="6.5" cy="17" r="3.5"/><circle cx="17.5" cy="17" r="3.5"/><path d="M10 17h4"/><path d="M3 12.5h18"/><path d="M4 12.5V10l3.5-.6L9.5 6h5.5l2 3.4 3 .6v2.5"/><path d="M10.5 6 8.8 1.8"/></svg>
-          <span class="hidden sm:inline">RC Cars</span>
+          <span class="hidden xl:inline">RC Cars</span>
         </a>
 
-        <a href="#vespa" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="vespa">
+        <a href="#vespa" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="vespa" title="Vespa">
           <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18.5" cy="18" r="2.5"/><path d="M2.5 16V14a3.5 3.5 0 0 1 3.5-3.5h5L12.5 16H2.5"/><path d="M5 8h5"/><path d="M12.5 16h3.5L18 5"/><path d="M16 5h4"/><path d="M16.5 13.5l3.5 1"/></svg>
-          <span class="hidden sm:inline">Vespa</span>
+          <span class="hidden xl:inline">Vespa</span>
+        </a>
+
+        <a href="#we7" class="nav-item px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-medium text-slate-600 bg-slate-100" data-page="we7" title="We7 – Unser Zuhause">
+          <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M2.5 21h19"/><path d="M4 21v-8h7"/><path d="M11 21V8.5L16 4.5l5 4V21"/><path d="M2.5 13.5 7 10l4 3"/><path d="M14.5 11h3v3h-3z"/><path d="M14.5 21v-4h3v4"/><path d="M6.5 17h2.5"/></svg>
+          <span class="hidden xl:inline">We7</span>
         </a>
 
         <button id="theme-toggle" type="button" class="px-3 py-2 rounded-xl text-sm bg-slate-100 hover:-translate-y-0.5 transition-transform" aria-pressed="false" aria-label="Dunkelmodus umschalten" title="Dunkelmodus aktivieren"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg></button>
@@ -429,6 +475,7 @@
         <a href="#mtb" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="mtb"><svg class="chip-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="5.5" cy="16" r="3.5"/><circle cx="18.5" cy="16" r="3.5"/><path d="M5.5 16l4-7h6l3 7"/><path d="M9.5 9l3.5 7 2.5-7"/><path d="M8.5 7h2.5"/><path d="M15.5 9l-.8-3h2.3"/></svg>MTB</a>
         <a href="#rc" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="rc"><svg class="chip-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="6.5" cy="17" r="3.5"/><circle cx="17.5" cy="17" r="3.5"/><path d="M10 17h4"/><path d="M3 12.5h18"/><path d="M4 12.5V10l3.5-.6L9.5 6h5.5l2 3.4 3 .6v2.5"/><path d="M10.5 6 8.8 1.8"/></svg>RC Cars</a>
         <a href="#vespa" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="vespa"><svg class="chip-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18.5" cy="18" r="2.5"/><path d="M2.5 16V14a3.5 3.5 0 0 1 3.5-3.5h5L12.5 16H2.5"/><path d="M5 8h5"/><path d="M12.5 16h3.5L18 5"/><path d="M16 5h4"/><path d="M16.5 13.5l3.5 1"/></svg>Vespa</a>
+        <a href="#we7" class="nav-shortcut px-4 py-2 bg-white/20 rounded-full text-sm hover:bg-white/30 transition-all" data-goto="we7"><svg class="chip-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M2.5 21h19"/><path d="M4 21v-8h7"/><path d="M11 21V8.5L16 4.5l5 4V21"/><path d="M2.5 13.5 7 10l4 3"/><path d="M14.5 11h3v3h-3z"/><path d="M14.5 21v-4h3v4"/><path d="M6.5 17h2.5"/></svg>We7</a>
       </div>
     </div>
   </div>
@@ -463,6 +510,14 @@
         <div class="card-top"><svg class="card-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18.5" cy="18" r="2.5"/><path d="M2.5 16V14a3.5 3.5 0 0 1 3.5-3.5h5L12.5 16H2.5"/><path d="M5 8h5"/><path d="M12.5 16h3.5L18 5"/><path d="M16 5h4"/><path d="M16.5 13.5l3.5 1"/></svg><span class="idx">06</span></div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">Vespa</h3>
         <p class="text-slate-600">Italienische Roller-Klassiker</p>
+      </a>
+      <a href="#we7" class="card card-wide bg-white rounded-2xl shadow-lg cursor-pointer sm:col-span-2 lg:col-span-3" data-goto="we7">
+        <div class="card-wide-body">
+          <div class="card-top"><svg class="card-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M2.5 21h19"/><path d="M4 21v-8h7"/><path d="M11 21V8.5L16 4.5l5 4V21"/><path d="M2.5 13.5 7 10l4 3"/><path d="M14.5 11h3v3h-3z"/><path d="M14.5 21v-4h3v4"/><path d="M6.5 17h2.5"/></svg><span class="idx">07</span></div>
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">We7 – Unser Zuhause</h3>
+          <p class="text-slate-600">Vom Papiermodell 2010 bis heute: Planung, Bau und Garten unseres Hauses.</p>
+        </div>
+        <img class="card-wide-img" src="img/we7/thumb/sommer-heute.jpg" alt="We7 – Unser Zuhause" loading="lazy">
       </a>
     </div>
   </div>
@@ -2016,6 +2071,149 @@
 
 
 <!-- ══════════════════════════════════════
+     WE7 PAGE
+══════════════════════════════════════ -->
+<div id="page-we7" class="page">
+  <div class="hero hero-we7 text-white py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="kicker"><svg class="kicker-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M2.5 21h19"/><path d="M4 21v-8h7"/><path d="M11 21V8.5L16 4.5l5 4V21"/><path d="M2.5 13.5 7 10l4 3"/><path d="M14.5 11h3v3h-3z"/><path d="M14.5 21v-4h3v4"/><path d="M6.5 17h2.5"/></svg>Unser Zuhause</div>
+      <h2 class="text-4xl font-bold mb-4">We7</h2>
+      <p class="text-xl opacity-90">Vom Papiermodell bis heute – Planung, Bau und Garten</p>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+
+    <!-- Foto-Karussell -->
+    <div class="we7-carousel mb-8" aria-roledescription="Karussell" aria-label="Fotos We7">
+      <div class="pb-head"><span>Fotos</span><span id="we7-counter"></span></div>
+      <div class="we7-stage">
+        <div class="we7-track" id="we7-track">
+          <figure class="we7-slide" data-idx="0">
+            <img src="img/we7/2010-02-papiermodell.jpg" alt="Papiermodell – 16. Februar 2010" loading="lazy">
+            <figcaption><span class="we7-date">16. Februar 2010</span> Papiermodell</figcaption>
+          </figure>
+          <figure class="we7-slide" data-idx="1">
+            <img src="img/we7/2010-10-rohbau.jpg" alt="Rohbau mit Dach – 15. Oktober 2010" loading="lazy">
+            <figcaption><span class="we7-date">15. Oktober 2010</span> Rohbau mit Dach</figcaption>
+          </figure>
+          <figure class="we7-slide" data-idx="2">
+            <img src="img/we7/2010-11-fenster.jpg" alt="Fenster eingebaut – Herbst 2010" loading="lazy">
+            <figcaption><span class="we7-date">Herbst 2010</span> Fenster eingebaut</figcaption>
+          </figure>
+          <figure class="we7-slide" data-idx="3">
+            <img src="img/we7/2010-12-holzmodell.jpg" alt="Holzmodell – 19. Dezember 2010" loading="lazy">
+            <figcaption><span class="we7-date">19. Dezember 2010</span> Holzmodell</figcaption>
+          </figure>
+          <figure class="we7-slide" data-idx="4">
+            <img src="img/we7/2013-03-visualisierung.jpg" alt="3D-Visualisierung – 16. März 2013" loading="lazy">
+            <figcaption><span class="we7-date">16. März 2013</span> 3D-Visualisierung</figcaption>
+          </figure>
+          <figure class="we7-slide" data-idx="5">
+            <img src="img/we7/2015-11-fertig.jpg" alt="Fertig verputzt – 18. November 2015" loading="lazy">
+            <figcaption><span class="we7-date">18. November 2015</span> Fertig verputzt</figcaption>
+          </figure>
+          <figure class="we7-slide" data-idx="6">
+            <img src="img/we7/herbst-garten.jpg" alt="Garten angelegt – Herbst" loading="lazy">
+            <figcaption><span class="we7-date">Herbst</span> Garten angelegt</figcaption>
+          </figure>
+          <figure class="we7-slide" data-idx="7">
+            <img src="img/we7/planung-pergola.jpg" alt="Revit-Visualisierung – Planung" loading="lazy">
+            <figcaption><span class="we7-date">Planung</span> Revit-Visualisierung</figcaption>
+          </figure>
+          <figure class="we7-slide" data-idx="8">
+            <img src="img/we7/sommer-heute.jpg" alt="Heute – Heute" loading="eager">
+            <figcaption><span class="we7-date">Heute</span> Heute</figcaption>
+          </figure>
+        </div>
+        <button type="button" class="we7-nav we7-prev" id="we7-prev" aria-label="Vorheriges Foto">‹</button>
+        <button type="button" class="we7-nav we7-next" id="we7-next" aria-label="Nächstes Foto">›</button>
+      </div>
+      <div class="we7-dots" id="we7-dots"></div>
+    </div>
+
+    <!-- Zeitleiste -->
+    <div class="bg-white rounded-2xl p-8 shadow-lg">
+      <h3 class="text-2xl font-bold text-slate-800 mb-6">Zeitleiste</h3>
+      <ol class="we7-timeline" id="we7-timeline">
+        <li class="we7-step">
+          <button type="button" class="we7-step-btn" data-slide="0">
+            <span class="we7-date">16. Februar 2010</span>
+            <img src="img/we7/thumb/2010-02-papiermodell.jpg" alt="Papiermodell" loading="lazy">
+            <span class="we7-title">Papiermodell</span>
+            <span class="we7-text">Erstes Planungsmodell aus Karton – Kubatur, Pultdächer und die große Terrasse über der Garage stehen schon fest.</span>
+          </button>
+        </li>
+        <li class="we7-step">
+          <button type="button" class="we7-step-btn" data-slide="1">
+            <span class="we7-date">15. Oktober 2010</span>
+            <img src="img/we7/thumb/2010-10-rohbau.jpg" alt="Rohbau mit Dach" loading="lazy">
+            <span class="we7-title">Rohbau mit Dach</span>
+            <span class="we7-text">Ziegelmauerwerk, Dachstuhl und Blechdach sind fertig, die Garagentore und die Haustür bereits eingebaut.</span>
+          </button>
+        </li>
+        <li class="we7-step">
+          <button type="button" class="we7-step-btn" data-slide="2">
+            <span class="we7-date">Herbst 2010</span>
+            <img src="img/we7/thumb/2010-11-fenster.jpg" alt="Fenster eingebaut" loading="lazy">
+            <span class="we7-title">Fenster eingebaut</span>
+            <span class="we7-text">Die Fenster samt Rollladenkästen sind drin – das Haus ist dicht für den Winter.</span>
+          </button>
+        </li>
+        <li class="we7-step">
+          <button type="button" class="we7-step-btn" data-slide="3">
+            <span class="we7-date">19. Dezember 2010</span>
+            <img src="img/we7/thumb/2010-12-holzmodell.jpg" alt="Holzmodell" loading="lazy">
+            <span class="we7-title">Holzmodell</span>
+            <span class="we7-text">Bemaltes Holzmodell des Hauses – mit gelbem Golf in der Einfahrt und 30er-Schild.</span>
+          </button>
+        </li>
+        <li class="we7-step">
+          <button type="button" class="we7-step-btn" data-slide="4">
+            <span class="we7-date">16. März 2013</span>
+            <img src="img/we7/thumb/2013-03-visualisierung.jpg" alt="3D-Visualisierung" loading="lazy">
+            <span class="we7-title">3D-Visualisierung</span>
+            <span class="we7-text">Digitales Modell mit Außenstiege, Terrassengeländer, Solarkollektoren und Vordach über dem Eingang.</span>
+          </button>
+        </li>
+        <li class="we7-step">
+          <button type="button" class="we7-step-btn" data-slide="5">
+            <span class="we7-date">18. November 2015</span>
+            <img src="img/we7/thumb/2015-11-fertig.jpg" alt="Fertig verputzt" loading="lazy">
+            <span class="we7-title">Fertig verputzt</span>
+            <span class="we7-text">Fassade in Weiß und Grau, Glasgeländer, Außenstiege und asphaltierte Einfahrt – das Haus ist fertig.</span>
+          </button>
+        </li>
+        <li class="we7-step">
+          <button type="button" class="we7-step-btn" data-slide="6">
+            <span class="we7-date">Herbst</span>
+            <img src="img/we7/thumb/herbst-garten.jpg" alt="Garten angelegt" loading="lazy">
+            <span class="we7-title">Garten angelegt</span>
+            <span class="we7-text">Der Hang neben der Stiege ist bepflanzt, die Einfahrt mit Pflasterrand eingefasst.</span>
+          </button>
+        </li>
+        <li class="we7-step">
+          <button type="button" class="we7-step-btn" data-slide="7">
+            <span class="we7-date">Planung</span>
+            <img src="img/we7/thumb/planung-pergola.jpg" alt="Revit-Visualisierung" loading="lazy">
+            <span class="we7-title">Revit-Visualisierung</span>
+            <span class="we7-text">BIM-Modell in Revit zur Planung von Pergola und Markise auf der Terrasse.</span>
+          </button>
+        </li>
+        <li class="we7-step we7-current">
+          <button type="button" class="we7-step-btn" data-slide="8">
+            <span class="we7-date">Heute</span>
+            <img src="img/we7/thumb/sommer-heute.jpg" alt="Heute" loading="lazy">
+            <span class="we7-title">Heute</span>
+            <span class="we7-text">Mit Pergola auf der Terrasse und eingewachsenem Garten.</span>
+          </button>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
      IMPRESSUM PAGE
 ══════════════════════════════════════ -->
 <div id="page-impressum" class="page">
@@ -2046,7 +2244,7 @@
       </section>
       <section class="legal-block">
         <h3>Bildnachweise</h3>
-        <p>Eigene Fotos: Autos, Vespas, Bianchi Thomisus, YT Jeffsy sowie die RC Cars Traxxas Maxx, TRX-4, TRX-6 und Summit.</p>
+        <p>Eigene Fotos: We7 (inkl. Modelle und Visualisierungen), Autos, Vespas, Bianchi Thomisus, YT Jeffsy sowie die RC Cars Traxxas Maxx, TRX-4, TRX-6 und Summit.</p>
         <p>Produktabbildungen: Handys – GSMArena (gsmarena.com); Ghost AMR 7500 – Ghost Bikes (Datenblatt); 3D-Drucker – XYZprinting bzw. Anycubic. Die Rechte an diesen Abbildungen liegen bei den jeweiligen Inhabern.</p>
       </section>
       <section class="legal-block">
@@ -2245,6 +2443,57 @@
   buildBanner('#rc-list', '#rb-grid', '#rb-count', 'rc', 'Modelle');
   buildBanner('#vespa-list', '#vb-grid', '#vb-count', 'vespa', 'Roller');
 
+  // ── We7: Foto-Karussell mit Zeitleiste ──
+  (function () {
+    const track = $('#we7-track');
+    if (!track) return;
+    const slides = $$('.we7-slide', track);
+    const dots = $('#we7-dots'), counter = $('#we7-counter');
+    const steps = $$('#we7-timeline .we7-step');
+    let cur = slides.length - 1, target = null;
+    slides.forEach((_, i) => {
+      const b = document.createElement('button'); b.type = 'button';
+      b.setAttribute('aria-label', 'Foto ' + (i + 1)); b.addEventListener('click', () => go(i));
+      dots.appendChild(b);
+    });
+    function mark(i) {
+      cur = i;
+      counter.textContent = (i + 1) + ' / ' + slides.length;
+      $$('button', dots).forEach((d, k) => d.classList.toggle('on', k === i));
+      steps.forEach((s, k) => s.classList.toggle('active', k === i));
+    }
+    function go(i, smooth) {
+      i = (i + slides.length) % slides.length;
+      target = i;
+      track.scrollTo({ left: slides[i].offsetLeft, behavior: smooth === false ? 'auto' : 'smooth' });
+      mark(i);
+    }
+    let t;
+    track.addEventListener('scroll', () => {
+      if (target !== null) {                       // programmgesteuerter Sprung läuft
+        if (Math.abs(track.scrollLeft - slides[target].offsetLeft) < 4) target = null;
+        return;
+      }
+      clearTimeout(t);
+      t = setTimeout(() => mark(Math.round(track.scrollLeft / track.clientWidth)), 80);
+    });
+    $('#we7-prev').addEventListener('click', () => go(cur - 1));
+    $('#we7-next').addEventListener('click', () => go(cur + 1));
+    $$('.we7-step-btn').forEach(b => b.addEventListener('click', () => {
+      go(parseInt(b.dataset.slide, 10));
+      $('.we7-carousel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
+    document.addEventListener('keydown', e => {
+      if (!$('#page-we7').classList.contains('active') || $('#lightbox').classList.contains('open')) return;
+      if (e.key === 'ArrowLeft') go(cur - 1); else if (e.key === 'ArrowRight') go(cur + 1);
+    });
+    // beim Öffnen der Seite auf "Heute" stellen
+    const show = () => { if ($('#page-we7').classList.contains('active')) requestAnimationFrame(() => go(cur, false)); };
+    window.addEventListener('hashchange', show); window.addEventListener('popstate', show);
+    $$('[data-page="we7"], [data-goto="we7"]').forEach(el => el.addEventListener('click', () => setTimeout(show, 0)));
+    mark(cur); setTimeout(show, 0);
+  })();
+
   setStat('rc-count', $$('#rc-list > .timeline-entry').length);
 
   // ── Fotoalben: Buttons + Vorschaubilder erzeugen ──────────────────
@@ -2404,8 +2653,8 @@
   });
 
   // ── Seiten-Routing mit eigenen URLs (#autos, #autos/golf2g60 …) ──
-  const PAGES = ['home', 'autos', 'handys', 'druck', 'mtb', 'rc', 'vespa', 'impressum'];
-  const TITLES = { home: 'Homepage', autos: 'Autos', handys: 'Handys', druck: '3D Druck', mtb: 'MTB', rc: 'RC Cars', vespa: 'Vespa', impressum: 'Impressum' };
+  const PAGES = ['home', 'autos', 'handys', 'druck', 'mtb', 'rc', 'vespa', 'we7', 'impressum'];
+  const TITLES = { home: 'Homepage', autos: 'Autos', handys: 'Handys', druck: '3D Druck', mtb: 'MTB', rc: 'RC Cars', vespa: 'Vespa', we7: 'We7 – Unser Zuhause', impressum: 'Impressum' };
 
   function parseHash() {
     const raw = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
