@@ -14,8 +14,21 @@
     })();
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    /* Schriften lokal (IBM Plex, SIL Open Font License, siehe fonts/OFL-LICENSE.txt) */
+    @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/ibm-plex-sans-latin-ext-400-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/ibm-plex-sans-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+    @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/ibm-plex-sans-latin-ext-500-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/ibm-plex-sans-latin-500-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+    @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/ibm-plex-sans-latin-ext-600-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/ibm-plex-sans-latin-600-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+    @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/ibm-plex-sans-latin-ext-700-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/ibm-plex-sans-latin-700-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+    @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/ibm-plex-mono-latin-ext-400-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+    @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/ibm-plex-mono-latin-ext-500-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
     *, *::before, *::after { box-sizing: border-box; }
     * { font-family: 'IBM Plex Sans', system-ui, sans-serif; }
 
@@ -282,6 +295,22 @@
     .nav-shortcut { display: inline-flex; align-items: center; }
     .kicker { display: flex; align-items: center; gap: 8px; }
     .kicker-ico { width: 18px; height: 18px; color: var(--accent); }
+
+    /* Impressum */
+    .legal { max-width: 52rem; }
+    .legal-block { padding: 1.25rem 0; border-bottom: 1px dashed var(--line); }
+    .legal-block:first-child { padding-top: 0; }
+    .legal-block h3 { font-family: var(--mono); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 10px; }
+    .legal-block h3::before { content: ''; width: 8px; height: 8px; background: var(--accent); }
+    .legal-block p { color: var(--fg-2); line-height: 1.65; margin-bottom: 0.6rem; }
+    .legal-block p:last-child { margin-bottom: 0; }
+    .legal-block strong { color: var(--fg); font-weight: 600; }
+    .legal-block dl { display: grid; grid-template-columns: 7rem 1fr; gap: 0.5rem 1rem; }
+    .legal-block dt { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding-top: 3px; }
+    .legal-block dd { color: var(--fg); }
+    .legal a, .footer-link { color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+    .legal a:hover, .footer-link:hover { color: var(--accent); }
+    .legal-stand { margin-top: 1.25rem; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
 
     /* Detailbereich als Datenblatt */
     .detail-panel { margin-left: 0 !important; margin-right: 0 !important; margin-top: 0 !important; }
@@ -1956,11 +1985,59 @@
 
 
 <!-- ══════════════════════════════════════
+     IMPRESSUM PAGE
+══════════════════════════════════════ -->
+<div id="page-impressum" class="page">
+  <div class="hero hero-impressum text-white py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="kicker">Rechtliches</div>
+      <h2 class="text-4xl font-bold mb-4">Impressum</h2>
+      <p class="text-xl opacity-90">Offenlegung gemäß § 25 Abs. 5 Mediengesetz und Hinweise zum Datenschutz</p>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-2xl p-8 shadow-lg legal">
+      <section class="legal-block">
+        <h3>Medieninhaber</h3>
+        <dl>
+          <dt>Name</dt><dd>Peter Riemer</dd>
+          <dt>Wohnort</dt><dd>Pinggau, Österreich</dd>
+          <dt>E-Mail</dt><dd><a href="mailto:kontakt@riemer.co">kontakt@riemer.co</a></dd>
+        </dl>
+      </section>
+      <section class="legal-block">
+        <h3>Zweck der Website</h3>
+        <p>Private, nicht kommerzielle Website zur persönlichen Darstellung von Hobbys und Interessen – Fahrzeuge, Technik und Projekte. Es werden keine Waren oder Dienstleistungen angeboten und keine Werbung geschaltet.</p>
+      </section>
+      <section class="legal-block">
+        <h3>Haftung für Inhalte und Links</h3>
+        <p>Die Inhalte wurden mit Sorgfalt erstellt. Für Richtigkeit, Vollständigkeit und Aktualität – insbesondere technischer Daten – wird keine Gewähr übernommen. Für Inhalte verlinkter externer Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+      </section>
+      <section class="legal-block">
+        <h3>Bildnachweise</h3>
+        <p>Eigene Fotos: Autos, Vespas, YT Jeffsy sowie die RC Cars Traxxas Maxx, TRX-4, TRX-6 und Summit.</p>
+        <p>Produktabbildungen: Handys – GSMArena (gsmarena.com); Ghost AMR 7500 – Ghost Bikes (Datenblatt); 3D-Drucker – XYZprinting bzw. Anycubic. Die Rechte an diesen Abbildungen liegen bei den jeweiligen Inhabern.</p>
+      </section>
+      <section class="legal-block">
+        <h3>Datenschutz</h3>
+        <p>Diese Website setzt keine Cookies und verwendet kein Tracking. Im Browser wird lediglich die gewählte Darstellung (hell/dunkel) lokal gespeichert.</p>
+        <p><strong>Hosting:</strong> Die Website wird über GitHub Pages (GitHub Inc., USA) bereitgestellt. Beim Aufruf verarbeitet GitHub technisch notwendige Daten wie die IP-Adresse in Server-Logfiles.</p>
+        <p><strong>Schriftarten:</strong> Die Schriften (IBM Plex) werden direkt von dieser Website geladen; es besteht keine Verbindung zu Google Fonts.</p>
+        <p><strong>Externer Dienst:</strong> Für die Gestaltung wird das Tailwind-CSS-CDN (cdn.tailwindcss.com) eingebunden. Dabei wird die IP-Adresse an diesen Anbieter übertragen.</p>
+        <p>Rechtsgrundlage ist das berechtigte Interesse an einer funktionierenden Darstellung der Website (Art. 6 Abs. 1 lit. f DSGVO). Bei Fragen zu Ihren Daten und Ihren Rechten (Auskunft, Berichtigung, Löschung, Widerspruch) wenden Sie sich an die oben genannte E-Mail-Adresse; zudem besteht ein Beschwerderecht bei der österreichischen Datenschutzbehörde.</p>
+      </section>
+      <p class="legal-stand">Stand: November 2026</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
      FOOTER
 ══════════════════════════════════════ -->
 <footer class="bg-slate-800 text-white py-8 px-4 mt-auto">
   <div class="max-w-6xl mx-auto text-center">
-    <p class="text-slate-400">© <span data-stat="footer-year">2026</span> Peter Riemer · riemer.co</p>
+    <p class="text-slate-400">© <span data-stat="footer-year">2026</span> Peter Riemer · riemer.co · <a href="#impressum" class="footer-link" data-goto="impressum">Impressum</a></p>
   </div>
 </footer>
 
@@ -2296,8 +2373,8 @@
   });
 
   // ── Seiten-Routing mit eigenen URLs (#autos, #autos/golf2g60 …) ──
-  const PAGES = ['home', 'autos', 'handys', 'druck', 'mtb', 'rc', 'vespa'];
-  const TITLES = { home: 'Homepage', autos: 'Autos', handys: 'Handys', druck: '3D Druck', mtb: 'MTB', rc: 'RC Cars', vespa: 'Vespa' };
+  const PAGES = ['home', 'autos', 'handys', 'druck', 'mtb', 'rc', 'vespa', 'impressum'];
+  const TITLES = { home: 'Homepage', autos: 'Autos', handys: 'Handys', druck: '3D Druck', mtb: 'MTB', rc: 'RC Cars', vespa: 'Vespa', impressum: 'Impressum' };
 
   function parseHash() {
     const raw = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
